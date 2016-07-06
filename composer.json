@@ -1,0 +1,25 @@
+{
+    "name": "asherwunk/phabstractic",
+    "type": "library",
+    "description": "Pure PHP Abstract Data Types, Algorithms, and Features",
+    "keywords": ["abstract","abstract data types","algorithms"],
+    "homepage": "http://github.com/asherwunk/phabstractic",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Asher Wolfstein",
+            "email": "asherwunk@gmail.com",
+            "homepage": "http://wunk.me",
+            "role": "Developer"
+        }
+        ],
+        "require": {
+            "php"         : ">=7.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "repositories": [
+            {"type": "git", "url": "http://github.com/asherwunk/phabstractic"}
+        ]
+}
