@@ -7,7 +7,12 @@ use Phabstractic\Patterns;
 class RegistryTest extends TestCase
 {
     public function testInstantiation() {
-        $registry = Patterns\Registry::instantiate(array('testkey'=>'testdata'));
+        if (!Patterns\Registry::hardened()) {
+            $registry = Patterns\Registry::instantiate(array('testkey'=>'testdata'));
+        } else {
+            $registry = Patterns\Registry::instantiate();
+            $registry['testkey'] = 'testdata';
+        }
         
         $this->assertInstanceOf(Patterns\Registry::class, $registry);
         
@@ -92,5 +97,14 @@ class RegistryTest extends TestCase
     {
         $registry = Patterns\Registry::instantiate();
         $registryclone = clone $registry;
+    }
+    
+    
+    public static function tearDownAfterClass()
+    {
+        $registry = Patterns\Registry::instantiate();
+        unset($registry['testkey']);
+        unset($registry['newkey']);
+        unset($registry['testref']);
     }
 }
