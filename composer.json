@@ -21,5 +21,11 @@
         },
         "repositories": [
             {"type": "git", "url": "http://github.com/asherwunk/phabstractic"}
-        ]
+        ],
+        "autoload": {
+            "psr-4": {
+                "Phabstractic\\": "src"
+            }
+        }
+    }
 }

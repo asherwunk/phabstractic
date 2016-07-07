@@ -40,3 +40,7 @@ Thumbs.db
 # Cloud9 IDE - http://c9.io
 .c9revisions
 .c9
+
+# Composer
+/vendor
+composer.lock
