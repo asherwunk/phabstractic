@@ -1,0 +1,174 @@
+<?php
+
+/* This document is meant to follow PSR-1 and PSR-2 php-fig standards
+   http://www.php-fig.org/psr/psr-1/
+   http://www.php-fig.org/psr/psr-2/ */
+
+/**
+ * Singleton Implemented Through Traits
+ * 
+ * This is an implementation of the singleton pattern using the traits
+ * functionality found in PHP 5.4.  Any object that uses this trait enables
+ * the object to be used as a singleton.  The advantage of this is that the
+ * object can then inherit from a separate object without having to rewrite
+ * the singleton behavior.  To pass instantiation arguments on an initial
+ * set-up pass arguments to the instantiate() static method, this will then
+ * pass those arguments to the class' defined init method.
+ * 
+ * @copyright Copyright 2016 Asher Wolfstein
+ * @author Asher Wolfstein <asherwunk@gmail.com>
+ * @link http://wunk.me/ The author's URL
+ * @link http://wunk.me/programming-projects/phabstractic/ Framework URL
+ * @license http://opensource.org/licenses/MIT
+ * @package Patterns
+ * @subpackage Traits
+ * 
+ */
+
+/**
+ * Falcraft Libraries Pattern Implementations Namespace
+ * 
+ */
+namespace Phabstractic\Patterns\Resource
+{
+    /* loading function /falcraftLoad.php depends on registry which depends
+       on SingletonTrait */
+    $includes = array('/../Exception/RuntimeException.php',);
+
+    foreach ( $includes as $include )
+    {
+        if ( realpath( __DIR__ . str_replace( '/', DIRECTORY_SEPARATOR, $include ) ) === false )
+            throw new \RuntimeException( "Patterns\Resource\SingletonTrait: include $include not found" );
+        require_once( realpath( __DIR__ . str_replace('/', DIRECTORY_SEPARATOR, $include ) ) );
+    }
+    
+    use Phabstractic\Patterns\Exception;
+    
+    /**
+     * The SingletonTrait trait
+     * 
+     * Encapsulates all the necessary functions to implement a singleton
+     * static class.
+     * 
+     * CHANGELOG
+     * 
+     * 1.0:   Documented SingletonTrait - May 4th, 2013
+     * 2.0:   Reproduced Singleton for Primus - April 2nd, 2015
+     * 2.0.1: Un-finalized constructor function for objects requiring
+     *            public constructor
+     * 2.0.2: Used local version of RunTimeException - April 11th, 2015
+     * 3.0:   formatted for inclusion in phabstractic - July 7th, 2016
+     * 
+     * @link http://stackoverflow.com/questions/7104957/building-a-singleton-trait-with-php-5-4
+     * @version 3.0
+     * 
+     */
+    trait SingletonTrait
+    {
+        
+        /**
+         * The single instance of the class
+         * 
+         * @static
+         * 
+         * @var mixed The singular instance
+         * 
+         */
+        protected static $instance;
+        
+        /**
+         * Test if the instance already exists
+         * 
+         * If it exists then it can't be instantiated with arguments
+         * 
+         * @return bool True if instantiated
+         * 
+         */
+        public static function hardened()
+        {
+            return isset(static::$instance)
+                ? true
+                : false;
+        }
+        
+        /**
+         * Gets The Singular Instance of the Singleton
+         * 
+         * This can be called with an array of 'options' (those really are
+         * supplied to the given instance).  If there's an attempt to
+         * 'reconfigure' the singleton instance with new options a
+         * RuntimeException is thrown.
+         * 
+         * @static
+         * 
+         * @param array $arguments The options for the singleton instance
+         * 
+         * @return mixed The instance of the singleton class, the class itself
+         * 
+         * @throws Phabstractic\Patterns\Exception\RuntimeException
+         *             when instance is already defined and
+         *             configured when given new configuration
+         *             options
+         * 
+         */
+        final public static function instantiate()
+        {
+            $args = func_get_args();
+            
+            /* If the instance has already been constructed but somebody is
+               passing configurations in anyway, raise an exception. */
+            if (self::hardened() && $args) {
+                throw new Exception\RuntimeException(
+                    'SingletonTrait->instantiate: ' .
+                    'Singleton constructor arguments sent twice.');
+            } else {
+                if ($args) {
+                    static::$instance = new static;
+                    call_user_func_array(array(static::$instance,'init'),
+                                         func_get_args());
+                    return static::$instance;
+                } else {
+                    if (self::hardened()) {
+                        return static::$instance;
+                    } else {
+                        static::$instance = new static;
+                        self::$instance->init();
+                        return self::$instance;
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+        /**
+         * Private Constructor
+         * 
+         * Prevents instantiation using 'new'.  To provide a constructor on
+         * a containing class use init()
+         * 
+         */
+        private function __construct()
+        {
+            
+        }
+        
+        /**
+         * Singleton Instance Construction Function
+         * 
+         * This is the method that will be overriden to configure the instance
+         * 
+         */
+        abstract protected function init();
+        
+        /**
+         * You don't clone a singleton
+         * 
+         */
+        final private function __clone()
+        {
+            
+        }
+    }
+}
