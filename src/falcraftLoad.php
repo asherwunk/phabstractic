@@ -48,7 +48,7 @@ function falcraftLoad(array $libraries, $context = 'global', $refresh = false)
         $falcrafLoader = $refresh;
     }
     
-    if ( $falcraftLoader instanceof Types\Null ) {
+    if ( $falcraftLoader instanceof Types\None ) {
         foreach ( $libraries as $include ) {
             if ( realpath( __DIR__ . str_replace( '/', DIRECTORY_SEPARATOR, $include ) ) === false )
                 throw new \RuntimeException( "falcraftLoad - $context: include $include not found" );
