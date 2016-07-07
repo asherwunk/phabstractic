@@ -12,20 +12,19 @@
             "homepage": "http://wunk.me",
             "role": "Developer"
         }
-        ],
-        "require": {
-            "php"         : ">=7.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~4.0"
-        },
-        "repositories": [
-            {"type": "git", "url": "http://github.com/asherwunk/phabstractic"}
-        ],
-        "autoload": {
-            "psr-4": {
-                "Phabstractic\\": "src"
-            }
+    ],
+    "require": {
+        "php"         : ">=7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "repositories": [
+        {"type": "git", "url": "http://github.com/asherwunk/phabstractic"}
+    ],
+    "autoload": {
+        "psr-4": {
+            "Phabstractic": "src"
         }
     }
 }
