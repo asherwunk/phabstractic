@@ -13,6 +13,10 @@ foreach ( $includes as $include )
 use Phabstractic\Patterns;
 use Phabstractic\Data\Types;
 
+if (!defined('UNITTEST_LOADREGISTRY')) {
+    define('UNITTEST_LOADREGISTRY', true);
+}
+
 /* The following uses the Singletons namespace to instantiate a registry object
    and then check that registry object for the standard Falcraft AutoLoader
    singleton, defined by standard in the Loader/Bootstrap.php.  This file
@@ -38,10 +42,12 @@ function falcraftLoad(array $libraries, $context = 'global', $refresh = false)
 {
     static $falcraftRegistry, $falcraftLoader;
     
-    if (!$falcraftRegistry) {
+    if (!$falcraftRegistry && UNITTEST_LOADREGISTRY) {
         // Access global registry
         $falcraftRegistry = Patterns\Registry::instantiate();
         $falcraftLoader = $falcraftRegistry->get( 'Falcraft\Singletons\Autoloader' );
+    } elseif (!UNITTEST_LOADREGISTRY) {
+        $falcraftLoader = new Types\None();
     }
     
     if ($refresh) {

@@ -1,4 +1,5 @@
 <?php
+
 require_once('src/Patterns/Registry.php');
 
 use PHPUnit\Framework\TestCase;
@@ -7,12 +8,7 @@ use Phabstractic\Patterns;
 class RegistryTest extends TestCase
 {
     public function testInstantiation() {
-        if (!Patterns\Registry::hardened()) {
-            $registry = Patterns\Registry::instantiate(array('testkey'=>'testdata'));
-        } else {
-            $registry = Patterns\Registry::instantiate();
-            $registry['testkey'] = 'testdata';
-        }
+        $registry = Patterns\Registry::instantiate(array('testkey'=>'testdata'));
         
         $this->assertInstanceOf(Patterns\Registry::class, $registry);
         
