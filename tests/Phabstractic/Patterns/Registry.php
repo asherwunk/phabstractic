@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/Patterns/Registry.php');
+require_once('src/Phabstractic/Patterns/Registry.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Patterns;

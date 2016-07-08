@@ -1,7 +1,7 @@
 <?php
 
-require_once('src/Features/ConfigurationTrait.php');
-require_once('src/Features/Resource/ConfigurationInterface.php');
+require_once('src/Phabstractic/Features/ConfigurationTrait.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Features;

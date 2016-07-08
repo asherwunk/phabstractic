@@ -29,7 +29,7 @@
  */
 namespace Phabstractic\Features
 {
-    require __DIR__ . '/../../vendor/autoload.php';
+    require __DIR__ . '/../../../vendor/autoload.php';
     require_once(realpath( __DIR__ . '/../') . '/falcraftLoad.php');
     
     $includes = array('/Features/Exception/ClassDependencyException.php',

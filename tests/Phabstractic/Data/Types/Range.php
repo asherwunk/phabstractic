@@ -1,7 +1,7 @@
 <?php
 
-require_once('src/Data/Types/Range.php');
-require_once('src/Data/Types/Exception/InvalidArgumentException.php');
+require_once('src/Phabstractic/Data/Types/Range.php');
+require_once('src/Phabstractic/Data/Types/Exception/InvalidArgumentException.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
