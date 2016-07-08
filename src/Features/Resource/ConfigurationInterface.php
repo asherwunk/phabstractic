@@ -1,0 +1,147 @@
+<?php
+
+/* This document is meant to follow PSR-1 and PSR-2 php-fig standards
+   http://www.php-fig.org/psr/psr-1/
+   http://www.php-fig.org/psr/psr-2/ */
+
+/**
+ * Configuration Feature Implemented Through Traits
+ * 
+ * Trait Interface
+ * 
+ * @copyright Copyright 2016 Asher Wolfstein
+ * @author Asher Wolfstein <asherwunk@gmail.com>
+ * @link http://wunk.me/ The author's URL
+ * @link http://wunk.me/programming-projects/phabstractic/ Framework URL
+ * @license http://opensource.org/licenses/MIT
+ * @package Features
+ * @subpackage Configuration
+ * 
+ */
+
+/**
+ * Falcraft Libraries Features Namespace
+ * 
+ */
+namespace Phabstractic\Features\Resource
+{
+    
+    /**
+     * The Configuration Interface
+     * 
+     * Can be used to determine if an object uses or defines the Configuration
+     * trait to configure itself.
+     * 
+     * CHANGELOG
+     * 
+     * 1.0:  Created ConfigurationInterface - August 24, 2015
+     * 2.0:  reformatted for inclusion in phabstractic - July 7th, 2016
+     * 
+     * @version 2.0
+     * 
+     */
+    interface ConfigurationInterface
+    {
+        
+        /**
+         * Configure An Object
+         * 
+         * Expects an array for configuration however, you can also pass it
+         * a filepath where it will read the information from a file automatically
+         * detecting the format using the file extension.  You can also pass a
+         * Zend/Config object already made.
+         * 
+         * You can also pass a format specifier (forced format) for use in a
+         * if $configuration is a string formatted with such information.  E.G.
+         * to load from a string in the format ini:
+         * 
+         * $this->configure($configString, 'ini');
+         * 
+         * The $context argument is used for any additional reader constructor
+         * information, such as the constructor for the 'yaml' format.
+         * 
+         * NOTE:  You can override/extend the classes used for reading formats
+         *        by identifying an additional array in the property
+         *        $this->configReaders.  This will merge with the standard
+         *        formats array.
+         * 
+         * @param array|string|Zend\Config\Config $configuration The objects
+         *            configuration information.
+         * @param string $format The forced format, or format for configuration
+         *            string
+         * @param mixed $context Any additional information for a reader
+         *            constructor, such as needed for the YAML format.
+         * @return bool True if instantiated
+         * 
+         */
+        public function configure($configuration,
+                                  $format = null,
+                                  $context = null);
+        
+        /**
+         * Save an Object's Configuration to a File
+         * 
+         * Takes an objects $conf property and writes the information contained
+         * therein to a file with a format automatically specified by the
+         * filename.
+         * 
+         * It is possible to retrieve a string of a particular format from this
+         * method by specifying the filename '#string' with an extension
+         * indicating the desired format, such as '#string.json'.
+         * 
+         * The $context argument is used for any additional reader constructor
+         * information, such as the constructor for the 'yaml' format.
+         * 
+         * NOTE:  You can override/extend the classes used for writing formats
+         *        by identifying an additional array in the property
+         *        $this->configWriters.  This will merge with the standard
+         *        formats array.
+         * 
+         * @param string $file The file path to write to, or '#string.ext'
+         * @param Zend\Config\Writer\WriterInterface $writer The optional writer 
+         *            object supplied to use (such as a MySQL writer)
+         * @param boolean $exclusive Argument provided to toFile(), file
+         *            exclusive lock when writing
+         * @param mixed $context Any additionla writer constructor
+         *            information (YAML)
+         * 
+         */
+        public function saveSettings($file,
+                                     $writer = null,
+                                     $exclusive = true,
+                                     $context = null);
+        
+        /**
+         * Retrieve an Object's Configuration Information As String
+         * 
+         * This is a shortcut to ::saveSettings() which specifies a format
+         * and forces the return of a string, using the #string.ext filename
+         * -see documentation for ::saveSettings()-
+         * 
+         * @param string $format The format to return, must be supported by
+         *            ::saveSettings(), use $this->configWriters to support
+         *            additional formats.
+         * 
+         * @return string|boolean The formatted string, or false otherwise
+         * 
+         */
+        public function getSettings($format);
+        
+        /**
+         * Process an Object's Configuration
+         * 
+         * This uses a Zend\Config\Processor implementation to process the
+         * configuration information, such as constants.  The processor
+         * must be supplied and implement ProcessorInterface
+         * 
+         * NOTE: Edits the $conf object in place.
+         * 
+         * @param Zend\Config\Processor\ProcessorInterface $processor The given
+         *            processor object
+         * 
+         */
+        public function processSettings($processor);
+        
+    }
+    
+}
