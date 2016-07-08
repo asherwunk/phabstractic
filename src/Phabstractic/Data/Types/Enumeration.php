@@ -26,18 +26,18 @@
   * Falcraft Libraries Data Types Namespace
   * 
   */
-namespace Falcraft\Data\Types
+namespace Phabstractic\Data\Types
 {
     require_once(realpath( __DIR__ . '/../../') . '/falcraftLoad.php');
     
-    $includes = array('/Features/Configuration.php',
+    $includes = array('/Features/ConfigurationTrait.php',
                       '/Data/Types/Exception/CodeGenerationException.php',
                       '/Data/Types/Exception/RuntimeException.php',);
     
     falcraftLoad($includes, __FILE__);
     
-    use Falcraft\Features;
-    use Falcraft\Data\Types\Exception;
+    use Phabstractic\Features;
+    use Phabstractic\Data\Types\Exception;
     
     /**
      * Enumeration Class - Creates and Defines OO-defined Enumeration
@@ -46,8 +46,8 @@ namespace Falcraft\Data\Types
      * The Enum class which when instantiated can define an enumeration that 
      * can then be 'baked' into the appropriate namespace (or global namespace) 
      * and accessed, once baked, as an enumeration class/object of itself.  
-     * Uses SplEnum when available, otherwise emulates the behavior of SplEnum 
-     * through a custom built class.
+     * 
+     * NOTE: This class no longer uses the SPL Enum documented as of version 3.0
      * 
      * A static 'registry' makes sure that the programmer doesn't try to 
      * instantiate a fully qualified enumerator twice, and throws an error.
@@ -58,7 +58,7 @@ namespace Falcraft\Data\Types
      *       If you have to compare integer values try
      *           intval( (string) $myEnum ) as well
      *       If you use these methods, it should not matter if the object is
-     *       SplEnum or not.
+     *       SplEnum or not. (SplEnum no longer supported)
      * 
      * CHANGELOG
      * 
@@ -79,19 +79,21 @@ namespace Falcraft\Data\Types
      * 1.12:  Changed default to default to 0 when missing - August 6th, 2013
      * 1.13:  Removed standard object and set dependency
      *            (loops, duh) - February 2nd, 2014
-     * 2.0:  Refactored to use the Configuration Feature
+     * 2.0:   Refactored to use the Configuration Feature
      *           (Features/Configuration.php) - April 7th, 2015
      * 2.0.1: Added enum list check in code generator - April 7th, 2015
      * 2.0.2: Added more flexible options in constructor - April 10th, 2015
      * 2.0.3: Ensured Default Values using static property - September 4th, 2015
+     * 3.0:   reformatted for inclusion in phabstractic
+     *        reverted constants to a non-associative array
+     *        added value checking in generated class - July 8th, 2016
      * 
-     * @link http://www.furdev.com/primusfalcraft-new-data-type-enum/
-     * @version 2.0.2
+     * @version 3.0
      * 
      */
     class Enumeration
     {
-        use Features\Configuration;
+        use Features\ConfigurationTrait;
         
         /**
          * Keeps track of already defined enumerations internally
@@ -139,9 +141,9 @@ namespace Falcraft\Data\Types
          * Generates the required class code and evaluates it
          * 
          * The function that pieces the generated code together and evaluates it
-         * If SplEnum is available it inherits that class, otherwise it defines
-         * a custom enumerator class.  Use ->get() to explicitly get the value of
-         * both SplEnum- and custom-derived classes.
+         * It defines a custom enumerator class, SplEnum is not supported from
+         * version 3 onwards.  Use ->get() to explicitly get the value of
+         * both SplEnum- (NOT SUPPORTED) and custom-derived classes.
          * 
          * NOTE: The eval'd code can throw an \UnexpectedValueException (root)
          * 
@@ -150,16 +152,19 @@ namespace Falcraft\Data\Types
          * 
          * @return bool             If enumerator was generated at all (without errors)
          * 
-         * @throws Exception\CodeGenerationException if enum couldn't be created
-         * @throws Exception\RuntimeException if enum class already exists
+         * @throws \Phabstractic\Data\Types\Exception\CodeGenerationException
+         *              if enum couldn't be created
+         * @throws \Phabstractic\Data\Types\Exception\RuntimeException
+         *              if enum class already exists
          * 
          */
         private function createEnum($className, array $values)
         {
             if (isset($this->namespace) && in_array($this->namespace . '\\' . $className, self::$enums)) {
                 throw new Exception\RuntimeException(
-                    'Enum->createEnum:' . $this->namespace . '\\' .
-                        $className . ' Enumeration Already Defined');
+                    '\\Phabstractic\\Data\\Types\\Enumeration->createEnum: ' .
+                        $this->namespace . '\\' . $className .
+                        ' Enumeration Already Defined');
             }
             
             // Start with blank code
@@ -172,116 +177,107 @@ namespace Falcraft\Data\Types
                 $classCode .= 'namespace ' . $this->namespace . ";\n\n";
             }
             
-            // Check to see if SplEnum is even available (still in SVN?)
-            if (class_exists('SplEnum')) {
-                $classCode .= "class $className extends \SplEnum implements \Countable{\n\n\t";
-                
-                $classCode .= "private $value = null;\n\t";
-                
-                /* Define the contants in the code from the values passed to
-                   the function */
-                foreach ( $values as $identifier => $val )
-                    $classCode .= 'const ' . strtoupper($identifier) . " = $val;\n\t";
-                
-                /* Define the default constant from the value passed to
-                   the function */
-                if ( isset( $this->conf->default ) && $this->conf->default )
-                    $classCode .= "\nconst __default = self::" . $this->conf->default . ";\n\n";
-                
-                /* Define our ->get function creating compatibility between the
-                   two enum classes */
-                $classCode .= "public function getEnum() {
-                    return \$this;
-                }\n\t";
-                
-                $classCode .= "public function get() {
-                    return \$this->value;
-                }\n\t";
-                
-                $classCode .= "public function set(\$value) {
-                    \$this->value = \$value;
-                }\n\t";
-                
-            } else {
-                /* I guess SplEnum doesn't exist
-                   Create the class and its internal variable */
-                $classCode .= "class $className implements \Countable {
-                    private \$value;\n";
-                
-                /* This creates the default default value (if no default value 
-                   is specified) as well as creates the constant definition 
-                   from the values passed to the function */
-                $defaultTemp = 0;
-                foreach ($values as $identifier => $val) {
-                    $classCode .= "const $identifier = $val;\n\t";
-                    // !$defaultTemp ? $defaultTemp = $identifier : null;
-                }
-                
-                /* If the default option has been defined, use that one,
-                   otherwise Use the default default we defined above */
-                if (isset( $this->conf->default ) && $this->conf->default) {
-                    $classCode .= "\nconst __default = self::" . $this->conf->default . ";\n\n\t";
-                    $classCode .= "\npublic static \$__sdefault = self::" . $this->conf->default . ";\n\n\t";
-                } else {
-                    $classCode .= "\nconst __default = 0;\n\n\t";
-                    $classCode .= "\npublic static \$__sdefault = 0;\n\n\t";
-                }
-                    
-                /* Build the rest of the custom object, somewhat self
-                   explanatory.  There is no 'set' method becuse if you want 
-                   to get a new enumerator value you would pass that value to a 
-                   new enumerator instance.  i.e. $aColor = new Color(Color::Red).
-                
-                   The constructor function is the 'set' method then, and 
-                   checks to make sure the value provided for the new
-                   enumerator instance is available as a constant in the class 
-                   through the use of a ReflectionClass
-                
-                   Throws UnexpectedValueException when the constant value is
-                       not available */
-                
-                /* version 1.2: added \ qualifier before
-                   ReflectionClass - April 11th, 2013 */
-                $classCode .= "public function __construct(\$initValue = null)
-                    {\n";
-                        if ($this->conf->default) {
-                            $classCode .= "self::\$__sdefault = self::" . $this->conf->default . ";";
-                        }
-                $classCode .= "\n
-                        \$reflector = new \\ReflectionClass(\$this);
-                        if (\$initValue) {
-                            if ( in_array( \$initValue, \$reflector->getConstants(), true ) )
-                            {
-                                \$this->value = \$initValue;
-                            } else {
-                                throw new \UnexpectedValueException(\"Value not a const in enum $className\");
-                            }
-                        } else {
-                            \$this->value = self::\$__sdefault;
-                        }
-                    }
-                    
-                    public function __toString()
-                    {
-                        return (string) \$this->value;
-                    }
-                    
-                    public function get()
-                    {
-                        return \$this->value;
-                    }
-                    
-                    // Enables kooky object typing stuff
-                    public function set( \$value )
-                    {
-                        \$this->value = \$value;
-                    }\n";
-                    
+            /* Create the class and its internal variable */
+            $classCode .= "class $className implements \Countable {
+                private \$value;\n";
+            
+            /* Version 3.0: Uses reflection to check values against constants */
+            $classCode .= "    private \$reflector;\n";
+            
+            /* This creates the default default value (if no default value 
+               is specified) as well as creates the constant definition 
+               from the values passed to the function */
+            $defaultTemp = 0;
+            $counter = 0;
+            foreach ($values as $val) {
+            //foreach ($values as $identifier => $val) {
+                $classCode .= "const $val = $counter;\n\t";
+                // !$defaultTemp ? $defaultTemp = $identifier : null;
+                $counter++;
             }
+            
+            /* If the default option has been defined, use that one,
+               otherwise Use the default default we defined above */
+            if (isset( $this->default ) && $this->default) {
+                $classCode .= "\nconst __default = self::" .
+                    $this->default . ";\n\n\t";
+                $classCode .= "\npublic static \$__sdefault = self::" .
+                    $this->default . ";\n\n\t";
+            } else {
+                $classCode .= "\nconst __default = 0;\n\n\t";
+                $classCode .= "\npublic static \$__sdefault = 0;\n\n\t";
+            }
+                
+            /* Build the rest of the custom object, somewhat self
+               explanatory.  There is no 'set' method becuse if you want 
+               to get a new enumerator value you would pass that value to a 
+               new enumerator instance.  i.e. $aColor = new Color(Color::Red).
+            
+               The constructor function is the 'set' method then, and 
+               checks to make sure the value provided for the new
+               enumerator instance is available as a constant in the class 
+               through the use of a ReflectionClass
+            
+               Throws UnexpectedValueException when the constant value is
+                   not available */
+            
+            /* version 1.2: added \ qualifier before
+               ReflectionClass - April 11th, 2013 */
+            $classCode .= "public function __construct(\$initValue = null)
+                {\n";
+                    if ($this->default) {
+                        $classCode .= "self::\$__sdefault = self::" .
+                            $this->default . ";";
+                    }
+            $classCode .= "\n
+                    \$this->reflector = new \\ReflectionClass(\$this);
+                    if (\$initValue) {
+                        if ( \$this->check( \$initValue ) )
+                        {
+                            \$this->value = \$this->reflector->getConstants()[\$initValue];
+                        } else {
+                            throw new \UnexpectedValueException(\"Value not a const in enum $className\");
+                        }
+                    } else {
+                        \$this->value = self::\$__sdefault;
+                    }
+                }
+                
+                // version 3.0: checks against the constants defined
+                protected function check( \$value )
+                {
+                    if ( in_array( \$value, array_keys(\$this->reflector->getConstants()), true ) )
+                    {
+                        return true;
+                    }
+                    
+                    return false;
+                }
+                
+                public function __toString()
+                {
+                    return (string) \$this->value;
+                }
+                
+                public function get()
+                {
+                    return \$this->value;
+                }
+                
+                // version 3.0: now checks against the constants defined
+                public function set( \$value )
+                {
+                    if ( \$this->check( \$initValue ) )
+                    {
+                        \$this->value = \$this->reflector->getConstants()[\$initValue];
+                    } else {
+                        throw new \UnexpectedValueException(\"Value not a const in enum $className\");
+                    }
+                }\n";
+
             // How many enumerator categories are there?
             $classCode .= "public function count() {
-                \$reflect = new \\ReflectionClass(get_class(\$this));
-                return count(\$reflect->getConstants());
+                return count(\$this->reflector->getConstants());
             }
             
             static public function getConstants() {
@@ -296,7 +292,8 @@ namespace Falcraft\Data\Types
             try {
                 eval( $classCode );
             } catch (\Exception $e) {
-                throw new Exception\CodeGenerationException( 'Enum->createEnum: ' .
+                throw new Exception\CodeGenerationException(
+                    '\\Phabstractic\\Data\\Types\\Enumeration->createEnum: ' .
                     'Unable to generate ' . $this->className . ' due to internal ' .
                     'error.'); // The enumerator couldn't be generated.
             }
@@ -327,10 +324,7 @@ namespace Falcraft\Data\Types
          */
         public function __construct($className, array $values, $options = array())
         {
-            if (is_array($options)) {
-                $options = array_change_key_case($options);
-            }
-            
+            // version 2.1 of ConfigurationTrait handles configuraiton formatting
             $this->configure($options);
             
             if (!self::$enums) {
@@ -365,9 +359,6 @@ namespace Falcraft\Data\Types
          * This class also pushes the qualified name onto a static stack so
          * that future enum classes defined through this method don't clash in 
          * name, allowing the class to raise a RangeException
-         * 
-         * @throws \RuntimeException if enumeration generation failed due to
-         *             internal error
          * 
          */
         public function bake()
@@ -404,15 +395,17 @@ namespace Falcraft\Data\Types
             if (!$this->baked) {
                 if (in_array($this->namespace . '\\' . $className, self::$enums)) {
                     throw new Exception\RuntimeException(
-                        'Enum->setClassname:' . $this->namespace . '\\' .
-                            $className . ' Enumeration Already Defined');
+                        '\\Phabstractic\\Data\\Types\\Enumeration->setClassname:' .
+                            $this->namespace . '\\' . $className .
+                            ' Enumeration Already Defined');
                 }
                 
                 $this->className = $className;
             } else {
                 throw new Exception\RuntimeException(
-                        'Enum->setClassname: ' . $this->namespace . ' -> ' .
-                            $className . ' Enumeration Already Baked');
+                        '\\Phabstractic\\Data\\Types\\Enumeration->setClassname: ' .
+                            $this->namespace . ' -> ' . $className .
+                            ' Enumeration Already Baked');
             }
             
         }
@@ -454,7 +447,8 @@ namespace Falcraft\Data\Types
             if (!$this->baked) {
                 $this->constants = $constants;
             } else {
-                throw new Exception\RuntimeException('Enum->setConstants: ' .
+                throw new Exception\RuntimeException(
+                    '\\Phrabstractic\\Data\\Types\\Enumeration->setConstants: ' .
                     $this->className . ' Enumeration Constants Already Baked');
             }
             
@@ -478,18 +472,18 @@ namespace Falcraft\Data\Types
          * new proposed values
          * 
          * @param string $name The name of the constant
-         * @param mixed $value May be anything a constant can be defined as
          * 
          * @throws Exception\RuntimeException if the class has already
          *             been baked
          * 
          */
-        public function addConstant($name, $value)
+        public function addConstant($name)
         {
             if (!$this->baked) {
-                $this->constants[$name] = $value;
+                $this->constants[] = $name;
             } else {
-                throw new Exception\RuntimeException('Enum->addConstant: ' .
+                throw new Exception\RuntimeException(
+                    '\\Phabstractic\\Data\\Types\\Enumeration->addConstant: ' .
                     $this->className . ' Enumeration Constants Already Baked');
             }
             
@@ -511,9 +505,10 @@ namespace Falcraft\Data\Types
         public function addConstants(array $constants)
         {
             if ( !$this->baked ) {
-               $this->constants = array_merge($this->constants, $constants);
+               $this->constants = array_unique(array_merge($this->constants, $constants));
             } else {
-                throw new Exception\RuntimeException('Enum->addConstants: ' .
+                throw new Exception\RuntimeException(
+                    '\\Phabstractic\\Data\\Types\\Enumeration->addConstants: ' .
                     $this->className . ' Enumeration Constants Already Baked');
             }
             
@@ -534,9 +529,11 @@ namespace Falcraft\Data\Types
         public function removeConstant($name)
         {
             if (!$this->baked) {
-                unset( $this->constants[$name] );
+                $this->constants = array_unique(array_diff($this->constants, array($name)));
+                //unset( $this->constants[] );
             } else {
-                throw new Exception\RuntimeException('Enum->removeConstant: ' .
+                throw new Exception\RuntimeException(
+                    '\\Phabstractic\\Data\\Types\\Enumeration->removeConstant: ' .
                     $this->className . ' Enumeration Constants Already Baked');
             }
             
@@ -557,18 +554,19 @@ namespace Falcraft\Data\Types
         public function setDefault($name)
         {
             if (!$this->baked) {
-                if (array_key_exists($name, $this->constants)) {
-                    $this->conf->default = $name;
+                if (in_array($name, $this->constants)) {
+                    $this->default = $name;
                     return true;
                 } else {
                     /* silently set default to nothing if default is not defined
                        in constant list. Does not generate an error */
-                    $this->conf->default = '';
+                    $this->default = '';
                     return false;
                 }
                 
             } else {
-                throw new Exception\RuntimeException('Enum->setDefault: ' .
+                throw new Exception\RuntimeException(
+                    '\\Phabstractic\\Data\\Types\\Enumeration->setDefault: ' .
                     $this->className . ' Enumeration Default Already Baked');
             }
             
@@ -627,14 +625,16 @@ namespace Falcraft\Data\Types
         {
             if (!$this->baked) {
                 if (in_array($namespace . '\\' . $this->className, self::$enums)) {
-                    throw new Exception\RuntimeException('Enum->setNamespace: ' .
+                    throw new Exception\RuntimeException(
+                        '\\Phabstractic\\Data\\Types\\Enumeration->setNamespace: ' .
                         $namespace . '\\' . $this->className .
                         ' Enumeration Already Defined');
                 }
                 
                 $this->namespace = $namespace;
             } else {
-                throw new Exception\RuntimeException('Enum->setNamespace: ' .
+                throw new Exception\RuntimeException(
+                    '\\Phabstractic\\Data\\Types\\Enumeration->setNamespace: ' .
                     $this->namespace . '\\' . $this->className .
                     ' Enumeration Namespace Already Baked');
             }
@@ -676,21 +676,17 @@ namespace Falcraft\Data\Types
                 $qualifier = '\\' . $this->className;
             }
             
-            // Either generate an already generated class
-            if ($this->baked) {
-                if ($value != null) {    
-                    return new $qualifier($value);
-                } else {
-                    throw new Exception\CodeGenerationException('Enum->getInstance: ' .
-                        $this->className . ' Enumeration Instantiated Without Value');
-                }
-                
-            // Or generate it then instantiate it
-            } else {
-                $this->bake();
-                return new $qualifier($value);
+            if ($value == null) {
+                throw new Exception\CodeGenerationException(
+                    '\\Phabstractic\\Data\\Types\\Enumeration->getInstance: ' .
+                    $this->className . ' Enumeration Instantiated Without Value');
             }
             
+            if (!$this->baked) {
+                $this->bake();
+            }
+            
+            return new $qualifier($value);
         }
         
         /**
@@ -729,10 +725,11 @@ namespace Falcraft\Data\Types
          * @param array $options    See Above (__construct)
          * 
          */
-        public static function createEnumerator($className, 
-                                                array $values,
-                                                array $options = array())
-        {
+        public static function createEnumerator(
+            $className, 
+            array $values,
+            array $options = array()
+        ) {
             $options['bake'] = true;
             $enum = new Enumeration($className, $values, $options);
         }
