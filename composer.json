@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Phabstractic\\": "src"
+            "Phabstractic\\": "src/Phabstractic"
         }
     }
 }
