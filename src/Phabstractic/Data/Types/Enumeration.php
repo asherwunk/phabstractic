@@ -231,12 +231,17 @@ namespace Phabstractic\Data\Types
                     }
             $classCode .= "\n
                     \$this->reflector = new \\ReflectionClass(\$this);
-                    if (\$initValue) {
+                    if (is_string(\$initValue)) {
                         if ( \$this->check( \$initValue ) )
                         {
                             \$this->value = \$this->reflector->getConstants()[\$initValue];
                         } else {
                             throw new \UnexpectedValueException(\"Value not a const in enum $className\");
+                        }
+                    } elseif (is_int(\$initValue)) {
+                        \$constants = \$this->reflector->getConstants();
+                        if ( in_array(\$initValue, \$constants) ) {
+                            \$this->value = \$initValue;
                         }
                     } else {
                         \$this->value = self::\$__sdefault;
