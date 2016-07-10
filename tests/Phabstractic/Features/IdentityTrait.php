@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Phabstractic\Features;
 
 class TestIdentityClass {
-    use Features\Identity {getNewIdentity as public;}
+    use Features\IdentityTrait {getNewIdentity as public;}
     
     public function changePrefix($prefix) {
         $this->identityPrefix = $prefix;

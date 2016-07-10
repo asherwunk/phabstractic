@@ -43,7 +43,7 @@ namespace Phabstractic\Features
      * @version 3.0
      * 
      */
-    trait Identity
+    trait IdentityTrait
     {
         /**
          * The Global Identity Generator Marker
