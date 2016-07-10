@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/Phabstractic/Features/Identity.php');
+require_once('src/Phabstractic/Features/IdentityTrait.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Features;
