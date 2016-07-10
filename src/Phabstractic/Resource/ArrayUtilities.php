@@ -85,7 +85,7 @@ namespace Phabstractic\Resource
                     reset($r);
                     $nu = false;
                     while ($t = each($r)) {
-                        if ($datum === $t['value']) {
+                        if (self::elementComparison($t['value'],$datum) === 0) {
                             $nu = true;
                         }
                     }
@@ -134,7 +134,7 @@ namespace Phabstractic\Resource
                     reset($r);
                     $nu = false;
                     while ($t = each($r)) {
-                        if ($datum === $t['value']) {
+                        if (self::elementComparison($t['value'], $datum) === 0) {
                             $nu = true;
                         }
                     }
