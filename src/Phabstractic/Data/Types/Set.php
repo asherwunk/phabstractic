@@ -34,6 +34,7 @@ namespace Phabstractic\Data\Types
        for an array that is more object compatible. */
     $includes = array(// this object is configurable
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // this object differentiates between set elements using identity
                       '/Features/IdentityTrait.php',
                       // returns none data type when retrieving non-existent by reference
@@ -48,6 +49,7 @@ namespace Phabstractic\Data\Types
     falcraftLoad($includes, __FILE__);
     
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     use Phabstractic\Data\Types\Exception as TypesException;
     use Phabstractic\Data\Types\Resource as TypesResource;
     use Phabstractic\Resource as PhabstracticResource;
@@ -64,20 +66,23 @@ namespace Phabstractic\Data\Types
      * 
      * CHANGELOG
      * 
-     * 1.0: Documented Set - March 5th, 2013
-     * 1.1: Added Closures to array set operations - October 7th, 2013
-     * 2.0: Refactored and included into Primus/Falcraft - April 10th, 2015
-     * 3.0: reorganized namespaces
-     *      edited returnUniqueByReference calls to actually use references
-     *      set only unique if unique option is set now !!!
-     *      reformatted for inclusion in phabstractic - July 10th, 2016
+     * 1.0:   Documented Set - March 5th, 2013
+     * 1.1:   Added Closures to array set operations - October 7th, 2013
+     * 2.0:   Refactored and included into Primus/Falcraft - April 10th, 2015
+     * 3.0:   reorganized namespaces
+     *        edited returnUniqueByReference calls to actually use references
+     *        set only unique if unique option is set now !!!
+     *        reformatted for inclusion in phabstractic - July 10th, 2016
+     * 3.0.1: implements configurationinterface - July 13th, 2016
      * 
      * @link http://en.wikipedia.org/wiki/Set_(abstract_data_type) [English]
      * 
-     * @version 3.0
+     * @version 3.0.1
      * 
      */
-    class Set implements TypesResource\SetInterface
+    class Set implements
+        TypesResource\SetInterface,
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         use Features\IdentityTrait;
