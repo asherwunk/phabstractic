@@ -58,8 +58,10 @@ namespace Phabstractic\Features
      * 2.0:   reformatted for inclusion in phabstractic - July 7th, 2016
      * 2.1:   added ability to pass text into ->configure using
      *        #confformat and #confcontext - July 8th, 2016
+     * 2.1.1  made getSettings not format specific (yaml) on passing
+     *        the context parameter - July 13th, 2016
      * 
-     * @version 2.1
+     * @version 2.1.1
      * 
      */
     trait ConfigurationTrait
@@ -310,16 +312,12 @@ namespace Phabstractic\Features
          */
         public function getSettings($format, $context = null)
         {
-            if ($format == 'yaml') {
-                $settings = $this->saveSettings(
-                    '#string.' . $format,
-                    null,
-                    true,
-                    $context
-                );
-            } else {
-                $settings = $this->saveSettings('#string.' . $format);
-            }
+            $settings = $this->saveSettings(
+                '#string.' . $format,
+                null,
+                true,
+                $context
+            );
             
             if ($settings === true) {
                 return false;
