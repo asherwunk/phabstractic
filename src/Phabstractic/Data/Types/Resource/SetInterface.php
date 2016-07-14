@@ -74,6 +74,18 @@ namespace Phabstractic\Data\Types\Resource
         public function &getArrayReference();
         
         /**
+         * Get the Set as a PLAIN Array
+         * 
+         * Return the set contents as an array without string keys
+         * 
+         * NOTE:  All elements are references to internal array elements
+         * 
+         * @return array The set represented as a plain array
+         * 
+         */
+        public function getPlainArray();
+        
+        /**
          * If the value is in the set, this retrieves a reference to it
          * 
          * This only works if the set is considered unique
