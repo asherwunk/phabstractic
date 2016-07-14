@@ -179,6 +179,10 @@ namespace Phabstractic\Data\Types
                 $this->conf->reference = true;
             }
             
+            if (!isset($this->conf->unique)) {
+                $this->conf->unique = false;
+            }
+            
             if ($this->conf->unique) {
                 $this->checkUniqueValues($values);
                 // more object compatible as opposed to array_unique SORT_REGULAR
