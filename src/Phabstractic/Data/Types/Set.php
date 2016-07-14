@@ -220,7 +220,7 @@ namespace Phabstractic\Data\Types
          * 
          * @param mixed $identifier The identifier returned by the add function
          * 
-         * @return mixed|Falcraft\Data\Types\None;
+         * @return mixed|Phabstractic\Data\Types\None;
          * 
          * @throws \Phabstractic\Data\Exception\RangeException if strict
          * 
@@ -584,7 +584,7 @@ namespace Phabstractic\Data\Types
          * 
          * @static
          * 
-         * @param Falcraft\Data\Types\Set &$S The set
+         * @param Phabstractic\Data\Types\Set &$S The set
          * @param callable $F the applicablt function
          * @param $arg... The additional arguments to the applicable function
          * 
