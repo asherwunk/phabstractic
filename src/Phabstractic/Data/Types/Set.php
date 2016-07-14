@@ -681,7 +681,8 @@ namespace Phabstractic\Data\Types
                                       $result,
                                       $arg->getPlainArray(),
                                       array(
-                            'Phabstractic\\Resource\\ArrayUtilities', 'elementComparison'));
+                            'Phabstractic\\Resource\\ArrayUtilities', 'elementComparison')
+                        );
                     }
                     
                 } elseif (is_array($arg)) {
@@ -692,7 +693,8 @@ namespace Phabstractic\Data\Types
                                       $result,
                                       $arg,
                                       array(
-                            'Phabstractic\\Resource\\ArrayUtilities', 'elementComparison'));
+                            'Phabstractic\\Resource\\ArrayUtilities', 'elementComparison')
+                        );
                     }
                         
                 } else {
@@ -703,7 +705,8 @@ namespace Phabstractic\Data\Types
                                       $result,
                                       array($arg),
                                       array(
-                            'Phabstractic\\Resource\\ArrayUtilities', 'elementComparison'));
+                            'Phabstractic\\Resource\\ArrayUtilities', 'elementComparison')
+                        );
                     }
                     
                 }
@@ -733,16 +736,6 @@ namespace Phabstractic\Data\Types
          */
         public static function difference()
         {
-            $cmp = function ($a, $b) {
-                if ( $a == $b ) {
-                    return 0;
-                } elseif ( $a > $b ) {
-                    return 1;
-                } else {
-                    return -1;
-                }
-            };
-            
             // This closures are more compatible with set values
             
             $result = null;
@@ -751,21 +744,33 @@ namespace Phabstractic\Data\Types
                     if ($result === null) {
                         $result = $arg->getPlainArray();
                     } else {
-                        $result = array_udiff($result, $arg->getPlainArray(), $cmp);
+                        $result = array_udiff(
+                            $result,
+                            $arg->getPlainArray(),
+                            array('Phabstractic\\Resource\\ArrayUtilities', 'elementComparison')
+                        );
                     }
                     
                 } elseif (is_array($arg)) {
                     if ($result === null) {
                         $result = $arg;
                     } else {
-                        $result = array_udiff($result, $arg, $cmp);
+                        $result = array_udiff(
+                            $result,
+                            $arg,
+                            array('Phabstractic\\Resource\\ArrayUtilities', 'elementComparison')
+                        );
                     }
                     
                 } else {
                     if ($result === null) {
                         $result = array($arg);
                     } else {
-                        $result = array_udiff($result, array($arg), $cmp);
+                        $result = array_udiff(
+                            $result,
+                            array($arg),
+                            array('Phabstractic\\Resource\\ArrayUtilities', 'elementComparison')
+                        );
                     }
                     
                 }
