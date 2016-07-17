@@ -8,6 +8,13 @@ use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Exception;
 
+Types\Enumeration::createEnumerator('TestEnumeration', array( 'RED',
+                                        'GREEN',
+                                        'BLUE',
+                                        'YELLOW',
+                                        'ORANGE',),
+                                    array('namespace' => 'EnumerationTests' ) );
+
 class EnumerationTest extends TestCase
 {
     
@@ -271,4 +278,12 @@ class EnumerationTest extends TestCase
         $this->assertTrue(class_exists('\\TestNamespace\\TestStaticEnumBake'));
     }
     
+    /**
+     * @expectedException \UnexpectedValueException
+     * 
+     */
+    public function testSetImproperEnumerationElement() {
+        $e = new EnumerationTests\TestEnumeration(256);
+        
+    }
 }

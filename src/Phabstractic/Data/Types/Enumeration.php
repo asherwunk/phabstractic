@@ -87,8 +87,9 @@ namespace Phabstractic\Data\Types
      * 3.0:   reformatted for inclusion in phabstractic
      *        reverted constants to a non-associative array
      *        added value checking in generated class - July 8th, 2016
+     * 3.0.1: refined value checking in generated class - July 17th, 2016
      * 
-     * @version 3.0
+     * @version 3.0.1
      * 
      */
     class Enumeration
@@ -231,28 +232,29 @@ namespace Phabstractic\Data\Types
                     }
             $classCode .= "\n
                     \$this->reflector = new \\ReflectionClass(\$this);
-                    if (is_string(\$initValue)) {
-                        if ( \$this->check( \$initValue ) )
+                    if (\$initValue === null) {
+                        \$this->value = self::\$__sdefault;
+                    } elseif (\$this->check(\$initValue)) {
+                        if ( is_string(\$initValue) )
                         {
                             \$this->value = \$this->reflector->getConstants()[\$initValue];
-                        } else {
-                            throw new \UnexpectedValueException(\"Value not a const in enum $className\");
-                        }
-                    } elseif (is_int(\$initValue)) {
-                        \$constants = \$this->reflector->getConstants();
-                        if ( in_array(\$initValue, \$constants) ) {
+                        } elseif (is_int(\$initValue)) {
                             \$this->value = \$initValue;
                         }
                     } else {
-                        \$this->value = self::\$__sdefault;
+                        throw new \UnexpectedValueException(\"Value \$initValue not a const in enum $className\");
                     }
                 }
                 
                 // version 3.0: checks against the constants defined
                 protected function check( \$value )
                 {
-                    if ( in_array( \$value, array_keys(\$this->reflector->getConstants()), true ) )
+                    if (in_array( \$value, array_keys(\$this->reflector->getConstants()), true))
                     {
+                        return true;
+                    }
+                    
+                    if (in_array( \$value, \$this->reflector->getConstants(), true)) {
                         return true;
                     }
                     
