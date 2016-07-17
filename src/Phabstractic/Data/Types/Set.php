@@ -781,7 +781,7 @@ namespace Phabstractic\Data\Types
         }
         
         /**
-         * Set Filter
+         * Subset
          * 
          * "a predicate that tests whether the set S is a subset of set T."
          * 
