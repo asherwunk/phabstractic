@@ -57,15 +57,16 @@ namespace Phabstractic\Data\Types
      * 
      * CHANGELOG
      * 
-     * 1.0: Documented - May 3rd, 2013
-     * 2.0: Refactored/relicensed into Primus - April 7th, 2015
-     * 3.0: escaped namespace string properly
-     *      made compatible with enumeration.php v3
-     *      reformatted for inclusion into phabstractic - July 8th, 2016
+     * 1.0:   Documented - May 3rd, 2013
+     * 2.0:   Refactored/relicensed into Primus - April 7th, 2015
+     * 3.0:   escaped namespace string properly
+     *        made compatible with enumeration.php v3
+     *        reformatted for inclusion into phabstractic - July 8th, 2016
+     * 3.0.1: added BASIC_FLOAT and BASIC_CALLABLE - July 17th, 2016
      * 
      * @uses Falcraft\Data\Types\Enumeration for enumerator class generation
      * 
-     * @version 2.0
+     * @version 3.0.1
      * 
      */
     Enumeration::createEnumerator('Type', array( 'BASIC_BOOL',
