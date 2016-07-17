@@ -10,7 +10,9 @@ function testFunction() {
 }
 
 class TestClass {
-    
+    public function testMethod() {
+        
+    }
 }
 
 class TypeTest extends TestCase
@@ -68,6 +70,9 @@ class TypeTest extends TestCase
         
         $this->assertInstanceOf(TestClass::class, $type[1]);
         
+        $value = array(new TestClass(), 'testMethod');
+        
+        $this->assertEquals(Types\Type::BASIC_CALLABLE, (string) Types\Type\getValueType($value));
     }
     
     public function testStringToTypeBoolean()

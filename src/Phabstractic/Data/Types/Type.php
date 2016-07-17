@@ -78,7 +78,8 @@ namespace Phabstractic\Data\Types
                                           'BASIC_RESOURCE',
                                           'BASIC_NULL',
                                           'BASIC_CLOSURE',
-                                          'BASIC_FUNCTION', ),
+                                          'BASIC_FUNCTION',
+                                          'BASIC_CALLABLE'),
                                    array('namespace' => 'Phabstractic\\Data\\Types' ) );
 }
 
@@ -143,6 +144,8 @@ namespace Phabstractic\Data\Types\Type
            string comparison and return as function type */
         } else if (is_string($value) && in_array(strtolower($value), $functions)) {
             return new Types\Type(Types\Type::BASIC_FUNCTION);
+        } else if (is_array($value) && is_callable($value)) {
+            return new Types\Type(Types\Type::BASIC_CALLABLE);
         } else if (is_string($value)) {
             return new Types\Type(Types\Type::BASIC_STRING);
         } else if (is_array($value)) {
