@@ -245,7 +245,18 @@ namespace Phabstractic\Data\Types\Type
             case 'FUNC':
                 return new Types\Type(Types\Type::BASIC_FUNCTION);
                 break;
-                
+            
+            case 'BASIC_CALLABLE':
+            case 'CALLABLE':
+            case 'CALL':
+                return new Types\Type(Types\Type::BASIC_CALLABLE);
+                break;
+            
+            case 'BASIC_FLOAT':
+            case 'FLOAT':
+                return new Types\Type(Types\Type::BASIC_FLOAT);
+                break;
+            
             default:
                 return null;
                 break;

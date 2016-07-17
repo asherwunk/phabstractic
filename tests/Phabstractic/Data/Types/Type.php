@@ -73,6 +73,10 @@ class TypeTest extends TestCase
         $value = array(new TestClass(), 'testMethod');
         
         $this->assertEquals(Types\Type::BASIC_CALLABLE, (string) Types\Type\getValueType($value));
+        
+        $value = 3.1415;
+        
+        $this->assertEquals(Types\Type::BASIC_FLOAT, (string) Types\Type\getValueType($value));
     }
     
     public function testStringToTypeBoolean()
@@ -145,4 +149,18 @@ class TypeTest extends TestCase
         
     }
     
+    public function testStringToTypeFloat()
+    {
+        $this->assertEquals(Types\Type::BASIC_FLOAT, (string) Types\Type\stringToType('BASIC_FLOAT'));
+        $this->assertEquals(Types\Type::BASIC_FLOAT, (string) Types\Type\stringToType('FLOAT'));
+        
+    }
+    
+    public function testStringToTypeCallable()
+    {
+        $this->assertEquals(Types\Type::BASIC_CALLABLE, (string) Types\Type\stringToType('BASIC_CALLABLE'));
+        $this->assertEquals(Types\Type::BASIC_CALLABLE, (string) Types\Type\stringToType('CALLABLE'));
+        $this->assertEquals(Types\Type::BASIC_CALLABLE, (string) Types\Type\stringToType('CALL'));
+        
+    }
 }
