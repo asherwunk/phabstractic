@@ -70,6 +70,7 @@ namespace Phabstractic\Data\Types
      */
     Enumeration::createEnumerator('Type', array( 'BASIC_BOOL',
                                           'BASIC_INT',
+                                          'BASIC_FLOAT',
                                           'BASIC_STRING',
                                           'BASIC_ARRAY',
                                           'BASIC_OBJECT',
@@ -134,6 +135,8 @@ namespace Phabstractic\Data\Types\Type
             return new Types\Type(Types\Type::BASIC_NULL);
         } else if (is_bool($value)) {
             return new Types\Type(Types\Type::BASIC_BOOL);
+        } else if (is_float($value)) {
+            return new Types\Type(Types\Type::BASIC_FLOAT);
         } else if (is_int($value)) {
             return new Types\Type(Types\Type::BASIC_INT);
         /* If string is the name of an existing user defined function, supersede
