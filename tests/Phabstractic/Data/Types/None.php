@@ -36,7 +36,7 @@ class NoneTest extends TestCase
         
         $output = ob_get_clean();
         
-        $this->assertRegExp('/"NONE"/', $output);
+        $this->assertRegExp("/\"?NONE\"?.*=\>\n.*NULL/", $output);
         
     }
     

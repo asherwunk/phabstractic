@@ -95,7 +95,7 @@ class RangeTest extends TestCase
         
         $output = ob_get_clean();
         
-        $this->assertRegExp("/\\[\"max\"\]=\\>\n.*int\\(5\\)/", $output);
+        $this->assertRegExp("/\\[?\"?max\"?\]?.*=\\>\n.*int\\(5\\)/", $output);
     }
     
 }
