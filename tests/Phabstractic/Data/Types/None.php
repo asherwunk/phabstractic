@@ -28,4 +28,16 @@ class NoneTest extends TestCase
     {
         $this->assertNull($this->none->null());
     }
+    
+    public function testDebugInfo() {
+        ob_start();
+        
+        var_dump($this->none);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp('/"NONE"/', $output);
+        
+    }
+    
 }

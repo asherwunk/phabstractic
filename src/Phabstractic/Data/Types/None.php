@@ -43,10 +43,11 @@ namespace Phabstractic\Data\Types
      * 
      * CHANGELOG
      * 
-     * 1.0: Created Null - May 10th, 2013
-     * 2.0: Reproduced Null for Primus - April 2nd, 2015
-     * 3.0: Formatted Null for inclusion in phabstractic
-     *      Changed classname to None - July 7th, 2016
+     * 1.0:   Created Null - May 10th, 2013
+     * 2.0:   Reproduced Null for Primus - April 2nd, 2015
+     * 3.0:   Formatted Null for inclusion in phabstractic
+     *        Changed classname to None - July 7th, 2016
+     * 3.0.1: Added debuginfo magic method - July 17th, 2016
      * 
      * @version 3.0
      * 
@@ -75,5 +76,20 @@ namespace Phabstractic\Data\Types
         {
             return null;
         }
+        
+        /**
+         * Debug Info (var_dump)
+         * 
+         * Display debug info
+         * 
+         * Requires PHP 5.6+
+         * 
+         */
+        public function __debugInfo() {
+            return [
+                'NONE' => null,
+            ];
+        }
+        
     }
 }
