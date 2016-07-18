@@ -201,6 +201,21 @@ namespace Phabstractic\Data\Types
             return eval("return ((\$this->min $leftOperator \$x) && (\$this->max $rightOperator \$x));" );
         }
         
+        /**
+         * Debug Info (var_dump)
+         * 
+         * Display debug info
+         * 
+         * Requires PHP 5.6+
+         * 
+         */
+        public function __debugInfo() {
+            return [
+                'max' => $this->max,
+                'min' => $this->min
+            ];
+        }
+        
     }
     
 }

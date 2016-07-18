@@ -85,4 +85,17 @@ class RangeTest extends TestCase
         $this->assertTrue($range->isInRange(4, array('minimum'=>true,'maximum'=>true)));
         
     }
+    
+    public function testDebugInfo() {
+        $range = new Types\Range(1, 5);
+        
+        ob_start();
+        
+        var_dump($range);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[\"max\"\]=\\>\n.*int\\(5\\)/", $output);
+    }
+    
 }
