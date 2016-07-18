@@ -27,6 +27,14 @@ class TestRestrictionsClass {
     
 }
 
+interface TestRestrictionsInterface {
+    
+}
+
+class TestRestrictionsSubClass extends TestRestrictionsClass implements TestRestrictionsInterface {
+    
+}
+
 Types\Enumeration::createEnumerator('CustomType', array( 'BASIC_BOOL',
                                           'BASIC_INT',
                                           'BASIC_FLOAT',
@@ -496,7 +504,27 @@ class RestrictionsTest extends TestCase
         $this->assertFalse($restrictions->isAllowed(Types\Type\getValueType($enum)));
     }
     
+    public function testIsAllowedInterfaceClasses() {
+        $restrictions = new Types\Restrictions(
+            array(Types\Type::TYPED_OBJECT,),
+            array('TestRestrictionsInterface',));
+        
+        $test = new TestRestrictionsSubClass();
+        
+        $this->assertTrue($restrictions->isAllowed(Types\Type\getValueType($test)));
+        
+    }
     
+    public function testIsAllowedSubClasses() {
+        $restrictions = new Types\Restrictions(
+            array(Types\Type::TYPED_OBJECT,),
+            array('TestRestrictionsClass',));
+        
+        $test = new TestRestrictionsSubClass();
+        
+        $this->assertTrue($restrictions->isAllowed(Types\Type\getValueType($test)));
+        
+    }
     
     /**
      * @expectedException \Phabstractic\Data\Types\Exception\UnexpectedValueException
