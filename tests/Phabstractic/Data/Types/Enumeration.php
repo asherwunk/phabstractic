@@ -15,6 +15,14 @@ Types\Enumeration::createEnumerator('TestEnumeration', array( 'RED',
                                         'ORANGE',),
                                     array('namespace' => 'EnumerationTests' ) );
 
+Types\Enumeration::createEnumerator('TestEnumerationWithDefault', array( 'RED',
+                                        'GREEN',
+                                        'BLUE',
+                                        'YELLOW',
+                                        'ORANGE',),
+                                    array('namespace' => 'EnumerationTests',
+                                          'default' => 'YELLOW',) );
+
 class EnumerationTest extends TestCase
 {
     
@@ -278,12 +286,95 @@ class EnumerationTest extends TestCase
         $this->assertTrue(class_exists('\\TestNamespace\\TestStaticEnumBake'));
     }
     
+    // GENERATED CODE TESTED HERE
+    
     /**
      * @expectedException \UnexpectedValueException
      * 
      */
-    public function testSetImproperEnumerationElement() {
+    public function testInstantiateImproperEnumerationElementInt() {
         $e = new EnumerationTests\TestEnumeration(256);
         
     }
+    
+    public function testInstantiateProperEnumerationElementInt() {
+        $e = new EnumerationTests\TestEnumeration(EnumerationTests\TestEnumeration::RED);
+        
+    }
+    
+    public function testInstantiateProperEnumerationElementString() {
+        $e = new EnumerationTests\TestEnumeration('GREEN');
+    }
+    
+    /**
+     * @expectedException \UnexpectedValueException
+     * 
+     */
+    public function testInstantiateImproperEnumerationElementString() {
+        $e = new EnumerationTests\TestEnumeration('BLACK');
+    }
+    
+    
+    public function testInstantiateEnumerationElementWithDefault() {
+        $e = new EnumerationTests\TestEnumerationWithDefault();
+        
+        $this->assertEquals($e->get(), EnumerationTests\TestEnumerationWithDefault::YELLOW);
+    }
+    
+    public function testEnumerationSetProperString() {
+        $e = new EnumerationTests\TestEnumerationWithDefault();
+        
+        $e->set('BLUE');
+        
+        $this->assertEquals($e->get(), EnumerationTests\TestEnumerationWithDefault::BLUE);
+    }
+    
+    public function testEnumerationSetProperInt() {
+        $e = new EnumerationTests\TestEnumerationWithDefault();
+        
+        $e->set(EnumerationTests\TestEnumerationWithDefault::BLUE);
+        
+        $this->assertEquals($e->get(), EnumerationTests\TestEnumerationWithDefault::BLUE);
+    }
+    
+    /**
+     * @expectedException \UnexpectedValueException
+     * 
+     */
+    public function testEnumerationSetImproperString() {
+        $e = new EnumerationTests\TestEnumerationWithDefault();
+        
+        $e->set('BLACK');
+    }
+    
+    /**
+     * @expectedException \UnexpectedValueException
+     * 
+     */
+    public function testEnumerationSetImproperInt() {
+        $e = new EnumerationTests\TestEnumerationWithDefault();
+        
+        $e->set(256);
+    }
+    
+    public function testEnumerationCount() {
+        $e = new EnumerationTests\TestEnumerationWithDefault();
+        
+        $this->assertEquals(5, $e->count());
+        
+    }
+    
+    public function testEnumerationGetConstants() {
+        $consts = EnumerationTests\TestEnumerationWithDefault::getConstants();
+        
+        $this->assertEquals(array('RED'=>0,
+                                  'GREEN'=>1,
+                                  'BLUE'=>2,
+                                  'YELLOW'=>3,
+                                  'ORANGE'=>4,
+                                  '__default'=>3,), $consts);
+                                  
+    }
+    
+    
 }

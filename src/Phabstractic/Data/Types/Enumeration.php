@@ -274,9 +274,14 @@ namespace Phabstractic\Data\Types
                 // version 3.0: now checks against the constants defined
                 public function set( \$value )
                 {
-                    if ( \$this->check( \$initValue ) )
+                    if ( \$this->check( \$value ) )
                     {
-                        \$this->value = \$this->reflector->getConstants()[\$initValue];
+                        if ( is_string(\$value) )
+                        {
+                            \$this->value = \$this->reflector->getConstants()[\$value];
+                        } elseif (is_int(\$value)) {
+                            \$this->value = \$value;
+                        }
                     } else {
                         throw new \UnexpectedValueException(\"Value not a const in enum $className\");
                     }
@@ -284,7 +289,7 @@ namespace Phabstractic\Data\Types
 
             // How many enumerator categories are there?
             $classCode .= "public function count() {
-                return count(\$this->reflector->getConstants());
+                return count(\$this->reflector->getConstants()) - 1; //__default
             }
             
             static public function getConstants() {
