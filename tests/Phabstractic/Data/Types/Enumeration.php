@@ -286,6 +286,19 @@ class EnumerationTest extends TestCase
         $this->assertTrue(class_exists('\\TestNamespace\\TestStaticEnumBake'));
     }
     
+    /**
+     * @depends testEnumerationInstance
+     */
+    public function testEnumerationDebugInfo($enum) {
+        ob_start();
+        
+        var_dump($enum);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[?\"?default\"?\]?.*=\\>\n.*string\\(5\\).*\"THREE\"/", $output);
+    }
+    
     // GENERATED CODE TESTED HERE
     
     /**
@@ -392,4 +405,5 @@ class EnumerationTest extends TestCase
         $this->assertEquals('RED', $e->getConst());
         
     }
+    
 }

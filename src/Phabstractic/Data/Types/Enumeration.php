@@ -753,5 +753,26 @@ namespace Phabstractic\Data\Types
             $options['bake'] = true;
             $enum = new Enumeration($className, $values, $options);
         }
+        
+        /**
+         * Debug Info (var_dump)
+         * 
+         * Display debug info
+         * 
+         * Requires PHP 5.6+
+         * 
+         */
+        public function __debugInfo() {
+            return [
+                'options' => array('default' => $this->conf->default,
+                                   'namespace' => $this->conf->namespace,
+                                   'bake' => $this->conf->bake,),
+                'className' => $this->className,
+                'baked' => $this->baked,
+                'constants' => $this->constants,
+                'default' => $this->default,
+            ];
+        }
+        
     }
 }
