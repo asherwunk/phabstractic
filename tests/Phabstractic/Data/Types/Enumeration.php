@@ -289,7 +289,7 @@ class EnumerationTest extends TestCase
     /**
      * @depends testEnumerationInstance
      */
-    public function testEnumerationDebugInfo($enum) {
+    public function testEnumerationClassDebugInfo($enum) {
         ob_start();
         
         var_dump($enum);
@@ -404,6 +404,18 @@ class EnumerationTest extends TestCase
         
         $this->assertEquals('RED', $e->getConst());
         
+    }
+    
+    public function testEnumerationDebugInfo() {
+        $e = new EnumerationTests\TestEnumerationWithDefault();
+        
+        ob_start();
+        
+        var_dump($e);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[?\"?value\"?\]?.*=\\>\n.*string\\(6\\).*\"YELLOW\"/", $output);
     }
     
 }

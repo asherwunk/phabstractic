@@ -295,6 +295,11 @@ namespace Phabstractic\Data\Types
                 return array_flip(\$consts)[\$this->value];
             }\n\n";
             
+            // Provide the name of the constant in var_dump
+            $classCode .= "public function __debugInfo() {
+                return [ 'value' => \$this->getConst() ];
+            }\n\n";
+            
             // How many enumerator categories are there?
             $classCode .= "public function count() {
                 return count(\$this->reflector->getConstants()) - 1; //__default
