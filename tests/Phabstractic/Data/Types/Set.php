@@ -469,4 +469,17 @@ class SetTest extends TestCase
         
     }
     
+    public function testSetDebugInfo() {
+        $s1 = new Types\Set(array(1,3,5,7,2,5,9));
+        
+        ob_start();
+        
+        var_dump($s1);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[?\"?reference\"?\]?.*=\\>\n.*bool\\(true\\)/", $output);
+
+    }
+    
 }

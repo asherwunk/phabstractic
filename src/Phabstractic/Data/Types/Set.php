@@ -469,6 +469,24 @@ namespace Phabstractic\Data\Types
             return md5(implode(',', $this->data));
         }
         
+        /**
+         * Debug Info (var_dump)
+         * 
+         * Display debug info
+         * 
+         * Requires PHP 5.6+
+         * 
+         */
+        public function __debugInfo() {
+            return [
+                'options' => array('unique' => $this->conf->unique,
+                                   'strict' => $this->conf->strict,
+                                   'reference' => $this->conf->reference,),
+                'identityPrefix' => $this->identityPrefix,
+                'data' => $this->data,
+            ];
+        }
+        
         /* Note that the following functions, exception being build, equal, 
            and fold return arrays, not sets.  To construct a set out of a
            returned value you must call the function inside another Set
