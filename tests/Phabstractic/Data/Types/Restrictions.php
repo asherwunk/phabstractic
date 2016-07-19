@@ -572,6 +572,25 @@ class RestrictionsTest extends TestCase
         
     }
     
+    public function testRestrictionsDebugInfo() {
+        $restrictions = new Types\Restrictions(
+            array(Types\Type::BASIC_NULL,
+                  Types\Type::BASIC_INT,
+                  Types\Type::TYPED_OBJECT),
+            array('Phabstractic\\Data\\Types\\Set'));
+        
+        ob_start();
+        
+        var_dump($restrictions);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/BASIC_NULL/", $output);
+        $this->assertRegExp("/BASIC_INT/", $output);
+        $this->assertRegExp("/TYPED_OBJECT/", $output);
+        
+    }
+    
     public function testGetDefaultRestrictions() {
         $restrictions = Types\Restrictions::getDefaultRestrictions();
         

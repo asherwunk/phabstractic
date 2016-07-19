@@ -647,6 +647,37 @@ namespace Phabstractic\Data\Types
             // Default
             return false;
         }
+        
+        /**
+         * Debug Info (var_dump)
+         * 
+         * Display debug info
+         * 
+         * Requires PHP 5.6+
+         * 
+         */
+        public function __debugInfo() {
+            $typeClass = $this->conf->type_class;
+            
+            $ret = array ('options' => array('autoload' => $this->conf->autoload,
+                                   'allowed' => $this->conf->allowed,
+                                   'classes' => $this->conf->classes,
+                                   'type_class' => $this->conf->type_class,
+                                   'strict_sets' => $this->conf->strict_sets,));
+            
+            $types = array();
+            foreach ($this->allowed->iterate() as $value) {
+                $type = new $typeClass($value);
+                $types[] = $type->getConst();
+            }
+            
+            $classes = $this->classes->getPlainArray();
+            
+            $ret['allowed'] = $types;
+            $ret['classes'] = $classes;
+            
+            return $ret;
+        }
 
         /**
          * Return a basic free form restrictions
