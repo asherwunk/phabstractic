@@ -88,6 +88,7 @@ namespace Phabstractic\Data\Types
      *        reverted constants to a non-associative array
      *        added value checking in generated class - July 8th, 2016
      * 3.0.1: refined value checking in generated class - July 17th, 2016
+     * 3.0.2: added getConst method in generated class - JJuly 18th, 2016
      * 
      * @version 3.0.1
      * 
@@ -286,7 +287,14 @@ namespace Phabstractic\Data\Types
                         throw new \UnexpectedValueException(\"Value not a const in enum $className\");
                     }
                 }\n";
-
+                
+            // Retrieve the name of the constant as string
+            $classCode .= "public function getConst() {
+                \$consts = \$this->reflector->getConstants();
+                unset(\$consts['__default']);
+                return array_flip(\$consts)[\$this->value];
+            }\n\n";
+            
             // How many enumerator categories are there?
             $classCode .= "public function count() {
                 return count(\$this->reflector->getConstants()) - 1; //__default

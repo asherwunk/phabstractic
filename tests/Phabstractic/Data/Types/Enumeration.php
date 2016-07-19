@@ -376,5 +376,20 @@ class EnumerationTest extends TestCase
                                   
     }
     
+    // since 3.0.2
     
+    public function testEnumerationGetConst() {
+        $e = new EnumerationTests\TestEnumerationWithDefault();
+        
+        $this->assertEquals('YELLOW', $e->getConst());
+        
+        $e->set('GREEN');
+        
+        $this->assertEquals('GREEN', $e->getConst());
+        
+        $e->set(EnumerationTests\TestEnumerationWithDefault::RED);
+        
+        $this->assertEquals('RED', $e->getConst());
+        
+    }
 }
