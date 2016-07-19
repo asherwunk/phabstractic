@@ -85,7 +85,8 @@ namespace Phabstractic\Data\Types
          * Requires PHP 5.6+
          * 
          */
-        public function __debugInfo() {
+        public function __debugInfo()
+        {
             return [
                 'NONE' => null,
             ];

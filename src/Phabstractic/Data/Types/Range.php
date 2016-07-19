@@ -29,8 +29,6 @@ namespace Phabstractic\Data\Types
 {
     require_once(realpath( __DIR__ . '/../../') . '/falcraftLoad.php');
     
-    /* This class contains a static function for returning unique values
-       for an array that is more object compatible. */
     $includes = array('/Data/Types/Exception/InvalidArgumentException.php');
     
     falcraftLoad($includes, __FILE__);
@@ -209,7 +207,8 @@ namespace Phabstractic\Data\Types
          * Requires PHP 5.6+
          * 
          */
-        public function __debugInfo() {
+        public function __debugInfo()
+        {
             return [
                 'max' => $this->max,
                 'min' => $this->min

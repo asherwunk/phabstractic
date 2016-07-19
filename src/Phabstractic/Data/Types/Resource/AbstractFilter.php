@@ -29,8 +29,6 @@ namespace Phabstractic\Data\Types\Resource
 {
     require_once(realpath( __DIR__ . '/../../../') . '/falcraftLoad.php');
     
-    /* This class contains a static function for returning unique values
-       for an array that is more object compatible. */
     $includes = array('/Data/Types/Exception/InvalidArgumentException.php',
                       // implements filter interface
                       '/Data/Types/Resource/FilterInterface.php',);

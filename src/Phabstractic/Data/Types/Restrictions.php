@@ -30,8 +30,6 @@ namespace Phabstractic\Data\Types
 {
     require_once(realpath( __DIR__ . '/../../') . '/falcraftLoad.php');
     
-    /* This class contains a static function for returning unique values
-       for an array that is more object compatible. */
     $includes = array(// Uses types enum to differentiate between data types
                       '/Data/Types/Type.php',
                       // Uses a set to keep track of allowed types
@@ -656,7 +654,8 @@ namespace Phabstractic\Data\Types
          * Requires PHP 5.6+
          * 
          */
-        public function __debugInfo() {
+        public function __debugInfo()
+        {
             $typeClass = $this->conf->type_class;
             
             $ret = array ('options' => array('autoload' => $this->conf->autoload,
