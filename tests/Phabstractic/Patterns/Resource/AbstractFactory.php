@@ -258,4 +258,20 @@ class AbstractFactoryTest extends TestCase
                             get_class_methods($f));
     }
     
+    public function testSetDebugInfo() {
+        $f = new PatternsResource\AbstractFactory('unitTestTwo',
+                                                  array('red', 'blue', 'yellow'),
+                                                  array('color' => 2),
+                                                  array('namespace' => ''));
+        
+        ob_start();
+        
+        var_dump($f);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[?\"?methods\"?\]?.*=\\>\n.*array\\(3\\)/", $output);
+
+    }
+    
 }
