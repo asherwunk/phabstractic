@@ -73,6 +73,18 @@ class SetTest extends TestCase
         
     }
     
+    public function testConstructWithArray() {
+        $data = array('testone', 'testtwo', 'testthree');
+        $set = new Types\Set($data,array('strict'=>true,'unique'=>true,'reference'=>false));
+        
+        foreach ($set->getArray() as $key => $value) {
+            if (strpos($key, 'Phabstractic\\Data\\Types\\Set::Element') === false) {
+                $this->assertFalse(true);
+            }
+        }
+        
+    }
+    
     public function testEnumerate() {
         $set = new Types\Set(array(1,2,3,2));
         
@@ -147,6 +159,7 @@ class SetTest extends TestCase
         }
         
         $this->assertEquals(array(0,2,4,6,8),$set->getPlainArray());
+        
     }
     
     /**

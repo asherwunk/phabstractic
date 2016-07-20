@@ -198,7 +198,6 @@ namespace Phabstractic\Data\Types
                     $this->add($values[$key]);
                 }
             }
-            
         }
         
         /**
@@ -296,7 +295,8 @@ namespace Phabstractic\Data\Types
             $this->data[$identity] = $value;
             
             if ($this->conf->unique) {
-                PhabstracticResource\ArrayUtilities::returnUniqueByReference($this->data);
+                PhabstracticResource\ArrayUtilities::returnUniqueByReference(
+                    $this->data, true);
             }
             
             return $identity;
@@ -320,8 +320,10 @@ namespace Phabstractic\Data\Types
             $this->data[$identity] = &$value;
             
             if ($this->conf->unique) {
-                PhabstracticResource\ArrayUtilities::returnUniqueByReference($this->data);
+                PhabstracticResource\ArrayUtilities::returnUniqueByReference(
+                    $this->data, true);
             }
+            
             
             return $identity;
         }
