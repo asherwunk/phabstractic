@@ -323,7 +323,7 @@ namespace Phabstractic\Data\Types
          */
         public function &bottomReference() { 
             if (!empty($this->list)) { 
-                return $this->list[0]; 
+                return $this->list[0];
             } else {
                 if ($this->conf->strict) {
                    throw new TypesException\RangeException(
