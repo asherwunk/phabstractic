@@ -251,29 +251,24 @@ namespace Phabstractic\Data\Types\Resource
         /**
          * Exchange the two top elements of the list
          * 
+         * @abstract
+         * 
          * @return Phabstractic\Data\Types\Resource\AbstractList For chaining
          * 
          */
-        public function exchange() { 
-            $m1 = &$this->popReference(); 
-            $m2 = &$this->popReference();
-            $this->list[] = &$m1; 
-            $this->list[] = &$m2;
-            return $this;
-        } 
+        abstract public function exchange();
          
         /**
          * Duplicate the value at the top of the list
          * 
          * Note: Adds the duplicate to the front of the list
          * 
+         * @abstract
+         * 
          * @return Phabstractic\Data\Types\Resource\AbstractList For chaining
          * 
          */
-        public function duplicate() { 
-            $this->push($this->top());
-            return $this;
-        }
+        abstract public function duplicate();
         
         /**
          * 'Rolls' the list like one might 'roll' a wheel.

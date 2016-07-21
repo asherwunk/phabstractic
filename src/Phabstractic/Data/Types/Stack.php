@@ -57,6 +57,8 @@ namespace Phabstractic\Data\Types
      * and includes a couple of member functions that implement common
      * PostScript stack behavior.
      * 
+     * @TODO add bottom methods
+     * 
      * CHANGELOG
      * 
      * 1.0: Created Stack - May 10th, 2013
@@ -346,7 +348,34 @@ namespace Phabstractic\Data\Types
             array_pop($this->list);
             // can return Types\None
             return $return;
-        } 
+        }
+        
+        /**
+         * Exchange the two top elements of the list
+         * 
+         * @return Phabstractic\Data\Types\Resource\AbstractList For chaining
+         * 
+         */
+        public function exchange() { 
+            $m1 = &$this->popReference(); 
+            $m2 = &$this->popReference();
+            $this->list[] = &$m1; 
+            $this->list[] = &$m2;
+            return $this;
+        }
+        
+        /**
+         * Duplicate the value at the top of the list
+         * 
+         * Note: Adds the duplicate to the front of the list
+         * 
+         * @return Phabstractic\Data\Types\Resource\AbstractList For chaining
+         * 
+         */
+        public function duplicate() {
+            $this->push($this->top());
+            return $this;
+        }
         
         /**
          * Return the $i'th element of the list
