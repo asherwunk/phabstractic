@@ -180,12 +180,14 @@ namespace Phabstractic\Data\Types
                 if ($key > ($l = count($this->list) - 1) || $key < 0) { 
                     return false;
                 } else {
-                    unset($this->list[$l - $key]); 
+                    unset($this->list[$l - $key]);
+                    // reset keys
+                    $this->list = array_merge($this->list, array());
                     return true;
                 }
                 
             }
-             
+            
             return false;
         } 
         

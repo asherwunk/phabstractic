@@ -255,4 +255,80 @@ class StackTest extends TestCase
         $this->assertEquals(array(2,3,4,5,1), $stack->getlist());
         
     }
+    
+    public function testArrayAccessProperOffsetSet() {
+        $stack = new Types\Stack(array(1,2,3,4,5));
+        
+        $stack[1] = 6;
+        
+        $this->assertEquals(array(1,2,3,6,5), $stack->getList());
+    }
+    
+    public function testArrayAccessImproperOffsetSetNoStrict() {
+        $stack = new Types\Stack(array(1,2,3,4,5));
+        
+        $stack[8] = 6;
+        
+        $this->assertEquals(array(1,2,3,4,5), $stack->getList());
+    }
+    
+    /**
+     * @expectedException Phabstractic\Data\Types\Exception\RangeException
+     * 
+     */
+    public function testArrayAccessImproperOffsetSetWithStrict() {
+        $stack = new Types\Stack(array(1,2,3,4,5), array('strict' => true));
+        
+        $stack[8] = 6;
+    }
+    
+    public function testArrayAccessOffsetSetPush() {
+        $stack = new Types\Stack(array(1,2,3,4,5));
+        
+        $stack[] = 6;
+        
+        $this->assertEquals(array(1,2,3,4,5,6), $stack->getList());
+    }
+    
+    public function testArrayAccessProperOffsetGet() {
+        $stack = new Types\Stack(array(1,2,3,4,5));
+        
+        $this->assertEquals(4, $stack[1]);
+        
+    }
+    
+    public function testArrayAccessImproperOffsetGetNoStrict() {
+        $stack = new Types\Stack(array(1,2,3,4,5));
+        
+        $this->assertInstanceOf(Types\None::class, $stack[8]);
+        
+    }
+    
+    /**
+     * @expectedException Phabstractic\Data\Types\Exception\RangeException
+     * 
+     */
+    public function testArrayAccessImproperOffsetGetWithStrict() {
+        $stack = new Types\Stack(array(1,2,3,4,5), array('strict' => true));
+        
+        $i = $stack[8];
+        
+    }
+    
+    public function testArrayAccessOffsetUnset() {
+        $stack = new Types\Stack(array(1,2,3,4,5));
+        
+        unset($stack[1]);
+        
+        $this->assertEquals(array(1,2,3,5), $stack->getList());
+        
+    }
+    
+    public function testArrayAccessOffsetExists() {
+        $stack = new Types\Stack(array(1,2,3,4,5));
+        
+        $this->assertTrue(isset($stack[1]));
+        $this->assertFalse(isset($stack[8]));
+        
+    }
 }
