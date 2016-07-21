@@ -82,5 +82,17 @@ namespace Phabstractic\Data\Types\Resource
             FilterInterface $filter,
             $strict = false);
         
+        /**
+         * Retrieve default filter settings
+         * 
+         * This should be just about any basic filter setting
+         * 
+         * @static
+         * 
+         * @return Phabstractic\Data\Types\Resource\FilterInterface
+         * 
+         */
+        public static function getDefaultRestrictions();
+        
     }
 }

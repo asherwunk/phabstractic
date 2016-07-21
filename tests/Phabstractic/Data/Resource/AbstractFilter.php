@@ -22,6 +22,10 @@ class TestFilterClass extends TypesResource\AbstractFilter {
             }
         }
     }
+    
+    public static function getDefaultRestrictions() {
+        
+    }
 }
 
 class TestFilterNoThrowClass extends TypesResource\AbstractFilter {
@@ -32,6 +36,10 @@ class TestFilterNoThrowClass extends TypesResource\AbstractFilter {
         } else {
             return false;
         }
+    }
+    
+    public static function getDefaultRestrictions() {
+        
     }
 }
 
