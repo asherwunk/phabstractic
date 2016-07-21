@@ -377,21 +377,20 @@ namespace Phabstractic\Data\Types
             array $classes = array(),
             $options = array() )
         {
+            // autoload must be boolean
+            if (!isset($options['autoload']) || !is_bool($options['autoload'])) {
+                $options['autoload'] = false;
+            }
+            
+            if (!isset($options['type_class'])) {
+                $options['type_class'] = 'Phabstractic\\Data\\Types\\Type';
+            }
+            
+            if (!isset($options['strict_sets'])) {
+                $options['strict_sets'] = true;
+            }
             
             $this->configure($options);
-            
-            // autoload must be boolean
-            if (!isset($this->conf->autoload) || !is_bool($this->conf->autoload)) {
-                $this->conf->autoload = false;
-            }
-            
-            if (!isset($this->conf->type_class)) {
-                $this->conf->type_class = 'Phabstractic\\Data\\Types\\Type';
-            }
-            
-            if (!isset($this->conf->strict_sets)) {
-                $this->conf->strict_sets = true;
-            }
 
             /* $allowed = array_unique($allowed);
             $classes = array_unique($classes) */;
