@@ -132,6 +132,31 @@ class StackTest extends TestCase
         
     }
     
+    /**
+     * @expectedException Phabstractic\Data\Types\Exception\RangeException
+     * 
+     */
+    public function testBottomEmptyStrict() {
+        $stack = new Types\Stack(array(), array('strict' => true));
+        
+        $top = $stack->bottom();
+        
+    }
+    
+    public function testBottomNotEmptyNoStrict() {
+        $stack = new Types\Stack(array(1,2,3,4,5));
+        
+        $this->assertEquals(1, $stack->bottom());
+        
+    }
+    
+    public function testBottomEmptyNoStrict() {
+        $stack = new Types\Stack(array());
+        
+        $this->assertInstanceOf(Types\None::class, $stack->bottom());
+        
+    }
+    
     public function testPushMultipleNoReference() {
         $stack = new Types\Stack();
         

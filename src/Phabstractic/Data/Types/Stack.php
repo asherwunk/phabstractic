@@ -281,6 +281,63 @@ namespace Phabstractic\Data\Types
             }
             
         }
+        
+        /**
+         * Retrieve the 'bottom' of the list
+         * 
+         * Note: Does not 'shift' the value off the list
+         * 
+         * @return mixed|Phabstractic\Data\Types\None 'Top' Value of List otherwise
+         * 
+         * @throws Phabstractic\Data\Types\Exception\RangeException if no top exists
+         * 
+         */
+        public function bottom()
+        { 
+            if (!empty($this->list)) {
+                $queue = $this->getStack();
+                return $queue[count($queue)-1];
+            } else {
+                if ($this->conf->strict) {
+                    throw new TypesException\RangeException(
+                        'Phabstractic\\Data\\Types\\Queue->bottom: ' .
+                        'called on empty queue.');
+                } else {
+                    return new None();
+                }
+                
+            }
+            
+        }
+        
+        /**
+         * Return the 'top' of the list as a reference
+         * 
+         * Note: Does not 'pop' the value off the list
+         * 
+         * @return mixed|Phabstractic\Data\Types\None 'Top' Values as Reference of
+         *             List
+         * 
+         * @throws Phabstractic\Data\Types\Exception\RangeException if no top exists
+         * 
+         */
+        public function &bottomReference() { 
+            if (!empty($this->list)) { 
+                return $this->list[0]; 
+            } else {
+                if ($this->conf->strict) {
+                   throw new TypesException\RangeException(
+                       'Phabstractic\\Data\\Types\\Queue: ' .
+                       'top called on empty queue.');
+                } else {
+                    $none = new None();
+                    // must return reference, not literal
+                    return $none;
+                }
+                
+            }
+            
+        }
     
         /**
          * Push a value on to the list (lifo)
