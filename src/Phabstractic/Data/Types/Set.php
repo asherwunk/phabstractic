@@ -171,15 +171,16 @@ namespace Phabstractic\Data\Types
             array $values = array(),
             $options = array()
         ) {
-            // version 2.1 of ConfigurationTrait handles configuraiton formatting
-            $this->configure($options);
-            if (!isset($this->conf->reference)) {
-                $this->conf->reference = true;
+            if (!isset($options['reference'])) {
+                $options['reference'] = true;
             }
             
-            if (!isset($this->conf->unique)) {
-                $this->conf->unique = false;
+            if (!isset($options['unique'])) {
+                $options['unique'] = false;
             }
+            
+            // version 2.1 of ConfigurationTrait handles configuraiton formatting
+            $this->configure($options);
             
             if ($this->conf->unique) {
                 $this->checkUniqueValues($values);
