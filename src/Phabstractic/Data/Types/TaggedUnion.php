@@ -190,7 +190,7 @@ namespace Phabstractic\Data\Types
          *              if the given value is not allowed
          * 
          */
-        public function set( $value )
+        public function set($value)
         {
             // Get the values type as a Phabstractic\Data\Types\Type object.
             // getValueType returns false on failure, which is possible
