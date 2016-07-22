@@ -9,8 +9,7 @@
  * 
  * A stack is a form of a 'heap'.  It implements a LIFO (for last in, first out)
  * list of objects. This stack conforms to almost all of the PostScript stack
- * manipulators except for mark and cleartomark.  It is modified from its 
- * riginal design to eliminate the superfluous $index variable.
+ * manipulators except for mark and cleartomark.
  * 
  * @copyright Copyright 2016 Asher Wolfstein
  * @author Asher Wolfstein <asherwunk@gmail.com>
