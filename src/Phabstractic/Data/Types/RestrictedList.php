@@ -445,7 +445,7 @@ namespace Phabstractic\Data\Types
          * 
          * @param integer $i The numerical index into the list
          * 
-         * @return mixed|Falcraft\Data\Types\Null The value found at index of
+         * @return mixed|Phabstractic\Data\Types\None The value found at index of
          *              list: list[index]
          * 
          * @throws Phabstractic\Data\Types\Exception\RangeException
@@ -473,7 +473,7 @@ namespace Phabstractic\Data\Types
          * 
          * @param integer $i The numerical index into the list
          * 
-         * @return mixed|Falcraft\Data\Types\Null The value at the list's
+         * @return mixed|Phabstractic\Data\Types\None The value at the list's
          *              numerical index as a reference
          * 
          * @throws \RangeException If index is out of well... range.
