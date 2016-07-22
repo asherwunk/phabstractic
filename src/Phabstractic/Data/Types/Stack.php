@@ -311,7 +311,7 @@ namespace Phabstractic\Data\Types
         }
         
         /**
-         * Return the 'top' of the list as a reference
+         * Return the 'bottom' of the list as a reference
          * 
          * Note: Does not 'pop' the value off the list
          * 
