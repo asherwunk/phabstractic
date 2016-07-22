@@ -238,4 +238,17 @@ class RestrictedSetTest extends TestCase
         
     }
     
+    public function testSetDebugInfo() {
+        $rset = Types\RestrictedSet::build(array(1,2,3),
+                    new Types\Restrictions(array(Type::BASIC_INT)));
+        
+        ob_start();
+        
+        var_dump($rset);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[?\"?restrictions\"?\]?.*=\\>\n.*object\\(Phabstractic\\\\Data\\\Types\\\\Restrictions\\)/", $output);
+
+    }
 }

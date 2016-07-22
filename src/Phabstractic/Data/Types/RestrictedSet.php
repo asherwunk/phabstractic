@@ -261,6 +261,26 @@ namespace Phabstractic\Data\Types
         }
         
         /**
+         * Debug Info (var_dump)
+         * 
+         * Display debug info
+         * 
+         * Requires PHP 5.6+
+         * 
+         */
+        public function __debugInfo()
+        {
+            return [
+                'options' => array('unique' => $this->conf->unique,
+                                   'strict' => $this->conf->strict,
+                                   'reference' => $this->conf->reference,),
+                'identityPrefix' => $this->identityPrefix,
+                'restrictions' => $this->restrictions,
+                'data' => $this->data,
+            ];
+        }
+        
+        /**
          * Calls an internal member function of a set member with arguments
          * 
          * Like map, only it calls a particular method on the given object,

@@ -334,10 +334,10 @@ namespace Phabstractic\Data\Types
          */
         public function push()
         {
-            $args = func_get_args(); 
+            $arguments = func_get_args(); 
             $exec = 'array_push( $this->list'; 
-            for ($a = 0; $a < count($args); $a++) { 
-                $exec .= ', $args[' . $a . ']'; 
+            for ($a = 0; $a < count($arguments); $a++) { 
+                $exec .= ', $arguments[' . $a . ']'; 
             } 
              
             $exec .= ' );';
@@ -547,7 +547,22 @@ namespace Phabstractic\Data\Types
             
             return true;
         }
-        
+    
+        /**
+         * Debug Info (var_dump)
+         * 
+         * Display debug info
+         * 
+         * Requires PHP 5.6+
+         * 
+         */
+        public function __debugInfo()
+        {
+            return [
+                'options' => array('strict' => $this->conf->strict,),
+                'list' => $this->list
+            ];
+        }
     }
     
 }

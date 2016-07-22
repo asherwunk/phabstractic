@@ -356,4 +356,18 @@ class StackTest extends TestCase
         $this->assertFalse(isset($stack[8]));
         
     }
+    
+    public function testSetDebugInfo() {
+        $stack = new Types\Stack(array(1,2,3,4,5));
+        
+        ob_start();
+        
+        var_dump($stack);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[?\"?list\"?\]?.*=\\>\n.*array\\(5\\)/", $output);
+
+    }
+    
 }

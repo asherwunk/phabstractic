@@ -356,4 +356,17 @@ class QueueTest extends TestCase
         $this->assertFalse(isset($queue[8]));
         
     }
+    
+    public function testSetDebugInfo() {
+        $queue = new Types\Queue(array(1,2,3,4,5));
+        
+        ob_start();
+        
+        var_dump($queue);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[?\"?list\"?\]?.*=\\>\n.*array\\(5\\)/", $output);
+
+    }
 }
