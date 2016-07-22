@@ -248,7 +248,7 @@ class RestrictedSetTest extends TestCase
         
         $output = ob_get_clean();
         
-        $this->assertRegExp("/\\[?\"?restrictions\"?\]?.*=\\>\n.*object\\(Phabstractic\\\\Data\\\Types\\\\Restrictions\\)/", $output);
+        $this->assertRegExp("/\\[?\"?restrictions\"?\]?.*=\\>\n.*(object|class)? \\(?Phabstractic\\\\Data\\\Types\\\\Restrictions\\)?/", $output);
 
     }
 }
