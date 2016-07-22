@@ -13,6 +13,10 @@ use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Resource as TypesResource;
 use Phabstractic\Data\Types\Type;
 
+class TestRestrictedListClass {
+    
+}
+
 class RestrictedListTest extends TestCase
 {
     public function testEmptyInstantiation() {
@@ -251,6 +255,16 @@ class RestrictedListTest extends TestCase
         
     }
     
+    public function testPushSingularNoReferenceTypedObject() {
+        $restrictions = new Types\Restrictions(array(Type::TYPED_OBJECT),array('TestRestrictedListClass'));
+        $list = new Types\RestrictedList(array(), $restrictions, array('strict' => true));
+        
+        $t = new TestRestrictedListClass();
+        
+        $list->push($t);
+        
+        $this->assertEquals(array($t), $list->getList());
+    }
     
     public function testImproperPushSingularWithReferenceNoStrict() {
         $testref = 'testref';
@@ -452,6 +466,17 @@ class RestrictedListTest extends TestCase
         $list[] = 'test';
         
         $this->assertEquals(array(1,2,3,4,5), $list->getList());
+    }
+    
+    public function testArrayAccessProperOffsetSetPushTypedObject() {
+        $restrictions = new Types\Restrictions(array(Type::TYPED_OBJECT),array('TestRestrictedListClass'));
+        $list = new Types\RestrictedList(array(), $restrictions);
+        
+        $t = new TestRestrictedListClass();
+        
+        $list[] = $t;
+        
+        $this->assertEquals(array($t), $list->getList());
     }
     
     /**
