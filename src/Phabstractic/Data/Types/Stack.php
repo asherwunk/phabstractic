@@ -300,7 +300,7 @@ namespace Phabstractic\Data\Types
                 if ($this->conf->strict) {
                     throw new TypesException\RangeException(
                         'Phabstractic\\Data\\Types\\Stack->bottom: ' .
-                        'called on empty queue.');
+                        'called on empty stack.');
                 } else {
                     return new None();
                 }
@@ -327,7 +327,7 @@ namespace Phabstractic\Data\Types
                 if ($this->conf->strict) {
                    throw new TypesException\RangeException(
                        'Phabstractic\\Data\\Types\\Stack: ' .
-                       'bottom called on empty queue.');
+                       'bottom called on empty stack.');
                 } else {
                     $none = new None();
                     // must return reference, not literal
