@@ -364,7 +364,9 @@ namespace Phabstractic\Data\Types
          * 
          */
         public function bottom()
-        { 
+        {
+            usort($this->list, array($this, 'cmp'));
+            
             if (!empty($this->list)) {
                 return $this->list[count($this->list)-1];
             } else {
@@ -391,7 +393,9 @@ namespace Phabstractic\Data\Types
          * @throws Phabstractic\Data\Types\Exception\RangeException if no top exists
          * 
          */
-        public function &bottomReference() { 
+        public function &bottomReference() {
+            usort($this->list, array($this, 'cmp'));
+            
             if (!empty($this->list)) { 
                 return $this->list[count($this->list)-1];
             } else {
