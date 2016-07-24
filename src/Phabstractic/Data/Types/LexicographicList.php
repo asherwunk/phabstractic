@@ -315,6 +315,8 @@ namespace Phabstractic\Data\Types
          */
         public function &topReference()
         {
+            parent::topReference();
+            
             if (!empty($this->list)) { 
                 return $this->list[0]; 
             } else {
