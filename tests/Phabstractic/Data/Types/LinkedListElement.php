@@ -166,8 +166,8 @@ class LinkedListElementTest extends TestCase
         $output = ob_get_clean();
         
         $this->assertRegExp("/\\[?\"?data\"?\]?.*=\\>\n.*string\\(8\\)/", $output);
-        $this->assertRegExp("/\\[?\"?previous\"?\]?.*=\\>\n.*object\\(Phabstractic\\\\Data\\\\Types\\\\LinkedListElement\\)/", $output);
-        $this->assertRegExp("/\\[?\"?next\"?\]?.*=\\>\n.*object\\(Phabstractic\\\\Data\\\\Types\\\\LinkedListElement\\)/", $output);
+        $this->assertRegExp("/\\[?\"?previous\"?\]?.*=\\>\n.*(object|class)\\(?Phabstractic\\\\Data\\\\Types\\\\LinkedListElement\\)?/", $output);
+        $this->assertRegExp("/\\[?\"?next\"?\]?.*=\\>\n.*(object|class)\\(?Phabstractic\\\\Data\\\\Types\\\\LinkedListElement\\)?/", $output);
         
     }
     
