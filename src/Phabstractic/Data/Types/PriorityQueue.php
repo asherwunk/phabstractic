@@ -736,6 +736,25 @@ namespace Phabstractic\Data\Types
         }
         
         /**
+         * Retrieve reference to priority associated with data
+         * 
+         * @param mixed $data The data to search for
+         * 
+         * @returns &Phabstractic\Data\Types\Priority
+         * 
+         */
+        public function &retrievePriority($data) {
+            foreach ($this->getList() as $key => $priority) {
+                if ($priority->getData() == $data) {
+                    return $this->list[$key];
+                }
+            }
+            
+            $none = new None();
+            return $none;
+        }
+        
+        /**
          * Debug Info (var_dump)
          * 
          * Display debug info

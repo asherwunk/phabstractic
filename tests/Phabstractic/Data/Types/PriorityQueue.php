@@ -504,6 +504,34 @@ class PriorityQueueTest extends TestCase
         
     }
     
+    public function testRetrievePriorityExistingData() {
+        $priority1 = Types\Priority::buildPriority('first', 0);
+        $priority2 = Types\Priority::buildPriority('second', 2);
+        $priority3 = Types\Priority::buildPriority('third', 4);
+        $priority4 = Types\Priority::buildPriority('fourth', 2);
+        $priority5 = Types\Priority::buildPriority('fifth', 7);
+        $queue = new Types\PriorityQueue(array($priority4, $priority2, $priority3, $priority1, $priority5));
+        
+        $priority = &$queue->retrievePriority($priority2->getData());
+        $priority->setPriority(5);
+        
+        $this->assertEquals(array($priority1, $priority4, $priority3, $priority2, $priority5), $queue->getList());
+    }
+    
+    public function testRetrievePriorityNoneExistingData() {
+        $priority1 = Types\Priority::buildPriority('first', 0);
+        $priority2 = Types\Priority::buildPriority('second', 2);
+        $priority3 = Types\Priority::buildPriority('third', 4);
+        $priority4 = Types\Priority::buildPriority('fourth', 2);
+        $priority5 = Types\Priority::buildPriority('fifth', 7);
+        $queue = new Types\PriorityQueue(array($priority4, $priority2, $priority3, $priority1, $priority5));
+        
+        $priority = &$queue->retrievePriority('six');
+        
+        $this->assertInstanceOf(Types\None::class, $priority);
+        
+    }
+    
     public function testDebugInfo() {
         $priority1 = Types\Priority::buildPriority('first', 0);
         $priority2 = Types\Priority::buildPriority('second', 2);
