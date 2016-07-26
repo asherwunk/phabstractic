@@ -696,7 +696,25 @@ class LinkedListTest extends TestCase
     }
     
     public function testDebugInfo() {
+        $firstelement = Types\LinkedListElement::buildElement('first');
+        $secondelement = Types\LinkedListElement::buildElement('second');
+        $thirdelement = Types\LinkedListElement::buildElement('third');
+        $fourthelement = Types\LinkedListElement::buildElement('fourth');
         
+        $list = new Types\LinkedList();
+        
+        $list->insertElementAfter($firstelement);
+        $list->insertElementAfter($secondelement);
+        $list->insertElementAfter($thirdelement);
+        $list->insertElementAfter($fourthelement);
+        
+        ob_start();
+        
+        var_dump($list);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[?\"?data\"?\]?.*=\\>\n.*array\\(4\\)/", $output);
     }
     
 }
