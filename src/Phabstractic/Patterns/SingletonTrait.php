@@ -29,11 +29,11 @@
  * Falcraft Libraries Pattern Implementations Namespace
  * 
  */
-namespace Phabstractic\Patterns\Resource
+namespace Phabstractic\Patterns
 {
     /* loading function /falcraftLoad.php depends on registry which depends
        on SingletonTrait */
-    $includes = array('/../Exception/RuntimeException.php',);
+    $includes = array('/Exception/RuntimeException.php',);
 
     foreach ( $includes as $include )
     {

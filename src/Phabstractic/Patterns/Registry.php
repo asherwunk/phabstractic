@@ -34,7 +34,7 @@ namespace Phabstractic\Patterns
                       '/../Data/Types/None.php',
                         // implements singleton trait
                       '/Resource/SingletonInterface.php',
-                      '/Resource/SingletonTrait.php',
+                      '/SingletonTrait.php',
                         // throws a range exception on improper access
                       '/Exception/RangeException.php',);
 
@@ -71,7 +71,7 @@ namespace Phabstractic\Patterns
      */
     class Registry extends \ArrayObject implements PatternsResource\SingletonInterface
     {
-        use PatternsResource\SingletonTrait;
+        use SingletonTrait;
         
         /**
          * Internal Registry Array

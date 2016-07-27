@@ -1,8 +1,8 @@
 <?php
-require_once('src/Phabstractic/Patterns/Resource/SingletonTrait.php');
+require_once('src/Phabstractic/Patterns/SingletonTrait.php');
 
 use PHPUnit\Framework\TestCase;
-use Phabstractic\Patterns\Resource as Patterns;
+use Phabstractic\Patterns;
 
 class TestSingleton {
     use Patterns\SingletonTrait;
