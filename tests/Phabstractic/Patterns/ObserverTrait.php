@@ -138,4 +138,23 @@ class ObserverTraitTest extends TestCase
         $this->assertEquals(5, $observer->testPublisher);
         
     }
+    
+    /**
+     * @depends testAttachPublisher
+     * 
+     */
+    public function testDebugInfo() {
+        $publisher1 = new TestObserverPublisherClass();
+        $observer = new TestObserverObserverClass();
+        
+        $observer->attachPublisher($publisher1);
+        
+        ob_start();
+        
+        var_dump($observer);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[?\"?observedSubjects\"?\]?.*=\\>\n.*array\\(1\\)/", $output);
+    }
 }
