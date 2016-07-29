@@ -1,0 +1,768 @@
+<?php
+
+/* This document is meant to follow PSR-1 and PSR-2 php-fig standards
+   http://www.php-fig.org/psr/psr-1/
+   http://www.php-fig.org/psr/psr-2/ */
+
+/**
+ * Event Abstract Class
+ * 
+ * This file contains the basic event functionality that all events
+ * implement and use.  All universally recognizable events must inherit from
+ * this abstract class.
+ * 
+ * @copyright Copyright 2016 Asher Wolfstein
+ * @author Asher Wolfstein <asherwunk@gmail.com>
+ * @link http://wunk.me/ The author's URL
+ * @link http://wunk.me/programming-projects/phabstractic/ Framework URL
+ * @license http://opensource.org/licenses/MIT
+ * @package Event
+ * @subpackage Abstractions
+ * 
+ */
+/**
+ * Falcraft Libraries Event Resource Namespace
+ * 
+ */
+namespace Phabstractic\Event\Resource
+{
+    require_once(realpath( __DIR__ . '/../../') . '/falcraftLoad.php');
+    
+    $includes = array(// we implement this interface
+                      '/Event/Resource/EventInterface.php',
+                      // we store data in sets
+                      '/Data/Types/Set.php',
+                      // we throw these exceptions
+                      '/Event/Exception/InvalidArgumentException.php',);
+    
+    falcraftLoad($includes, __FILE__);
+    
+    use Phabstractic\Data\Types;
+    use Phabstractic\Event\Exception;
+    
+    /**
+     * Abstract Event Class - Defines basic event functionality
+     * 
+     * This class defines the basic functionality and members
+     * that all events share.  This serves as the universal
+     * event type checker.  All recognizable event in the
+     * event system must inherit and implement this class.
+     * 
+     * Technically an event is an object 'state', when the
+     * state changes in a publisher, it's like 'triggering'
+     * an event.
+     * 
+     * CHANGELOG
+     * 
+     * 1.0 Created Abstract Event - August 16th, 2013
+     * 2.0 Integrated into Primus2 - September 12th, 2015
+     * 3.0: inherit from eventinterface
+     *      eliminated set/clear identifier
+     *      changed --Object methods to --Set
+     *      getState now returns arrays, not sets
+     *      reformatted for inclusion in phabtractic - July 29th, 2016
+     * 
+     * @version 3.0
+     * 
+     */
+    abstract class AbstractEvent implements EventInterface
+    {
+        /**
+         * The event identifier
+         * 
+         * This is implementation specific
+         * 
+         * @var mixed
+         * 
+         */
+        protected $identifier;
+        
+        /**
+         * The tags associated with this event
+         * 
+         * @var Falcraft\Data\Types\Set
+         * 
+         */
+        protected $tags;
+        
+        /**
+         * The categories associated with this event
+         * 
+         * @var Falcraft\Data\Types\Set
+         * 
+         */
+        protected $categories;
+        
+        /**
+         * The publishing object of the event
+         * 
+         * This doesn't necessarily always equal the
+         * object that generated the event.  Kooky.
+         * 
+         * @var mixed
+         * 
+         */
+        protected $target;
+        
+        /**
+         * Any data associated with the event
+         * 
+         * @var mixed
+         * 
+         */
+        protected $data;
+        
+        /**
+         * The class that generated the event
+         * 
+         * This should ALWAYS equal the classname
+         * (if we're in a class) that generated the
+         * event.
+         * 
+         * @var string
+         * 
+         */
+        protected $class;
+        
+        /**
+         * The function that generated the event
+         * 
+         * This should ALWAYS equal the function name
+         * that generated the event.
+         * 
+         * @var string
+         * 
+         */
+        protected $function;
+        
+        /**
+         * The namespace generating the event
+         * 
+         * This should ALWAYS reflect the namespace
+         * of the class or function that generated
+         * the event.
+         * 
+         * @var string
+         * 
+         */
+        protected $namespace;
+        
+        /**
+         * Has the event stopped propagation?
+         * 
+         * This has to be checked by handlers themselves
+         * 
+         * @var bool
+         * 
+         */
+        protected $stop = false;
+        
+        /**
+         * Is this event currently unstoppable?
+         * 
+         * This has to be checked by conduits and handlers themselves
+         * 
+         * @var bool
+         * 
+         */
+        protected $force = false;
+        
+        /**
+         * The Abstract Event Constructor
+         * 
+         * This is implements an event, setting all the necessary fields
+         * 
+         * @param object $target The target of the event
+         * @param string $function The function/method generating the event
+         * @param string $class The class name generating the event if applicable
+         * @param string $namespace The namespace of the generating point
+         * @param mixed $data Any data associated with the event
+         * @param array $tags An array of strings associating the event with a set of tags
+         * @param array $cats An array of strings associating the event with a set of categories
+         * @param array $options
+         * 
+         */
+        public function __construct(
+            $target,
+            $function,
+            $class,
+            $namespace,
+            $data = null,
+            array $tags = array(),
+            array $categories = array()
+        ) {
+            $this->tags = new Types\Set($tags, array('unique' => true));
+            $this->categories = new Types\Set($categories, array('unique' => true));
+            
+            $this->setTarget($target);
+            $this->function = $function;
+            $this->class = $class;
+            $this->namespace = $namespace;
+            $this->setData($data);
+        }
+        
+        /**
+         * This returns an array containing the object state
+         * 
+         * This converts the event state to an array, tags and categories
+         * are set up as sub-arrays, as well as the available object members
+         * 
+         * @return array
+         * 
+         */
+        public function getState()
+        {
+            $tags = $this->tags->getPlainArray();
+            $categories = $this->categories->getPlainArray();
+            $fields = get_class_vars('Phabstractic\\Event\\Resource\\AbstractEvent');
+            
+            // Populate the fields with this object's values
+            foreach ($fields as $key => $val) {
+                if ($key != 'categories' && $key != 'tags') {
+                    $fields[$key] = $this->$key;
+                }
+            }
+            
+            unset($fields['tags']);
+            unset($fields['categories']);
+            
+            $ret = array(); // Populate the object with additional information
+            
+            $ret['tags'] = $tags;
+            $ret['categories'] = $categories;
+            $ret['fields'] = $fields;
+            return $ret;
+        }
+        
+        /**
+         * State Interface Status Set
+         *
+         */
+        public function setState($state)
+        {
+            if (is_array($state)) {
+                $this->setStateWithArray($state);
+            } elseif ($state instanceof EventInterface) {
+                $this->setStateWithEvent($state);
+            }
+            
+        }
+        
+        /**
+         * This sets or morphs an event with new information
+         * 
+         * If morph is set, the event doesn't clear it's
+         * information, and instead overwrites whats already there.
+         * 
+         * $state must include identifier
+         * 
+         * @param array $stateArray
+         *                  The state information in an associative array
+         * @param bool $morph
+         *                  Whether we should replace or overwrite the object state
+         * 
+         */
+        public function setStateWithArray(array $state, $morph = true)
+        {
+            /* state: identifier, tags, categories, target, data,
+               class, function, namespace */
+            
+            if (!$morph) {
+                $this->tags->clear();
+                $this->categories->clear();
+                $this->target = null;
+                $this->data = null;
+                $this->class = '';
+                $this->function = '';
+                $this->namespace = '';
+            }
+            
+            if (isset($state['fields'])) {
+                $state = array_merge($state, $state['fields']);
+                unset($state['fields']);
+            }
+            
+            $fields = array('tags', 'categories');
+            
+            // This code is the same for both tags and categories so, use same code
+            foreach($fields as $field) {
+                if (isset($state[$field])) {
+                    if (is_array($state[$field])) {
+                        if (!$morph) {
+                            $this->$field = new Types\Set(
+                                                    $state[$field],
+                                                    array( 'unique' => true ));
+                        } else {
+                            foreach( $state[$field] as $datum ) {
+                                $this->$field->add($datum);
+                            }
+                        }
+                            
+                    } else if (is_object($state[$field]) &&
+                               method_exists($state[$field], 'getArray')) {
+                        if (!$morph) {
+                            $this->$field = new Types\Set(
+                                                array($state[$field]->getArray()),
+                                                array('unique' => true));
+                        } else {
+                            $this->$field = new Types\Set(
+                                                Types\Set::union(
+                                                    $state[$field],
+                                                    $this->$field),
+                                                array('unique' => true));
+                        }
+                    } else {
+                        throw new Exception\InvalidArgumentException(
+                            'Phabstractic\\Event\\Resource\\AbstractEvent->' .
+                            "setState: invalid $fields argument");
+                    }
+                } else {
+                    if (!$morph) {
+                        $this->$field->clear();
+                    }
+                }
+            }
+            
+            if (isset($state['target']) && $state['target']) {
+                $this->target = $state['target'];
+            }
+            
+            if (isset($state['data']) && $state['data']) {
+                $this->data = $state['data'];
+            }
+            
+            if (isset($state['class']) && $state['class']) {
+                $this->class = $state['class'];
+            }
+            
+            if (isset($state['function']) && $state['function']) {
+                $this->function = $state['function'];
+            }
+            
+            if (isset($state['namespace']) && $state['namespace']) {
+                $this->namespace = $state['namespace'];
+            }
+            
+        }
+        
+        public function setStateWithEvent(
+            EventInterface $state,
+            $morph = true)
+        {
+            if (!$morph) {
+                $this->tags->clear();
+                $this->categories->clear();
+                $this->target = null;
+                $this->data = null;
+                $this->class = '';
+                $this->function = '';
+                $this->namespace = '';
+            }
+            
+            $fields = array('tags', 'categories');
+            
+            // This code is the same for both tags and categories so, use same code
+            foreach($fields as $field) {
+                $accessor = 'get' . ucfirst($field);
+                $this->$field = new Types\Set(
+                                        Types\Set::union(
+                                            $this->$field,
+                                            $state->$accessor()),
+                                        array('unique' => true));
+            }
+            
+            if (($target = $state->getTarget()) != null) {
+                $this->target = $target;
+            }
+            
+            if (($data = $state->getData()) != null) {
+                $this->data = $data;
+            }
+            
+            if (($class = $state->getClass()) != null) {
+                $this->class = $class;
+            }
+            
+            if (($function = $state->getFunction()) != null) {
+                $this->function = $function;
+            }
+            
+            if (($namespace = $state->getNamespace()) != null) {
+                $this->namespace = $namespace;
+            }
+            
+        }
+        
+        /**
+         * Retrieve the event identifier
+         * 
+         * @return mixed
+         * 
+         */
+        abstract public function getIdentifier();
+        
+        /**
+         * Return the categories of the event
+         * 
+         * NOTE: This returns an array
+         * 
+         * @return array
+         * 
+         */
+        public function getCategories()
+        {
+            return $this->categories->getPlainArray();
+        }
+        
+        /**
+         * Return the categories of the event
+         * 
+         * NOTE: This returns a set object
+         * 
+         * @return Phabstractic\Data\Types\Set
+         * 
+         */
+        public function getCategoriesSet()
+        {
+            return $this->categories;
+        }
+        
+        /**
+         * Add a category to the event
+         * 
+         * @param string $cat
+         * 
+         */
+        public function addCategory($category)
+        {
+            $this->categories->add($category);
+        }
+        
+        /**
+         * Add cateogires to the event
+         * 
+         * @param array $cats
+         */
+        public function addCategories(array $categories)
+        {
+            foreach ($categories as $category) {
+                $this->addCategory($category);
+            }
+        }
+        
+        /**
+         * Set a bunch of categories at once
+         * 
+         * @param array $cats
+         * 
+         */
+        public function setCategories(array $categories)
+        {
+            $this->categories->clear();
+            
+            $this->addCategories($categories);
+        }
+        
+        /**
+         * Remove a category from the event
+         * 
+         * @param string $cat
+         * 
+         */
+        public function removeCategory($category)
+        {
+            $this->categories->remove($category);
+        }
+        
+        /**
+         * Does this event have a particular category?
+         * 
+         * @param string $cat
+         * 
+         * @return bool
+         * 
+         */
+        public function isCategory($category)
+        {
+            return $this->categories->in($category);
+        }
+        
+        /**
+         * Get the tags associated with this event
+         * 
+         * NOTE: This returns an array
+         * 
+         * @return array
+         * 
+         */
+        public function getTags()
+        {
+            return $this->tags->getPlainArray();
+        }
+        
+        /**
+         * Get the tags associated with this event
+         * 
+         * NOTE: This returns a Set
+         * 
+         * @return Phabstractic\Data\Types\Set
+         * 
+         */
+        public function getTagsSet()
+        {
+            return $this->tags;
+        }
+        
+        /**
+         * Associate a tag with this event
+         * 
+         * @param string $tag
+         * 
+         */
+        public function addTag($tag)
+        {
+            $this->tags->add($tag);
+        }
+        
+        /**
+         * Add multiple tags to the event
+         * 
+         * @param array $tags
+         *
+         */
+        public function addTags($tags)
+        {
+            foreach ($tags as $tag) {
+                $this->addTag($tag);
+            }
+        }
+        
+        /**
+         * Set a bunch of tags to be associated with this event
+         * 
+         * @param array $tags
+         * 
+         */
+        public function setTags($tags)
+        {
+            $this->tags->clear();
+            
+            $this->addTags($tags);
+        }
+        
+        /**
+         * Dissasociate a particular tag from this event
+         * 
+         * @param string $tag
+         * 
+         */
+        public function removeTag($tag)
+        {
+            $this->tags->remove($tag);
+        }
+        
+        /**
+         * Is a tag associated with this particular event
+         * 
+         * @param string $tag
+         * 
+         * @return bool
+         * 
+         */
+        public function isTag($tag)
+        {
+            return $this->tags->in($tag);
+        }
+        
+        /**
+         * Returns the generator of the event
+         * 
+         * @return object
+         * 
+         */
+        public function getTarget()
+        {
+            return $this->target;
+        }
+        
+        /**
+         * Returns the generator of the event's reference
+         * 
+         * @return object
+         * 
+         */
+        public function &getTargetReference()
+        {
+            return $this->target;
+        }
+        
+        /**
+         * Sets the generator of the event
+         * 
+         * NOTE: Use this function out of the construction
+         *       of an event with caution
+         * 
+         * @param object $publisher
+         * 
+         */
+        public function setTarget($target)
+        {
+            $this->target = $target;
+        }
+        
+        /**
+         * Sets the generator of the event's reference
+         * 
+         * @param object $publisher
+         * 
+         */
+        public function setTargetReference(&$target)
+        {
+            $this->target = &$target;
+        }
+        
+        /**
+         * Retrieve the data associated with the event
+         * 
+         * @return mixed
+         * 
+         */
+        public function getData()
+        {
+            return $this->data;
+        }
+        
+        /**
+         * Retrieve the data associated with the event as a reference
+         * 
+         * @return mixed
+         * 
+         */
+        public function &getDataReference()
+        {
+            return $this->data;
+        }
+        
+        /**
+         * Set the data associated with the event
+         * 
+         * This is implementation specific
+         * 
+         * @param mixed $data
+         * 
+         */
+        abstract public function setData($data);
+        
+        /**
+         * Set the data associated with the event as a reference
+         * 
+         * This is implementation specific
+         * 
+         * @param mixed $data
+         * 
+         */
+        abstract public function setDataReference(&$data);
+        
+        /**
+         * Retrieve the event originating function
+         * 
+         * @return string
+         * 
+         */
+        public function getFunction()
+        {
+            return $this->function;
+        }
+        
+        /**
+         * Retrieve the event originating class
+         * 
+         * @return string
+         * 
+         */
+        public function getClass()
+        {
+            return $this->class;
+        }
+        
+        /**
+         * Retrieve the event originating namespace
+         * 
+         * @return string
+         * 
+         */
+        public function getNamespace()
+        {
+            return $this->namespace;
+        }
+        
+        /**
+         * Stop propagation of the event
+         * 
+         * This member is checked by the filters
+         * 
+         * @param bool $stop
+         * 
+         */
+        public function stop()
+        {
+            if (!$this->force) {
+                $this->stop = true;
+            }
+            
+        }
+        
+        /**
+         * Allow the event to continue propogating
+         * 
+         */
+        public function proceed()
+        {
+            $this->stop = false;;
+        }
+        
+        /**
+         * Has the propogation of this event stopped?
+         * 
+         * @return bool
+         * 
+         */
+        public function isStopped()
+        {
+            return $this->stop;
+        }
+        
+        /**
+         * Make this event unstoppable
+         * 
+         */
+        public function force()
+        {
+            $this->force = true;
+        }
+        
+        /**
+         * Make this event stoppable
+         * 
+         */
+        public function subdue()
+        {
+            $this->force = false;
+        }
+        
+        /**
+         * Is this event unstoppable?
+         * 
+         * Checked by filters
+         * 
+         * @return bool
+         * 
+         */
+        public function isUnstoppable()
+        {
+            return $this->force;
+        }
+        
+    }
+    
+}
