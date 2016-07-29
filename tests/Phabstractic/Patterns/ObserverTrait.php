@@ -121,9 +121,9 @@ class ObserverTraitTest extends TestCase
         
         $state->setState('test');
         
-        $publisher1->setState($state);
-        $publisher2->setState($state);
-        $publisher3->setState($state);
+        $publisher1->setStateObject($state);
+        $publisher2->setStateObject($state);
+        $publisher3->setStateObject($state);
         
         $this->assertEquals(3, $observer->testPublisher);
         
@@ -131,9 +131,9 @@ class ObserverTraitTest extends TestCase
         
         $observer->detachPublisher($publisher2);
         
-        $publisher1->setState($state);
-        $publisher2->setState($state);
-        $publisher3->setState($state);
+        $publisher1->setStateObject($state);
+        $publisher2->setStateObject($state);
+        $publisher3->setStateObject($state);
         
         $this->assertEquals(5, $observer->testPublisher);
         

@@ -123,7 +123,7 @@ class PublisherTraitTest extends TestCase
         
         $state->setState('test');
         
-        $publisher->setState($state);
+        $publisher->setStateObject($state);
         
         $this->assertEquals(1, $observer1->testPublisher);
         $this->assertEquals(1, $observer2->testPublisher);
@@ -133,7 +133,7 @@ class PublisherTraitTest extends TestCase
         
         $publisher->detachObserver($observer2);
         
-        $publisher->setState($state);
+        $publisher->setStateObject($state);
         
         $this->assertEquals(2, $observer1->testPublisher);
         $this->assertEquals(1, $observer2->testPublisher);

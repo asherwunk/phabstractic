@@ -170,17 +170,6 @@ namespace Phabstractic\Patterns
             
             return $this->publisherObservers->getPlainArray();
         }
-        
-        /**
-         * Set the publishers state, this notifies the observers
-         * 
-         * @param Phabstractic\Pattern\Resource\StateInterface $state
-         * 
-         */
-        public function setState($state)
-        {
-            $this->setStateObject($state);
-        }
      
          /**
          * Set the publishers state, this notifies the observers
@@ -195,17 +184,6 @@ namespace Phabstractic\Patterns
         }
         
         /**
-         * Retrieve the state, whatever it may contain
-         * 
-         * @return mixed
-         * 
-         */
-        public function getState()
-        {
-            return $this->state;
-        }
-        
-        /**
          * Retrieve the state object, whatever it may contain
          * 
          * @return Phabstractic\Pattern\Resource\StateInterface
@@ -213,7 +191,7 @@ namespace Phabstractic\Patterns
          */
         public function getStateObject()
         {
-            return $this->getState();
+            return $this->state;
         }
      
          /**

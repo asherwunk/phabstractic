@@ -55,12 +55,13 @@ namespace Phabstractic\Patterns\Resource
      * 
      * 1.0: created PublisherInterface - August 16th, 2013
      * 2.0: refactored file to fit Primus - April 2nd, 2015
-     * 3.0: reformatted for inclusion in phabstractic - July 26th, 2016
+     * 3.0: de-coupled stateinterface as ambiguous
+     *      reformatted for inclusion in phabstractic - July 26th, 2016
      * 
      * @version 3.0
      * 
      */
-    interface PublisherInterface extends StateInterface
+    interface PublisherInterface
     {
         
         /**

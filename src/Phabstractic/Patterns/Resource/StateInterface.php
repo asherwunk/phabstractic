@@ -81,8 +81,8 @@ namespace Phabstractic\Patterns\Resource
          *      as asherwunk/phabstractic/-/event:
          * 
          * Replaces the current state object's data.  In order for the
-         * observer/publisher pattern to work it is recommended that this
-         * function notifies all observers of the host object.
+         * observer/publisher pattern to work it is recommended that the
+         * caller of this function notifies all observers of the host object.
          * 
          * @param mixed $stateData
          * 
