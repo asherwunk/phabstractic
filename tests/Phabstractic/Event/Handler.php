@@ -251,18 +251,19 @@ class HandlerTest extends TestCase
         $this->assertTrue($handler->notify($publisher, $state));
     }
     
-    /* public function testDebugInfo() {
-        $publisher1 = new TestObserverPublisherClass();
-        $observer = new TestObserverObserverClass();
-        
-        $observer->attachPublisher($publisher1);
+    public function testDebugInfo() {
+        $handler = new Event\Handler(
+            new TestHandlerTestClass(),
+            'testMethod'
+        );
         
         ob_start();
         
-        var_dump($observer);
+        var_dump($handler);
         
         $output = ob_get_clean();
         
-        $this->assertRegExp("/\\[?\"?observedSubjects\"?\]?.*=\\>\n.*array\\(1\\)/", $output);
-    } */
+        $this->assertRegExp("/\\[?\"?function\"?\]?.*=\\>\n.*string/", $output);
+    }
+    
 }
