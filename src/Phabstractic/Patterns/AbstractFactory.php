@@ -26,9 +26,9 @@
  * Falcraft Libraries Pattern Implementations Namespace
  * 
  */
-namespace Phabstractic\Patterns\Resource
+namespace Phabstractic\Patterns
 {
-    require_once(realpath(__DIR__ . '/../../') . '/falcraftLoad.php');
+    require_once(realpath(__DIR__ . '/../') . '/falcraftLoad.php');
     
     /*
      * Configuration.php - Inherits options ability

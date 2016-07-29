@@ -1,10 +1,10 @@
 <?php
-require_once('src/Phabstractic/Patterns/Resource/AbstractFactory.php');
+require_once('src/Phabstractic/Patterns/AbstractFactory.php');
 
 use PHPUnit\Framework\TestCase;
-use Phabstractic\Patterns\Resource as PatternsResource;
+use Phabstractic\Patterns;
 
-PatternsResource\AbstractFactory::buildAbstractFactory(
+Patterns\AbstractFactory::buildAbstractFactory(
     'unitTest',
     array('plain', 'fancy', 'special'),
     array('ACONSTANT' => 5)
@@ -27,28 +27,28 @@ class TestAbstractFactory extends AbstractUnitTestFactory {
 class AbstractFactoryTest extends TestCase
 {
     public function testEmptyInstantiation() {
-        $f = new PatternsResource\AbstractFactory('test');
+        $f = new Patterns\AbstractFactory('test');
         
-        $this->assertInstanceOf(PatternsResource\AbstractFactory::class, $f);
+        $this->assertInstanceOf(Patterns\AbstractFactory::class, $f);
         
         return $f;
     }
     
     public function testPopulatedInstantiation() {
-        $f = new PatternsResource\AbstractFactory('test',
+        $f = new Patterns\AbstractFactory('test',
                                                   array('red', 'blue', 'yellow'),
                                                   array('color' => 2));
         
-        $this->assertInstanceOf(PatternsResource\AbstractFactory::class, $f);
+        $this->assertInstanceOf(Patterns\AbstractFactory::class, $f);
     }
     
     public function testWithNamespaceInstantiation() {
-        $f = new PatternsResource\AbstractFactory('test',
+        $f = new Patterns\AbstractFactory('test',
                                                   array('red', 'blue', 'yellow'),
                                                   array('color' => 2),
                                                   array('namespace' => 'unittest'));
         
-        $this->assertInstanceOf(PatternsResource\AbstractFactory::class, $f);
+        $this->assertInstanceOf(Patterns\AbstractFactory::class, $f);
     }
     
     /**
@@ -74,7 +74,7 @@ class AbstractFactoryTest extends TestCase
     }
     
     public function testBaked() {
-        $f = new PatternsResource\AbstractFactory('unitTestTwo',
+        $f = new Patterns\AbstractFactory('unitTestTwo',
                                                   array('red', 'blue', 'yellow'),
                                                   array('color' => 2),
                                                   array('namespace' => 'unittest'));
@@ -216,7 +216,7 @@ class AbstractFactoryTest extends TestCase
     }
     
     public function testSetProperNamespace() {
-        $f = new PatternsResource\AbstractFactory('unitTestTwo',
+        $f = new Patterns\AbstractFactory('unitTestTwo',
                                                   array('red', 'blue', 'yellow'),
                                                   array('color' => 2),
                                                   array('namespace' => ''));
@@ -232,7 +232,7 @@ class AbstractFactoryTest extends TestCase
      * 
      */
     public function testSetImproperNamespace() {
-        $f = new PatternsResource\AbstractFactory('unitTestTwo',
+        $f = new Patterns\AbstractFactory('unitTestTwo',
                                                   array('red', 'blue', 'yellow'),
                                                   array('color' => 2),
                                                   array('namespace' => ''));
@@ -242,7 +242,7 @@ class AbstractFactoryTest extends TestCase
     }
     
     public function testBuildAbstractFactory() {
-        PatternsResource\AbstractFactory::buildAbstractFactory('staticFunctionTest',
+        Patterns\AbstractFactory::buildAbstractFactory('staticFunctionTest',
                                                   array('red', 'blue', 'yellow'),
                                                   array('color' => 2),
                                                   array('namespace' => 'unittest'));
@@ -259,7 +259,7 @@ class AbstractFactoryTest extends TestCase
     }
     
     public function testSetDebugInfo() {
-        $f = new PatternsResource\AbstractFactory('unitTestTwo',
+        $f = new Patterns\AbstractFactory('unitTestTwo',
                                                   array('red', 'blue', 'yellow'),
                                                   array('color' => 2),
                                                   array('namespace' => ''));
