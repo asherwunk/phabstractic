@@ -60,6 +60,7 @@ namespace Phabstractic\Event\Resource
      *      eliminated set/clear identifier
      *      changed --Object methods to --Set
      *      getState now returns arrays, not sets
+     *      set state now employs top and force
      *      reformatted for inclusion in phabtractic - July 29th, 2016
      * 
      * @version 3.0
@@ -343,6 +344,13 @@ namespace Phabstractic\Event\Resource
                 $this->namespace = $state['namespace'];
             }
             
+            if (isset($state['stop'])) {
+                $this->stop = $state['stop'];
+            }
+            
+            if (isset($state['force'])) {
+                $this->force = $state['force'];
+            }
         }
         
         public function setStateWithEvent(
@@ -390,6 +398,9 @@ namespace Phabstractic\Event\Resource
             if (($namespace = $state->getNamespace()) != null) {
                 $this->namespace = $namespace;
             }
+            
+            $this->stop = $state->isStopped();
+            $this->force = $state->isUnstoppable();
             
         }
         
