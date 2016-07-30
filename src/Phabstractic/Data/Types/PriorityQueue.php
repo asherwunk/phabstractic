@@ -46,6 +46,8 @@ namespace Phabstractic\Data\Types
                       '/Data/Types/Type.php',
                       // we can get priorities between a certain specified range
                       '/Data/Types/Range.php',
+                      // use set intersect
+                      '/Data/Types/Set.php',
                       // some list methods return None data type
                       '/Data/Types/None.php',
                       // we throw the following exceptions
@@ -407,8 +409,8 @@ namespace Phabstractic\Data\Types
         public function indexRange(Range $r)
         {
             return PhabstracticResource\ArrayUtilities::returnUnique(
-                array_intersect($this->index($r->getMinimum(), self::HIGHER),
-                                $this->index($r->getMaximum(), self::LOWER)));
+                Set::intersection($this->index($r->getMinimum(), self::HIGHER),
+                                  $this->index($r->getMaximum(), self::LOWER)));
         }
                 
         /**
@@ -485,8 +487,8 @@ namespace Phabstractic\Data\Types
         public function indexRangeReference( Types\Range $r )
         {
             return PhabstracticResource\ArrayUtilities::returnUniqueByReference(
-                array_merge($this->indexReference($r->getMinimum(), self::HIGHER),
-                            $this->indexReference($r->getMaximum(), self::LOWER)));
+                Set::intersection($this->indexReference($r->getMinimum(), self::HIGHER),
+                                  $this->indexReference($r->getMaximum(), self::LOWER)));
         }
         
         /**
