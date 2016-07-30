@@ -46,7 +46,7 @@ class PriorityQueueTest extends TestCase
     public function testImproperArrayInstantiation() {
         $priority1 = Types\Priority::buildPriority('first', 0);
         $priority2 = Types\Priority::buildPriority('second', 2);
-        $list = new Types\LexicographicList(array($priority1, $priority2, 'nope', 5));
+        $list = new Types\PriorityQueue(array($priority1, $priority2, 'nope', 5));
         
     }
     
