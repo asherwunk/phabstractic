@@ -51,7 +51,7 @@ class HandlerTest extends TestCase
                                         __CLASS__,
                                         __NAMESPACE__);
         
-        $this->assertTrue($handler->notify($publisher, $state));
+        $this->assertTrue($handler->notifyObserver($publisher, $state));
     }
     
     public function testStaticMethodInstantiation() {
@@ -66,7 +66,7 @@ class HandlerTest extends TestCase
                                         __CLASS__,
                                         __NAMESPACE__);
         
-        $this->assertTrue($handler->notify($publisher, $state));
+        $this->assertTrue($handler->notifyObserver($publisher, $state));
     }
     
     public function testNormalMethodInstantiation() {
@@ -81,7 +81,7 @@ class HandlerTest extends TestCase
                                         __CLASS__,
                                         __NAMESPACE__);
         
-        $this->assertTrue($handler->notify($publisher, $state));
+        $this->assertTrue($handler->notifyObserver($publisher, $state));
     }
     
     /**
@@ -123,7 +123,7 @@ class HandlerTest extends TestCase
                                         __CLASS__,
                                         __NAMESPACE__);
         
-        $this->assertTrue($handler->notify($publisher, $state));
+        $this->assertTrue($handler->notifyObserver($publisher, $state));
     }
     
     /**
@@ -152,7 +152,7 @@ class HandlerTest extends TestCase
                                         __CLASS__,
                                         __NAMESPACE__);
         
-        $this->assertTrue($handler->notify($publisher, $state));
+        $this->assertTrue($handler->notifyObserver($publisher, $state));
     }
     
     /**
@@ -181,7 +181,7 @@ class HandlerTest extends TestCase
                                         __CLASS__,
                                         __NAMESPACE__);
         
-        $this->assertTrue($handler->notify($publisher, $state));
+        $this->assertTrue($handler->notifyObserver($publisher, $state));
     }
     
     /**
@@ -236,7 +236,7 @@ class HandlerTest extends TestCase
                                         __CLASS__,
                                         __NAMESPACE__);
         
-        $this->assertTrue($handler->notify($publisher, $state));
+        $this->assertTrue($handler->notifyObserver($publisher, $state));
     }
     
     public function testBuildFromClosure() {
@@ -248,7 +248,7 @@ class HandlerTest extends TestCase
                                         __CLASS__,
                                         __NAMESPACE__);
         
-        $this->assertTrue($handler->notify($publisher, $state));
+        $this->assertTrue($handler->notifyObserver($publisher, $state));
     }
     
     public function testDebugInfo() {

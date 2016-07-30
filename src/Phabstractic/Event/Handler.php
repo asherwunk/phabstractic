@@ -337,7 +337,7 @@ namespace Phabstractic\Event
          * @return bool Return true if handled (instanceof AbstractEvent)
          * 
          */
-        public function notify(
+        public function notifyObserver(
             PatternsResource\PublisherInterface &$target,
             PatternsResource\StateInterface &$state
         ) {
