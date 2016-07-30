@@ -250,7 +250,7 @@ namespace Phabstractic\Data\Types
          * @return bool Successful?
          * 
          * @throws \Phabstractic\Data\Types\Exception\RangeException
-         *              When a value is not unique in the array if configured unique
+         *              When a value is not unique in the array if configured strict
          * 
          */
         private function checkUniqueValues(array $values = array())
@@ -261,7 +261,7 @@ namespace Phabstractic\Data\Types
                     /* it might seem prudent to use conf->strict, but we're
                        we might want to run this function if the conf->unique
                        option is set, but strict is not */
-                    if ($this->conf->unique) {
+                    if ($this->conf->strict) {
                        throw new TypesException\RangeException(
                            'Phabstractic\\Data\\Types\\Set->checkUniqueValues: ' .
                            'Given Value Not Unique' );
