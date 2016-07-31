@@ -559,6 +559,57 @@ namespace Phabstractic\Data\Types
             
         }
         
+        /**
+         * The 'get' function of the Map object, as reference
+         * 
+         * This technically 'finds' the value for a given key in the
+         * morass of internal counters that is the Map object, so it
+         * is named 'find', but it essentially 'gets' the associated value
+         * 
+         * $map->find($key) = $map[$key]
+         * 
+         * @param mixed $key The key to find the value for
+         * 
+         * @return mixed The value associated with the given key
+         * 
+         * @throws Phabstractic\Data\Types\Exception\RangeException if the key
+         *      doesn't exist and 'strict' is set
+         * 
+         */
+        public function &findReference($key)
+        {
+            if ($this->exists($key)) {
+                foreach ($this->keys as $k) {
+                    if ($this->conf->typed) {
+                        if ($key === $k[self::KEY]) {
+                            return $this->values[$k[self::INDEX]];
+                        }
+                        
+                    } else {
+                        if ($key == $k[self::KEY]) {
+                            return $this->values[ $k[self::INDEX] ];
+                        }
+                        
+                    }
+                    
+                }
+                
+                $none = new None();
+                // a map element might return null appropriately
+                return $none;
+                
+            }
+            
+            if ($this->conf->strict) {
+                throw new TypesException\RangeException(
+                    'Phabstractic\\Data\\Types\\Map->find: Non-Existent Key');
+            } else {
+                $none = new None();
+                return $none;
+            }
+            
+        }
+        
         // The ArrayAccess Functions
         
         /**

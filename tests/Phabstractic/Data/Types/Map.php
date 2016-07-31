@@ -289,6 +289,62 @@ class MapTest extends TestCase
         
     }
     
+    public function testProperFindReference() {
+        $pair1 = '1=5';
+        $pair2 = array();
+        $tk = new TestMapKeyClass();
+        $sc = new StdClass();
+        $pair2[0] = $tk;
+        $pair2[1] = 'test';
+        $pair3 = new stdClass();
+        $pair3->key = 'stringkey';
+        $pair3->value = 'stringvalue';
+        $map = new Types\Map(array($pair1, $pair2, $pair3));
+        
+        $testref = &$map->findReference($tk);
+        
+        $testref = 'modified';
+        
+        $this->assertEquals('modified', $map->find($tk));
+        
+    }
+    
+    public function testImproperFindReferenceNoStrict() {
+        $pair1 = '1=5';
+        $pair2 = array();
+        $tk = new TestMapKeyClass();
+        $sc = new StdClass();
+        $pair2[0] = $tk;
+        $pair2[1] = 'test';
+        $pair3 = new stdClass();
+        $pair3->key = 'stringkey';
+        $pair3->value = 'stringvalue';
+        $map = new Types\Map(array($pair1, $pair2, $pair3));
+        
+        $this->assertInstanceOf(Types\None::class, $map->findReference($sc));
+        
+    }
+    
+    /**
+     * @expectedException Phabstractic\Data\Types\Exception\RangeException
+     * 
+     */
+    public function testImproperFindReferenceWithStrict() {
+        $pair1 = '1=5';
+        $pair2 = array();
+        $tk = new TestMapKeyClass();
+        $sc = new StdClass();
+        $pair2[0] = $tk;
+        $pair2[1] = 'test';
+        $pair3 = new stdClass();
+        $pair3->key = 'stringkey';
+        $pair3->value = 'stringvalue';
+        $map = new Types\Map(array($pair1, $pair2, $pair3), array('strict' => true));
+        
+        $i = $map->findReference($sc);
+        
+    }
+    
     // TEST ARRAY ACCESS FUNCTIONS
     
     public function testArrayAccessProperGet() {
