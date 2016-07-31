@@ -220,6 +220,8 @@ namespace Phabstractic\Patterns
          */
         public function __debugInfo()
         {
+            $this->constructPublisherObservers();
+        
             return [
                 'state' => $this->publisherState,
                 'publisherObservers' => $this->publisherObservers->getPlainArray(),
