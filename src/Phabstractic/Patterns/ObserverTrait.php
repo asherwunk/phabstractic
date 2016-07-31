@@ -207,6 +207,8 @@ namespace Phabstractic\Patterns
          */
         public function __debugInfo()
         {
+            $this->constructObservedSubjects();
+            
             return [
                 'observedSubjects' => $this->observedSubjects->getPlainArray(),
             ];

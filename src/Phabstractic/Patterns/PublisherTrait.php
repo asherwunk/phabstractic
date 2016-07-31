@@ -179,7 +179,7 @@ namespace Phabstractic\Patterns
          */
         public function setStateObject(PatternsResource\StateInterface $state)
         {
-            $this->state = $state;
+            $this->publisherState = $state;
             $this->announce();
         }
         
@@ -191,7 +191,7 @@ namespace Phabstractic\Patterns
          */
         public function getStateObject()
         {
-            return $this->state;
+            return $this->publisherState;
         }
      
          /**
@@ -204,7 +204,7 @@ namespace Phabstractic\Patterns
             
             Types\RestrictedSet::mapInternal(
                 'notifyObserver',
-                array(&$this, &$this->state),
+                array(&$this, &$this->publisherState),
                 $this->publisherObservers
             );
             
