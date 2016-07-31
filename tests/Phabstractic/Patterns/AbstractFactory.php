@@ -1,8 +1,10 @@
 <?php
 require_once('src/Phabstractic/Patterns/AbstractFactory.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Patterns;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 Patterns\AbstractFactory::buildAbstractFactory(
     'unitTest',
@@ -30,6 +32,7 @@ class AbstractFactoryTest extends TestCase
         $f = new Patterns\AbstractFactory('test');
         
         $this->assertInstanceOf(Patterns\AbstractFactory::class, $f);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $f);
         
         return $f;
     }
@@ -40,6 +43,7 @@ class AbstractFactoryTest extends TestCase
                                                   array('color' => 2));
         
         $this->assertInstanceOf(Patterns\AbstractFactory::class, $f);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $f);
     }
     
     public function testWithNamespaceInstantiation() {
@@ -49,6 +53,7 @@ class AbstractFactoryTest extends TestCase
                                                   array('namespace' => 'unittest'));
         
         $this->assertInstanceOf(Patterns\AbstractFactory::class, $f);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $f);
     }
     
     /**
