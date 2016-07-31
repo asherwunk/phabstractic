@@ -251,6 +251,59 @@ class HandlerTest extends TestCase
         $this->assertTrue($handler->notifyObserver($publisher, $state));
     }
     
+    public function testAttachPublisher() {
+        $publisher1 = new TestHandlerPublisherClass();
+        $publisher2 = new TestHandlerPublisherClass();
+        $handler = Event\Handler::buildFromClosure(function(){return true;});
+        
+        $handler->attachPublisher($publisher1);
+        $handler->attachPublisher($publisher2);
+        
+        $this->assertEquals(array($publisher1, $publisher2), $handler->getPublishers());
+    }
+    
+    /**
+     * @depends testAttachPublisher
+     * 
+     */
+    public function testDetachPublisher() {
+        $publisher1 = new TestHandlerPublisherClass();
+        $publisher2 = new TestHandlerPublisherClass();
+        $publisher3 = new TestHandlerPublisherClass();
+        $handler = Event\Handler::buildFromClosure(function(){return true;});
+        
+        $handler->attachPublisher($publisher1);
+        $handler->attachPublisher($publisher2);
+        $handler->attachPublisher($publisher3);
+        
+        $this->assertEquals(array($publisher1, $publisher2, $publisher3), $handler->getPublishers());
+        
+        $handler->detachPublisher($publisher2);
+        
+        $this->assertEquals(array($publisher1, $publisher3), $handler->getPublishers());
+    }
+    
+    /**
+     * @depends testAttachPublisher
+     * 
+     */
+    public function testUnlinkFromPublishers() {
+        $publisher1 = new TestHandlerPublisherClass();
+        $publisher2 = new TestHandlerPublisherClass();
+        $publisher3 = new TestHandlerPublisherClass();
+        $handler = Event\Handler::buildFromClosure(function(){return true;});
+        
+        $handler->attachPublisher($publisher1);
+        $handler->attachPublisher($publisher2);
+        $handler->attachPublisher($publisher3);
+        
+        $this->assertEquals(array($publisher1, $publisher2, $publisher3), $handler->getPublishers());
+        
+        $handler->unlinkFromPublishers();
+        
+        $this->assertEquals(array(), $handler->getPublishers());
+    }
+    
     public function testDebugInfo() {
         $handler = new Event\Handler(
             new TestHandlerTestClass(),

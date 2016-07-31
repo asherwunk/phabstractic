@@ -477,11 +477,20 @@ namespace Phabstractic\Event
          */
         public function __debugInfo()
         {
-            return [
+            $ret = array(
                 'namespace' => $this->namespace,
                 'object' => $this->object,
-                'function' => $this->function,
-            ];
+            );
+            
+            if (is_callable($this->function, false, $nature) &&
+                    $nature == 'Closure::__invoke' ) {
+                // This is a closure
+                $ret['function'] = 'Closure';
+            } else {
+                $ret['function'] = $this->function;
+            }
+            
+            return $ret;
         }
         
     }
