@@ -258,9 +258,6 @@ namespace Phabstractic\Data\Types
             $check = array();
             foreach ( $values as $value ) {
                 if (in_array($value, $check, true)) {
-                    /* it might seem prudent to use conf->strict, but we're
-                       we might want to run this function if the conf->unique
-                       option is set, but strict is not */
                     if ($this->conf->strict) {
                        throw new TypesException\RangeException(
                            'Phabstractic\\Data\\Types\\Set->checkUniqueValues: ' .
