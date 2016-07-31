@@ -33,6 +33,7 @@ namespace Phabstractic\Data\Types
        for an array that is more object compatible. */
     $includes = array(// we're configurable
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // we inherit from AbstractRestrictedList
                       '/Data/Types/Resource/AbstractRestrictedList.php',
                       // we type check against FilterInterface
@@ -48,6 +49,7 @@ namespace Phabstractic\Data\Types
     use Phabstractic\Data\Types\Resource as TypesResource;
     use Phabstractic\Data\Types\Exception as TypesException;
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     
     /**
      * Restricted List Class - Defines a basic list class with restrictions
@@ -62,14 +64,16 @@ namespace Phabstractic\Data\Types
      * 2.1: Added additional strict conf checking - April 14th, 2015
      * 2.2: Changed offsetSet for better error cascades - April 14th, 2015
      * 3.0: reformatted for inclusion in phabstractic - July 21st, 2016
+     * 3.0.1: implements configurationinterface - July 31st, 2016
      * 
      * @uses Phabstractic\Data\Types\FList\AbstractRestrictedList
      * 
-     * @version 3.0
+     * @version 3.0.1
      * 
      */
     class RestrictedList extends TypesResource\AbstractRestrictedList implements
-        \ArrayAccess
+        \ArrayAccess,
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         

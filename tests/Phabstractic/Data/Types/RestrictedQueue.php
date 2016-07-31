@@ -7,11 +7,13 @@ require_once('src/Phabstractic/Data/Types/Resource/ListInterface.php');
 require_once('src/Phabstractic/Data/Types/Restrictions.php');
 require_once('src/Phabstractic/Data/Types/Type.php');
 require_once('src/Phabstractic/Data/Types/None.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Resource as TypesResource;
 use Phabstractic\Data\Types\Type;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class TestRestrictedQueueClass {
     
@@ -26,6 +28,7 @@ class RestrictedQueueTest extends TestCase
         $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue);
         $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
         $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
         
         $this->assertEquals(array(), $queue->getList());
         
@@ -37,6 +40,11 @@ class RestrictedQueueTest extends TestCase
         
         $this->assertEquals(array(1,2,3,4,5), $queue->getList());
         
+        $this->assertInstanceOf(Types\RestrictedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
     }
     
     /**
@@ -56,6 +64,11 @@ class RestrictedQueueTest extends TestCase
         
         $this->assertEquals(array(1,2,3,4,5), $queue2->getList());
         
+        $this->assertInstanceOf(Types\RestrictedList::class, $queue2);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue2);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue2);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue2);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue2);
     }
     
     /**
@@ -75,6 +88,11 @@ class RestrictedQueueTest extends TestCase
         
         $this->assertEquals(array('thisisascalar'), $queue->getList());
         
+        $this->assertInstanceOf(Types\RestrictedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
     }
     
     /**

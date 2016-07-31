@@ -4,10 +4,12 @@ require_once('src/Phabstractic/Data/Types/Queue.php');
 require_once('src/Phabstractic/Data/Types/Resource/AbstractList.php');
 require_once('src/Phabstractic/Data/Types/Resource/ListInterface.php');
 require_once('src/Phabstractic/Data/Types/None.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Resource as TypesResource;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class QueueTest extends TestCase
 {
@@ -17,6 +19,7 @@ class QueueTest extends TestCase
         $this->assertInstanceOf(Types\Queue::class, $queue);
         $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
         $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
         
         $this->assertEquals(array(), $queue->getList());
         
@@ -27,6 +30,10 @@ class QueueTest extends TestCase
         
         $this->assertEquals(array(1,2,3,4,5), $queue->getList());
         
+        $this->assertInstanceOf(Types\Queue::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
     }
     
     public function testAbstractListInstantiation() {
@@ -35,6 +42,10 @@ class QueueTest extends TestCase
         
         $this->assertEquals(array(1,2,3,4,5), $queue2->getList());
         
+        $this->assertInstanceOf(Types\Queue::class, $queue2);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue2);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue2);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue2);
     }
     
     public function testScalarListInstantiation() {
@@ -42,6 +53,10 @@ class QueueTest extends TestCase
         
         $this->assertEquals(array('thisisascalar'), $queue->getList());
         
+        $this->assertInstanceOf(Types\Queue::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
     }
     
     public function testGetQueue() {

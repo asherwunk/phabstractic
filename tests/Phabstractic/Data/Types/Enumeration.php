@@ -1,12 +1,14 @@
 <?php
 
 require_once('src/Phabstractic/Data/Types/Enumeration.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 require_once('src/Phabstractic/Data/Types/Exception/CodeGenerationException.php');
 require_once('src/Phabstractic/Data/Types/Exception/RuntimeException.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Exception;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 Types\Enumeration::createEnumerator('TestEnumeration', array( 'RED',
                                         'GREEN',
@@ -31,6 +33,7 @@ class EnumerationTest extends TestCase
         $enum = new Types\Enumeration('TestEnum', array('ONE'=>1,'TWO'=>2));
         
         $this->assertInstanceOf(Types\Enumeration::class, $enum);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $enum);
     }
     
     public function testInstantiationWithConfig()
@@ -43,6 +46,7 @@ class EnumerationTest extends TestCase
         );
         
         $this->assertInstanceOf(Types\Enumeration::class, $enum);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $enum);
         $this->assertEquals($enum->getDefault(), 'ONE');
         
         return $enum;

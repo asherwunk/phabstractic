@@ -3,10 +3,12 @@
 require_once('src/Phabstractic/Data/Types/Map.php');
 require_once('src/Phabstractic/Data/Types/None.php');
 require_once('src/Phabstractic/Resource/ArrayUtilities.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Resource as PhabstracticResource;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class TestMapKeyClass {
     
@@ -19,6 +21,7 @@ class MapTest extends TestCase
         $map = new Types\Map();
         
         $this->assertInstanceOf(Types\Map::class, $map);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $map);
         
     }
     
@@ -36,6 +39,8 @@ class MapTest extends TestCase
         $this->assertEquals(array(1, $tk), $map->getKeys());
         $this->assertEquals(array(array(1, 5), array($tk, 'test')), $map->flatten());
         
+        $this->assertInstanceOf(Types\Map::class, $map);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $map);
     }
     
     public function testArrayInstantiation() {
@@ -52,6 +57,8 @@ class MapTest extends TestCase
         $this->assertEquals(array(1, $tk), $map->getKeys());
         $this->assertEquals(array(array(1, 5), array($tk, 'test')), $map->flatten());
         
+        $this->assertInstanceOf(Types\Map::class, $map);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $map);
     }
     
     public function testStringInstantiation() {
@@ -63,6 +70,8 @@ class MapTest extends TestCase
         $this->assertEquals(array(1, 'a'), $map->getKeys());
         $this->assertEquals(array(array(1, 5), array('a', 'b')), $map->flatten());
         
+        $this->assertInstanceOf(Types\Map::class, $map);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $map);
     }
     
     public function testMixedInstantiation() {
@@ -84,6 +93,8 @@ class MapTest extends TestCase
                 array('stringkey', 'stringvalue')
             ), $map->flatten());
         
+        $this->assertInstanceOf(Types\Map::class, $map);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $map);
     }
     
     public function testIteration() {

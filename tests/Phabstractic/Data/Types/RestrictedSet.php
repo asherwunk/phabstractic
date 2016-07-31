@@ -1,14 +1,18 @@
 <?php
 
 require_once('src/Phabstractic/Data/Types/RestrictedSet.php');
+require_once('src/Phabstractic/Data/Types/Set.php');
+require_once('src/Phabstractic/Data/Types/Resource/SetInterface.php');
 require_once('src/Phabstractic/Data/Types/Type.php');
 require_once('src/Phabstractic/Data/Types/Resource/AbstractFilter.php');
 require_once('src/Phabstractic/Data/Types/Exception/InvalidArgumentException.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Type;
 use Phabstractic\Data\Types\Resource as TypesResource;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class TestRestrictedSetClass extends TypesResource\AbstractFilter {
     
@@ -46,21 +50,34 @@ class RestrictedSetTest extends TestCase
         $rset = new Types\RestrictedSet();
         
         $this->assertInstanceOf(Types\RestrictedSet::class, $rset);
+        $this->assertInstanceOf(Types\Set::class, $rset);
+        $this->assertInstanceOf(TypesResource\SetInterface::class, $rset);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $rset);
         
     }
     
     public function testBasicInstantiation() {
-        $set = new Types\RestrictedSet(array(1,2,3));
+        $rset = new Types\RestrictedSet(array(1,2,3));
         
-        $this->assertInstanceOf(Types\RestrictedSet::class, $set);
-        $this->assertEquals(array(1,2,3), $set->getPlainArray());
+        $this->assertInstanceOf(Types\RestrictedSet::class, $rset);
+        $this->assertEquals(array(1,2,3), $rset->getPlainArray());
+        
+        $this->assertInstanceOf(Types\RestrictedSet::class, $rset);
+        $this->assertInstanceOf(Types\Set::class, $rset);
+        $this->assertInstanceOf(TypesResource\SetInterface::class, $rset);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $rset);
     }
     
     public function testUniqueInstantiation() {
-        $set = new Types\RestrictedSet(array(1,2,3),null,array('unique'=>true));
+        $rset = new Types\RestrictedSet(array(1,2,3),null,array('unique'=>true));
         
-        $this->assertInstanceOf(Types\RestrictedSet::class, $set);
-        $this->assertEquals(array(1,2,3), $set->getPlainArray());
+        $this->assertInstanceOf(Types\RestrictedSet::class, $rset);
+        $this->assertEquals(array(1,2,3), $rset->getPlainArray());
+        
+        $this->assertInstanceOf(Types\RestrictedSet::class, $rset);
+        $this->assertInstanceOf(Types\Set::class, $rset);
+        $this->assertInstanceOf(TypesResource\SetInterface::class, $rset);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $rset);
     }
     
     public function testNotReferencedInstantiation() {
@@ -104,6 +121,11 @@ class RestrictedSetTest extends TestCase
         $output = ob_get_clean();
         
         $this->assertRegExp("/TestRestrictedSetClass/", $output);
+        
+        $this->assertInstanceOf(Types\RestrictedSet::class, $rset);
+        $this->assertInstanceOf(Types\Set::class, $rset);
+        $this->assertInstanceOf(TypesResource\SetInterface::class, $rset);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $rset);
 
     }
     
@@ -116,7 +138,7 @@ class RestrictedSetTest extends TestCase
     
     public function testConstructWithArray() {
         $data = array('testone', 'testtwo', 'testthree');
-        $set = new Types\Set($data,array('strict'=>true,'unique'=>true,'reference'=>false));
+        $set = new Types\RestrictedSet($data,null,array('strict'=>true,'unique'=>true,'reference'=>false));
         
         foreach ($set->getArray() as $key => $value) {
             if (strpos($key, 'Phabstractic\\Data\\Types\\Set::Element') === false) {

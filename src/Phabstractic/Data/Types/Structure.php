@@ -35,6 +35,7 @@ namespace Phabstractic\Data\Types
        for an array that is more object compatible. */
     $includes = array(// we are a configurable object
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // we provide filters to tagged unions
                       '/Data/Types/Resource/FilterInterface.php',
                       // for our typed fields we use tagged unions
@@ -52,6 +53,7 @@ namespace Phabstractic\Data\Types
     falcraftLoad($includes, __FILE__);
     
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     use Phabstractic\Data\Types\Resource as TypesResource;
     use Phabstractic\Data\Types\Type;
     use Phabstractic\Data\Types\Exception as TypesException;
@@ -73,11 +75,14 @@ namespace Phabstractic\Data\Types
      * 2.0: Updated file for Primus integration - August 25th, 2015
      * 3.0: pass fields as keys and initial values as values of the array
      *      reformatted for inclusion in phabstractic - July 20th, 2016
+     * 3.0.1: implements configurationinterface - July 31st, 2016
      * 
-     * @version 3.0
+     * @version 3.0.1
      * 
      */
-    class Structure implements \ArrayAccess
+    class Structure implements
+        \ArrayAccess,
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         

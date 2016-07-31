@@ -34,6 +34,7 @@ namespace Phabstractic\Data\Types
        for an array that is more object compatible. */
     $includes = array(// we are a configurable objects
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // we inherit from Set
                       '/Data/Types/Set.php',
                       // we use resource static method
@@ -49,6 +50,7 @@ namespace Phabstractic\Data\Types
     use Phabstractic\Data\Types\Resource as TypesResource;
     use Phabstractic\Data\Types\Exception as TypesException;
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     
     /**
      * Restricted Set Class - Defines A Restricted Set Data Structure
@@ -69,6 +71,7 @@ namespace Phabstractic\Data\Types
      * 2.0: Refactored and re-formatted for inclusion in Primus - April 11th, 2015
      * 3.0: added option filter_class to specify alternate static function call
      *      reformatted for inclusion in phabstractic - July 201th, 2016
+     * 3.0.1: implements configurationinterface - July 31st, 2016
      * 
      * @uses Phabstractic\Data\Types\Set inherits from
      * @uses Phabstractic\Data\Types\Restrictions default static class
@@ -78,7 +81,8 @@ namespace Phabstractic\Data\Types
      * @version 3.0
      * 
      */
-    class RestrictedSet extends Set
+    class RestrictedSet extends Set implements
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         

@@ -35,6 +35,7 @@ namespace Phabstractic\Data\Types
     // For object configuration purposes
     $includes = array(// we are configurable
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // we inherit from AbstractLinkedList
                       '/Data/Types/Resource/AbstractLinkedList.php',
                       // we implement LinkedListInterface
@@ -48,6 +49,7 @@ namespace Phabstractic\Data\Types
     falcraftLoad($includes, __FILE__);
     
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     use Phabstractic\Data\Types\Resource as TypesResource;
     use Phabstractic\Data\Types\Exception as TypesException;
     
@@ -66,6 +68,7 @@ namespace Phabstractic\Data\Types
      * CHANGELOG
      * 
      * 1.0: Created LinkedList data type - July 25th, 2016
+     * 1.0.1: implemented configurationinterface - July 31st, 2016
      * 
      * @link https://en.wikipedia.org/wiki/Doubly_linked_list [English]
      * 
@@ -76,7 +79,8 @@ namespace Phabstractic\Data\Types
         TypesResource\LinkedListInterface,
         \ArrayAccess,   // access the list like so: $list[indice]
         \Iterator,      // run the list through loops
-        \Countable      // tell us how many elements there are
+        \Countable,      // tell us how many elements there are
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         

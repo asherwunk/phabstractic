@@ -38,6 +38,7 @@ namespace Phabstractic\Data\Types
        for an array that is more object compatible. */
     $includes = array(// we're configurable
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // type check against FilterInterface
                       '/Data/Types/Resource/FilterInterface.php',
                       // inherit from RestrictedList
@@ -50,6 +51,7 @@ namespace Phabstractic\Data\Types
     use Phabstractic\Data\Types\Resource as TypesResource;
     use Phabstractic\Data\Types\Exception as TypesException;
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     
     /**
      * Restricted Stack Class
@@ -68,13 +70,16 @@ namespace Phabstractic\Data\Types
      * 2.2: Added getList like RestrictedQueue - September 5th, 2015
      * 3.0: inherits from restrictedlist
      *      reformatted for inclusion in phabstractic - July 21st, 2016
+     * 3.0.1: implements configurationinterface - July 31st, 2016
      * 
      * @link http://en.wikipedia.org/wiki/Stack_(data_structure) [English]
      * 
-     * @version 3.0
+     * @version 3.0.1
      * 
      */
-    class RestrictedQueue extends RestrictedList implements \ArrayAccess
+    class RestrictedQueue extends RestrictedList implements
+        \ArrayAccess,
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         

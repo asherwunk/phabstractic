@@ -35,6 +35,7 @@ namespace Phabstractic\Data\Types
                       '/Data/Types/Resource/AbstractList.php',
                       // we are configurable
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // returns None on some methods
                       '/Data/Types/None.php',
                       // throws these exceptions
@@ -46,6 +47,7 @@ namespace Phabstractic\Data\Types
     use Phabstractic\Data\Types\Resource as TypesResource;
     use Phabstractic\Data\Types\Exception as TypesException;
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     
     /**
      * Queue Class - Defines a Queue Data Structure
@@ -65,13 +67,16 @@ namespace Phabstractic\Data\Types
      * 3.0: Added and refactored for inclusion in primus2 - August 31st, 2015
      * 3.1: Refined array functions, fixed count function - September 4th, 2015
      * 4.0: reformatted for inclusion in phabstractic - July 21st, 2016
+     * 4.0.1: implements configurationinterface - July 31st, 2016
      * 
      * @link http://en.wikipedia.org/wiki/Queue_(data_structure) [English]
      * 
-     * @version 4.0
+     * @version 4.0.1
      * 
      */
-    class Queue extends TypesResource\AbstractList implements \ArrayAccess
+    class Queue extends TypesResource\AbstractList implements
+        \ArrayAccess,
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         

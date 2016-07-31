@@ -5,10 +5,12 @@ require_once('src/Phabstractic/Data/Types/Type.php');
 require_once('src/Phabstractic/Data/Types/Restrictions.php');
 require_once('src/Phabstractic/Data/Types/TaggedUnion.php');
 require_once('src/Phabstractic/Data/Types/None.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Type;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class StructureTest extends TestCase
 {
@@ -16,6 +18,7 @@ class StructureTest extends TestCase
         $structure = new Types\Structure();
         
         $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
         
     }
     
@@ -23,6 +26,7 @@ class StructureTest extends TestCase
         $structure = new Types\Structure(array('field1', 'field2', 'field3'), array('version2' => true));
         
         $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
         $this->assertEquals(array('field1', 'field2', 'field3'), $structure->getElements());
     }
     
@@ -32,6 +36,7 @@ class StructureTest extends TestCase
                      array('version2' => true));
         
         $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
         $this->assertEquals(array('field1', 'field2', 'field3'), $structure->getElements());
         $this->assertTrue(Types\Restrictions::compare(new Types\Restrictions(array(Type::BASIC_STRING)),
                                                       $structure->getElementRestrictions('field3')));
@@ -44,6 +49,7 @@ class StructureTest extends TestCase
                      array('version2' => true));
         
         $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
         $this->assertEquals(array('field1', 'field2', 'field3'), $structure->getElements());
         $this->assertTrue(Types\Restrictions::compare(new Types\Restrictions(array(Type::BASIC_STRING)),
                                                       $structure->getElementRestrictions('field3')));
@@ -57,6 +63,8 @@ class StructureTest extends TestCase
         // should denormalize
         $this->assertEquals(5, $structure->getElement('FiElD1'));
         
+        $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
     }
     
     public function testVersion2WithInsensitive() {
@@ -65,6 +73,8 @@ class StructureTest extends TestCase
         
         $this->assertEquals(array('field1', 'field2', 'field3'), $structure->getElements());
         
+        $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
     }
     
     public function testBasicInsantiation() {
@@ -73,6 +83,8 @@ class StructureTest extends TestCase
         
         $this->assertEquals(array('field1', 'field2', 'field3'), $structure->getElements());
         
+        $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
     }
     
     public function testBasicInstantiationWithRestrictions() {
@@ -86,6 +98,9 @@ class StructureTest extends TestCase
         $this->assertEquals(array('field1', 'field2', 'field3'), $structure->getElements());
         $this->assertTrue(Types\Restrictions::compare(new Types\Restrictions(array(Type::BASIC_STRING)),
                                                       $structure->getElementRestrictions('field3')));
+        
+        $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
     }
     
     public function testBasicInstantiationWithTaggedUnion() {
@@ -99,6 +114,9 @@ class StructureTest extends TestCase
         $this->assertEquals(array('field1', 'field2', 'field3'), $structure->getElements());
         $this->assertTrue(Types\Restrictions::compare(new Types\Restrictions(array(Type::BASIC_STRING)),
                                                       $structure->getElementRestrictions('field3')));
+        
+        $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
     }
     
     public function testBasicInstantiationWithoutInsensitive() {
@@ -110,6 +128,8 @@ class StructureTest extends TestCase
         $structure->setElement('field1', 5);
         $this->assertEquals(1, $structure->getElement('FiElD1'));
         
+        $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
     }
     
     public function testBasicInstantiationWithInsensitive() {
@@ -121,6 +141,8 @@ class StructureTest extends TestCase
         $structure->setElement('field1', 5);
         $this->assertEquals(5, $structure->getElement('field1'));
         
+        $this->assertInstanceOf(Types\Structure::class, $structure);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $structure);
     }
     
     /**

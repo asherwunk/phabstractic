@@ -31,12 +31,14 @@ namespace Phabstractic\Data\Types
     require_once(realpath( __DIR__ . '/../../') . '/falcraftLoad.php');
     
     $includes = array('/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       '/Data/Types/Exception/CodeGenerationException.php',
                       '/Data/Types/Exception/RuntimeException.php',);
     
     falcraftLoad($includes, __FILE__);
     
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     use Phabstractic\Data\Types\Exception;
     
     /**
@@ -89,11 +91,12 @@ namespace Phabstractic\Data\Types
      *        added value checking in generated class - July 8th, 2016
      * 3.0.1: refined value checking in generated class - July 17th, 2016
      * 3.0.2: added getConst method in generated class - JJuly 18th, 2016
+     * 3.0.3: implement configurationinterface - July 31st, 2016
      * 
-     * @version 3.0.1
+     * @version 3.0.3
      * 
      */
-    class Enumeration
+    class Enumeration implements FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         

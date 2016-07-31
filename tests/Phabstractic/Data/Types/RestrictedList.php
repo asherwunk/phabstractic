@@ -7,11 +7,13 @@ require_once('src/Phabstractic/Data/Types/Resource/ListInterface.php');
 require_once('src/Phabstractic/Data/Types/Restrictions.php');
 require_once('src/Phabstractic/Data/Types/Type.php');
 require_once('src/Phabstractic/Data/Types/None.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Resource as TypesResource;
 use Phabstractic\Data\Types\Type;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class TestRestrictedListClass {
     
@@ -26,6 +28,7 @@ class RestrictedListTest extends TestCase
         $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $list);
         $this->assertInstanceOf(TypesResource\AbstractList::class, $list);
         $this->assertInstanceOf(TypesResource\ListInterface::class, $list);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $list);
         
         $this->assertEquals(array(), $list->getList());
         
@@ -37,6 +40,11 @@ class RestrictedListTest extends TestCase
         
         $this->assertEquals(array(1,2,3,4,5), $list->getList());
         
+        $this->assertInstanceOf(Types\RestrictedList::class, $list);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $list);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $list);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $list);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $list);
     }
     
     /**
@@ -56,6 +64,11 @@ class RestrictedListTest extends TestCase
         
         $this->assertEquals(array(1,2,3,4,5), $list->getList());
         
+        $this->assertInstanceOf(Types\RestrictedList::class, $list);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $list);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $list);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $list);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $list);
     }
     
     /**
@@ -76,6 +89,11 @@ class RestrictedListTest extends TestCase
         
         $this->assertEquals(array('thisisascalar'), $list->getList());
         
+        $this->assertInstanceOf(Types\RestrictedList::class, $list);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $list);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $list);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $list);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $list);
     }
     
     /**

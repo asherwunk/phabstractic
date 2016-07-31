@@ -4,10 +4,12 @@ require_once('src/Phabstractic/Data/Types/LinkedList.php');
 require_once('src/Phabstractic/Data/Types/LinkedListElement.php');
 require_once('src/Phabstractic/Data/Types/Resource/LinkedListInterface.php');
 require_once('src/Phabstractic/Data/Types/Resource/AbstractLinkedList.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Resource as TypesResource;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class LinkedListTest extends TestCase
 {
@@ -18,6 +20,7 @@ class LinkedListTest extends TestCase
         $this->assertInstanceOf(Types\LinkedList::class, $list);
         $this->assertInstanceOf(TypesResource\AbstractLinkedList::class, $list);
         $this->assertInstanceOf(TypesResource\LinkedListInterface::class, $list);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $list);
         
     }
     
@@ -29,6 +32,7 @@ class LinkedListTest extends TestCase
         $this->assertInstanceOf(Types\LinkedList::class, $list);
         $this->assertInstanceOf(TypesResource\AbstractLinkedList::class, $list);
         $this->assertInstanceOf(TypesResource\LinkedListInterface::class, $list);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $list);
         
         $this->assertFalse($list->getSentinelElement() === null);
         

@@ -34,6 +34,7 @@ namespace Phabstractic\Data\Types
     // For object configuration purposes
     $includes = array(// we are configurable
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // some methods return the None data type
                       '/Data/Types/None.php',
                       // use elementComparison in static functions
@@ -45,6 +46,7 @@ namespace Phabstractic\Data\Types
     falcraftLoad($includes, __FILE__);
     
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     use Phabstractic\Data\Types\Exception as TypesException;
     use Phabstractic\Resource as PhabstracticResource;
     
@@ -71,12 +73,16 @@ namespace Phabstractic\Data\Types
      * 2.1: Fixed Typo in Remove - September 5th, 2015
      * 3.0: re-worked exists() to be compatible with arrayaccess methods
      *      reformatted and updated for includion in phabstractic - July 24th, 2016
+     * 3.0.1: implements configurationinterface - July 31st, 2016
      * 
      * @link http://en.wikipedia.org/wiki/Associative_array [English]
      * 
-     * @version 3.0
+     * @version 3.0.1
      */
-    class Map implements \Iterator, \ArrayAccess
+    class Map implements
+        \Iterator,
+        \ArrayAccess,
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
          

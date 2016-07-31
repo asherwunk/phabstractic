@@ -35,6 +35,7 @@ namespace Phabstractic\Data\Types
        for an array that is more object compatible. */
     $includes = array(// we are configurable
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // we utilize array utilities in resource
                       '/Resource/ArrayUtilities.php',
                       // we inherit from sorted list
@@ -62,6 +63,7 @@ namespace Phabstractic\Data\Types
     use Phabstractic\Data\Types\Type;
     use Phabstractic\Resource as PhabstracticResource;
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     
     /**
      * Priority Queue Class - Implements a Priority Queue
@@ -85,13 +87,15 @@ namespace Phabstractic\Data\Types
      * 2.0: Refactored and re-formatted for inclusion
      *          in primus - April 11th, 2015
      * 3.0: reformatted for inclusion in phabstractic - July 24th, 2016
+     * 3.0.1: implements configurationinterface - July 31st, 2016
      * 
      * @link http://en.wikipedia.org/wiki/Priority_queue [English]
      * 
      * @version 3.0
      * 
      */
-    class PriorityQueue extends TypesResource\AbstractSortedList
+    class PriorityQueue extends TypesResource\AbstractSortedList implements
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         

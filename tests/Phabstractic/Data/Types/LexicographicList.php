@@ -6,10 +6,12 @@ require_once('src/Phabstractic/Data/Types/Resource/AbstractSortedList.php');
 require_once('src/Phabstractic/Data/Types/Resource/AbstractRestrictedList.php');
 require_once('src/Phabstractic/Data/Types/Resource/ListInterface.php');
 require_once('src/Phabstractic/Data/Types/None.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Resource as TypesResource;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class LexicographicListTest extends TestCase
 {
@@ -20,6 +22,7 @@ class LexicographicListTest extends TestCase
         $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $list);
         $this->assertInstanceOf(TypesResource\AbstractList::class, $list);
         $this->assertInstanceOf(TypesResource\ListInterface::class, $list);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $list);
         
         $this->assertEquals(array(), $list->getList());
         

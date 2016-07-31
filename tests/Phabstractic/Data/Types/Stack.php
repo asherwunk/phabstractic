@@ -4,10 +4,12 @@ require_once('src/Phabstractic/Data/Types/Stack.php');
 require_once('src/Phabstractic/Data/Types/Resource/AbstractList.php');
 require_once('src/Phabstractic/Data/Types/Resource/ListInterface.php');
 require_once('src/Phabstractic/Data/Types/None.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Resource as TypesResource;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class StackTest extends TestCase
 {
@@ -17,6 +19,7 @@ class StackTest extends TestCase
         $this->assertInstanceOf(Types\Stack::class, $stack);
         $this->assertInstanceOf(TypesResource\AbstractList::class, $stack);
         $this->assertInstanceOf(TypesResource\ListInterface::class, $stack);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $stack);
         
         $this->assertEquals(array(), $stack->getList());
         
@@ -27,6 +30,10 @@ class StackTest extends TestCase
         
         $this->assertEquals(array(1,2,3,4,5), $stack->getList());
         
+        $this->assertInstanceOf(Types\Stack::class, $stack);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $stack);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $stack);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $stack);
     }
     
     public function testAbstractListInstantiation() {
@@ -35,6 +42,10 @@ class StackTest extends TestCase
         
         $this->assertEquals(array(1,2,3,4,5), $stack2->getList());
         
+        $this->assertInstanceOf(Types\Stack::class, $stack2);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $stack2);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $stack2);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $stack2);
     }
     
     public function testScalarListInstantiation() {
@@ -42,6 +53,10 @@ class StackTest extends TestCase
         
         $this->assertEquals(array('thisisascalar'), $stack->getList());
         
+        $this->assertInstanceOf(Types\Stack::class, $stack);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $stack);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $stack);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $stack);
     }
     
     public function testGetStack() {

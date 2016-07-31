@@ -31,6 +31,7 @@ namespace Phabstractic\Data\Types
     
     $includes = array(// this is configurable
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // some methods return None
                       '/Data/Types/None.php',
                       // we inherit from the sorted list
@@ -48,6 +49,7 @@ namespace Phabstractic\Data\Types
     falcraftLoad($includes, __FILE__);
     
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     use Phabstractic\Data\Types\Exception as TypesException;
     use Phabstractic\Data\Types\Resource as TypesResource;
     use Phabstractic\Data\Types\Type;
@@ -68,12 +70,14 @@ namespace Phabstractic\Data\Types
      *          in primus - April 12th, 2015
      * 3.0: allowed cmp function to check against restrictions
      *      reformatted for inclusion in phabstractic - July 21st, 2016
+     * 3.0.1: implemented configurationinterface - July 31st, 2016
      * 
-     * @version 3.0
+     * @version 3.0.1
      * 
      */
     class LexicographicList extends TypesResource\AbstractSortedList implements
-        \ArrayAccess
+        \ArrayAccess,
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         

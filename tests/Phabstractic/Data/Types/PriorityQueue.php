@@ -7,10 +7,12 @@ require_once('src/Phabstractic/Data/Types/Resource/AbstractRestrictedList.php');
 require_once('src/Phabstractic/Data/Types/Resource/ListInterface.php');
 require_once('src/Phabstractic/Data/Types/Priority.php');
 require_once('src/Phabstractic/Data/Types/None.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Data\Types;
 use Phabstractic\Data\Types\Resource as TypesResource;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class PriorityQueueTest extends TestCase
 {
@@ -23,6 +25,7 @@ class PriorityQueueTest extends TestCase
         $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue);
         $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
         $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
         
         $this->assertEquals(array(), $queue->getList());
         
@@ -37,6 +40,12 @@ class PriorityQueueTest extends TestCase
         
         $this->assertEquals(array($priority1, $priority2, $priority3, $priority4), $queue->getList());
         
+        $this->assertInstanceOf(Types\PriorityQueue::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractSortedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
     }
     
     /**
@@ -48,6 +57,12 @@ class PriorityQueueTest extends TestCase
         $priority2 = Types\Priority::buildPriority('second', 2);
         $list = new Types\PriorityQueue(array($priority1, $priority2, 'nope', 5));
         
+        $this->assertInstanceOf(Types\PriorityQueue::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractSortedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
     }
     
     public function testProperAbstractListInstantiation() {
@@ -60,6 +75,12 @@ class PriorityQueueTest extends TestCase
         
         $this->assertEquals(array($priority1, $priority2, $priority3, $priority4), $queue2->getList());
         
+        $this->assertInstanceOf(Types\PriorityQueue::class, $queue2);
+        $this->assertInstanceOf(TypesResource\AbstractSortedList::class, $queue2);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue2);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue2);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue2);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue2);
     }
     
     /**
@@ -76,10 +97,16 @@ class PriorityQueueTest extends TestCase
     
     public function testProperScalarListInstantiation() {
         $priority = Types\Priority::buildPriority('test', 6);
-        $list = new Types\PriorityQueue($priority);
+        $queue = new Types\PriorityQueue($priority);
         
-        $this->assertEquals(array($priority), $list->getList());
+        $this->assertEquals(array($priority), $queue->getList());
         
+        $this->assertInstanceOf(Types\PriorityQueue::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractSortedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
     }
     
     /**
