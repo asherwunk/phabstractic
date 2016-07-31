@@ -11,6 +11,7 @@ require_once('src/Phabstractic/Data/Types/Resource/AbstractList.php');
 require_once('src/Phabstractic/Data/Types/Resource/ListInterface.php');
 require_once('src/Phabstractic/Data/Types/Priority.php');
 require_once('src/Phabstractic/Data/Types/PriorityQueue.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 
 use PHPUnit\Framework\TestCase;
@@ -19,6 +20,7 @@ use Phabstractic\Patterns;
 use Phabstractic\Event;
 use Phabstractic\Data\Types\Resource as TypesResource;
 use Phabstractic\Data\Types;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class TestHandlerPriorityQueuePublisherClass implements PatternsResource\PublisherInterface {
     use Patterns\PublisherTrait;
@@ -60,6 +62,7 @@ class HandlerPriorityQueueTest extends TestCase
         $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
         $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
         $this->assertInstanceOf(PatternsResource\ObserverInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
         
         $this->assertEquals(array(), $queue->getList());
         
@@ -78,6 +81,13 @@ class HandlerPriorityQueueTest extends TestCase
         
         $this->assertEquals(array($priority1, $priority2, $priority3, $priority4), $queue->getList());
         
+        $this->assertInstanceOf(Types\PriorityQueue::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractSortedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(PatternsResource\ObserverInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
     }
     
     /**
@@ -107,6 +117,13 @@ class HandlerPriorityQueueTest extends TestCase
         
         $this->assertEquals(array($priority1, $priority2, $priority3, $priority4), $queue2->getList());
         
+        $this->assertInstanceOf(Types\PriorityQueue::class, $queue2);
+        $this->assertInstanceOf(TypesResource\AbstractSortedList::class, $queue2);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue2);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue2);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue2);
+        $this->assertInstanceOf(PatternsResource\ObserverInterface::class, $queue2);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue2);
     }
     
     /**
@@ -130,6 +147,13 @@ class HandlerPriorityQueueTest extends TestCase
         
         $this->assertEquals(array($priority), $queue->getList());
         
+        $this->assertInstanceOf(Types\PriorityQueue::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractSortedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractRestrictedList::class, $queue);
+        $this->assertInstanceOf(TypesResource\AbstractList::class, $queue);
+        $this->assertInstanceOf(TypesResource\ListInterface::class, $queue);
+        $this->assertInstanceOf(PatternsResource\ObserverInterface::class, $queue);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $queue);
     }
     
     /**

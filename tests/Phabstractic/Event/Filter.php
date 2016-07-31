@@ -4,10 +4,12 @@ require_once('src/Phabstractic/Event/Resource/AbstractEvent.php');
 require_once('src/Phabstractic/Event/Resource/EventInterface.php');
 require_once('src/Phabstractic/Event/GenericEvent.php');
 require_once('src/Phabstractic/Event/Resource/FilterInterface.php');
+require_once('src/Phabstractic/Features/Resource/ConfigurationInterface.php');
 
 use PHPUnit\Framework\TestCase;
 use Phabstractic\Event;
 use Phabstractic\Event\Resource as EventResource;
+use Phabstractic\Features\Resource as FeaturesResource;
 
 class FilterTest extends TestCase
 {
@@ -18,6 +20,7 @@ class FilterTest extends TestCase
         $this->assertInstanceOf(EventResource\AbstractEvent::class, $filter);
         $this->assertInstanceOf(EventResource\EventInterface::class, $filter);
         $this->assertInstanceOf(EventResource\FilterInterface::class, $filter);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $filter);
         
     }
     
@@ -37,6 +40,7 @@ class FilterTest extends TestCase
         $this->assertInstanceOf(EventResource\AbstractEvent::class, $filter);
         $this->assertInstanceOf(EventResource\EventInterface::class, $filter);
         $this->assertInstanceOf(EventResource\FilterInterface::class, $filter);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $filter);
         
         $this->assertEquals(array('tag1', 'tag2'), $filter->getTags());
     }
@@ -58,6 +62,7 @@ class FilterTest extends TestCase
         $this->assertInstanceOf(EventResource\AbstractEvent::class, $filter);
         $this->assertInstanceOf(EventResource\EventInterface::class, $filter);
         $this->assertInstanceOf(EventResource\FilterInterface::class, $filter);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $filter);
         
         $this->assertEquals(array('category1', 'category2'), $filter->getCategories());
     }

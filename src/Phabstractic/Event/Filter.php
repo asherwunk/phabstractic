@@ -49,6 +49,7 @@ namespace Phabstractic\Event
                       '/Event/GenericEvent.php',
                       // we are configurable
                       '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
                       // we perform set operations on tags and categories
                       '/Data/Types/Set.php',);
     
@@ -57,6 +58,7 @@ namespace Phabstractic\Event
     use Phabstractic\Data\Types;
     use Phabstractic\Event\Resource as EventResource;
     use Phabstractic\Features;
+    use Phabstractic\Features\Resource as FeaturesResource;
     
     /**
      * Event Filter Class - Defines basic event predicate
@@ -76,7 +78,9 @@ namespace Phabstractic\Event
      * @version 3.0
      * 
      */
-    class Filter extends GenericEvent implements EventResource\FilterInterface
+    class Filter extends GenericEvent implements
+        EventResource\FilterInterface,
+        FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
         
