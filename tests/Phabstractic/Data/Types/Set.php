@@ -62,7 +62,7 @@ class SetTest extends TestCase
      * 
      */
     public function testUniqueInstantiationWithError() {
-        $set = new Types\Set(array(1,2,3,2),array('unique'=>true));
+        $set = new Types\Set(array(1,2,3,2),array('unique'=>true, 'strict'=>true));
         
     }
     
@@ -166,7 +166,17 @@ class SetTest extends TestCase
      * @expectedException \Phabstractic\Data\Types\Exception\RangeException
      * 
      */
-    public function testAddWithUnique() {
+    public function testAddWithUniqueWithError() {
+        $set = new Types\Set(array(),array('unique'=>true, 'strict'=>true));
+        
+        $set->add(1);
+        $set->add(2);
+        $set->add(3);
+        $set->add(2);
+        
+    }
+    
+    public function testAddWithUniqueNoError() {
         $set = new Types\Set(array(),array('unique'=>true));
         
         $set->add(1);
@@ -174,6 +184,7 @@ class SetTest extends TestCase
         $set->add(3);
         $set->add(2);
         
+        $this->assertEquals(array(1, 2, 3),$set->getPlainArray());
     }
     
     /**
@@ -200,7 +211,20 @@ class SetTest extends TestCase
      * @expectedException \Phabstractic\Data\Types\Exception\RangeException
      * 
      */
-    public function testAddReferenceWithUnique() {
+    public function testAddReferenceWithUniqueWithError() {
+        $set = new Types\Set(array(),array('unique'=>true, 'strict'=>true));
+        
+        $testref = 5;
+        $testref2 = 3;
+        $testref3 = 3;
+        
+        $set->addReference($testref);
+        $set->addReference($testref2);
+        $set->addReference($testref3);
+        
+    }
+    
+    public function testAddReferenceWithUniqueNoError() {
         $set = new Types\Set(array(),array('unique'=>true));
         
         $testref = 5;
@@ -211,6 +235,7 @@ class SetTest extends TestCase
         $set->addReference($testref2);
         $set->addReference($testref3);
         
+        $this->assertEquals(array(5, 3),$set->getPlainArray());
     }
     
     /**
