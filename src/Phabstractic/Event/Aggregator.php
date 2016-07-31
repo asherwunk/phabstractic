@@ -22,20 +22,6 @@ namespace Phabstractic\Event
 {
     require_once(realpath( __DIR__ . '/../') . '/falcraftLoad.php');
     
-    /* Filter.php - Filter whether an event in itself changes the published
-                    state of the aggregator
-    
-       Type.php
-       Restrictions.php
-       RestrictedSet.php - We use restricted sets to contain the publishers
-                           and the observers. We have publishers we're listening
-                           to, and observers listening to us
-       
-       ObserverInterface.php
-       PublisherInterface.php
-       StateInterface.php - Aggregator is both an observer (of others)
-                            and a publisher (for others) */
-        
     $includes = array(// we employ a filter
                       '/Event/Resource/FilterInterface.php',
                       // we type check against eventinterface
@@ -87,7 +73,7 @@ namespace Phabstractic\Event
         /**
          * The filter that determines when the aggregators state is changed
          * 
-         * @var Falcraft\Event\Resource\Filter
+         * @var Phabstractic\Event\Resource\Filter
          * 
          */
         protected $filter;
@@ -100,7 +86,7 @@ namespace Phabstractic\Event
          * observers too.  We can also specify the head filter here too.
          * (Usually a custom filter for this class)
          * 
-         * @param Falcraft\Event\Resource\Filter $filter The head filter
+         * @param Phabstractic\Event\Filter $filter The head filter
          * @param array $publishers The publishers we're listening to and aggregating
          * 
          */
@@ -119,7 +105,7 @@ namespace Phabstractic\Event
         /**
          * Get the head filter that determines when the state is truly changed
          * 
-         * @return Falcraft\Event\Resource\Filter
+         * @return Phabstractic\Event\Filter
          * 
          */
         public function getFilter()
@@ -130,7 +116,7 @@ namespace Phabstractic\Event
         /**
          * Set the head filter that determines when the state is truly changed
          * 
-         * @param Falcraft\Event\Resource\Filter $filter
+         * @param Phabstractic\Event\Filter $filter
          * 
          */
         public function setFilter(
@@ -145,7 +131,7 @@ namespace Phabstractic\Event
          * We run the state through the filter, if present, and if it makes it
          * we change the state and announce it to all our listeners
          * 
-         * @param Falcraft\Patterns\Resource\StateInterface $state
+         * @param Phabstractic\Patterns\Resource\StateInterface $state
          * 
          * @return bool True if event is handled
          * 
@@ -171,8 +157,8 @@ namespace Phabstractic\Event
         /**
          * Get notified of a state change from one of our publishers
          * 
-         * @param Falcraft\Patterns\Resource\PublisherInterface $publisher
-         * @param Falcraft\Patterns\Resource\StateInterface $state Maybe new state, (abstract event)
+         * @param Phabstractic\Patterns\Resource\PublisherInterface $publisher
+         * @param Phabstractic\Patterns\Resource\StateInterface $state Maybe new state, (abstract event)
          * 
          * @return bool true if handled (is AbstractEvent)
          * 
