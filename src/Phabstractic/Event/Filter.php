@@ -101,17 +101,30 @@ namespace Phabstractic\Event
          * @param array $options
          * 
          */
-        public function __construct($target = null, array $options = array())
+        public function __construct($target = null, $options = array())
         {
             $this->configure($options);
             
-            parent::__construct($target,
-                                null,
-                                null,
-                                null,
-                                null,
-                                array(),
-                                array());
+            $this->build(
+                $target,
+                null,
+                null,
+                null,
+                null
+            );
+        }
+        
+        /**
+         * Wrapper for setStateWithEvent
+         * 
+         * @param Phabstractic\Event\Resource\FilterInterface
+         * 
+         */
+        public function setStateWithFilter(
+            EventResource\FilterInterface $filter,
+            $morph = true
+        ) {
+            return $this->setStateWithEvent($filter, $morph);
         }
         
         /**
@@ -146,6 +159,28 @@ namespace Phabstractic\Event
                                 $data,
                                 $tags,
                                 $cats);
+            
+            $this->identityPrefix = 'EventFilter';
+            $this->setIdentifier();
+        }
+        
+        /**
+         * This returns an array containing the object state
+         * 
+         * This converts the event state to an array, tags and categories
+         * are set up as sub-arrays, as well as the available object members
+         * 
+         * @return array
+         * 
+         */
+        public function getState()
+        {
+            $ret = parent::getState();
+            
+            unset($ret['fields']['stop']);
+            unset($ret['fields']['force']);
+            
+            return $ret;
         }
         
         /**
@@ -200,7 +235,7 @@ namespace Phabstractic\Event
          * @return bool
          * 
          */
-        public function isApplicable(EventResource\AbstractEvent $event)
+        public function isEventApplicable(EventResource\EventInterface $event)
         {
             if ($this->test) {
                 if (is_callable($this->test, false)) {
@@ -231,7 +266,7 @@ namespace Phabstractic\Event
          * @return bool
          * 
          */
-        public function isLooselyApplicable(EventResource\AbstractEvent $event)
+        public function isLooselyApplicable(EventResource\EventInterface $event)
         {
             if ($this->getIdentifier() == $event->getIdentifier()) {
                 return true;
@@ -273,7 +308,7 @@ namespace Phabstractic\Event
          * 
          */
         public function isStrictlyApplicable(
-            EventResource\AbstractEvent $event,
+            EventResource\EventInterface $event,
             $includeIdentifier = false
         ) {
             if ($includeIdentifier) {
@@ -286,9 +321,9 @@ namespace Phabstractic\Event
                 ($this->function != $event->getFunction()) ||
                 ($this->class != $event->getClass()) ||
                 ($this->namespace != $event->getNamespace()) ||
-                (!Types\Set::subset($event->getTagsObject(), $this->tags)) ||
+                (!Types\Set::subset($event->getTagsSet(), $this->tags)) ||
                 (!Types\Set::subset(
-                    $event->getCategoriesObject(),
+                    $event->getCategoriesSet(),
                     $this->categories))) {
                 
                 return false;
