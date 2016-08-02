@@ -130,6 +130,8 @@ namespace Phabstractic\Data\Types
             TypesResource\AbstractFilter $restrictions = null,
             $options = array()
         ) {
+            $options = array_change_key_case($options);
+            
             if (!isset($options['filter_class'])) {
                 $options['filter_class'] = 'Phabstractic\\Data\\Types\\Restrictions';
             }

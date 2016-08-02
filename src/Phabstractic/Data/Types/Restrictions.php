@@ -377,6 +377,8 @@ namespace Phabstractic\Data\Types
             array $classes = array(),
             $options = array() )
         {
+            $options = array_change_key_case($options);
+            
             // autoload must be boolean
             if (!isset($options['autoload']) || !is_bool($options['autoload'])) {
                 $options['autoload'] = false;

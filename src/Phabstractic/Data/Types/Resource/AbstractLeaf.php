@@ -130,11 +130,12 @@ namespace Phabstractic\Data\Types\Resource
          */
         public function __construct(array $leaves = array(), $options = array())
         {
-            // prefix must be string
-            if (!isset($options['prefix']) || !is_string($options['prefix'])) {
+            $options = array_change_key_case($options);
+            
+            if (!isset($options['prefix'])) {
                 $options['prefix'] = 'Leaf';
             }
-            
+        
             $this->configure($options);
             
             if ($this->conf->prefix) {

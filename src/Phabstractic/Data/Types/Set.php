@@ -171,6 +171,8 @@ namespace Phabstractic\Data\Types
             array $values = array(),
             $options = array()
         ) {
+            $options = array_change_key_case($options);
+            
             if (!isset($options['reference'])) {
                 $options['reference'] = true;
             }

@@ -125,6 +125,7 @@ namespace Phabstractic\Data\Types
             array $allowed = array(),
             array $options = array()
         ) {
+            $options = array_change_key_case($options);
             
             if (!isset($options['insensitive'])) {
                 $options['insensitive'] = true;
