@@ -332,7 +332,8 @@ namespace Phabstractic\Data\Types
                 {
                     $test = Leaf::getFromLeafIdentityPath(
                         $leaf,
-                        implode($delimiter, $path)
+                        implode($delimiter, $path),
+                        $delimiter
                     );
                     
                     if (!($test instanceof None)) {
@@ -383,7 +384,8 @@ namespace Phabstractic\Data\Types
                 foreach ($leaves as $leaf) {
                     Leaf::getLeafIdentityPaths(
                         $leaf,
-                        $path . $delimiter . $leaf->getLeafIdentifier()
+                        $path . $delimiter . $leaf->getLeafIdentifier(),
+                        $delimiter
                     );
                 }
 
@@ -392,7 +394,11 @@ namespace Phabstractic\Data\Types
                 $paths = array();
                 
                 foreach($root->getLeaves() as $leaf) {
-                    Leaf::getLeafIdentityPaths($leaf, $leaf->getLeafIdentifier());
+                    Leaf::getLeafIdentityPaths(
+                        $leaf,
+                        $leaf->getLeafIdentifier(),
+                        $delimiter
+                    );
                 }
                 
                 for ($a = 0; $a < count($paths); $a++) {
@@ -422,7 +428,8 @@ namespace Phabstractic\Data\Types
         public static function dataBelongsTo(
             $data,
             TypesResource\AbstractLeaf $root,
-            $recurseLeaf = null
+            $recurseLeaf = null,
+            $delimiter = '/'
         ) {
             static $leafNames;
             
@@ -435,9 +442,10 @@ namespace Phabstractic\Data\Types
                     if (Leaf::dataBelongsTo(
                         $data,
                         $root,
-                        $leafValue)
+                        $leafValue,
+                        $delimiter)
                     ) {
-                        $leafNames = $leafValue->getLeafIdentifier() . '/' . $leafNames;
+                        $leafNames = $leafValue->getLeafIdentifier() . $delimiter . $leafNames;
                         return true;
                     }
                     
@@ -451,13 +459,14 @@ namespace Phabstractic\Data\Types
                     if (Leaf::dataBelongsTo(
                         $data,
                         $root,
-                        $leafValue)
+                        $leafValue,
+                        $delimiter)
                     ) {
-                        $leafNames = $leafValue->getLeafIdentifier() . '/' . $leafNames;
+                        $leafNames = $leafValue->getLeafIdentifier() . $delimiter . $leafNames;
                     }
                 }
                 
-                $leafNames = $root->getLeafIdentifier() . '/' . $leafNames;
+                $leafNames = $root->getLeafIdentifier() . $delimiter . $leafNames;
                     
                 return $leafNames;
             }
