@@ -236,7 +236,7 @@ namespace Phabstractic\Data\Types
             TypesResource\LeafInterface $newLeaf,
             $delimiter = '/'
         ) {
-            $branch = Leaf::getFromFolderIdentityPath($root, $path, $delimiter);
+            $branch = Leaf::getFromLeafIdentityPath($root, $path, $delimiter);
             $branch->addLeaf($newLeaf);
         }
         
