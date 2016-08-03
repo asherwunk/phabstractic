@@ -31,8 +31,12 @@ class LeafTest extends TestCase
         
         $leaf = new Types\Leaf(null, array($leaf1, $leaf2, $leaf3));
         
-        $this->assertEquals(array($leaf1, $leaf2, $leaf3), array_values($leaf->getLeaves()));
+        $this->assertInstanceOf(Types\Leaf::class, $leaf);
+        $this->assertInstanceOf(TypesResource\AbstractLeaf::class, $leaf);
+        $this->assertInstanceOf(TypesResource\LeafInterface::class, $leaf);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $leaf);
         
+        $this->assertEquals(array($leaf1, $leaf2, $leaf3), array_values($leaf->getLeaves()));
     }
     
     public function testBasicConstructionWithData()
@@ -42,6 +46,11 @@ class LeafTest extends TestCase
         $leaf3 = new Types\Leaf(true);
         
         $leaf = new Types\Leaf(array(), array($leaf1, $leaf2, $leaf3));
+        
+        $this->assertInstanceOf(Types\Leaf::class, $leaf);
+        $this->assertInstanceOf(TypesResource\AbstractLeaf::class, $leaf);
+        $this->assertInstanceOf(TypesResource\LeafInterface::class, $leaf);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $leaf);
         
         $this->assertEquals(array($leaf1, $leaf2, $leaf3), array_values($leaf->getLeaves()));
         
@@ -58,6 +67,11 @@ class LeafTest extends TestCase
         
         $leaf = new Types\Leaf(null, array($leaf1, $leaf2, $leaf3), array('prefix' => 'testprefix'));
         
+        $this->assertInstanceOf(Types\Leaf::class, $leaf);
+        $this->assertInstanceOf(TypesResource\AbstractLeaf::class, $leaf);
+        $this->assertInstanceOf(TypesResource\LeafInterface::class, $leaf);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $leaf);
+        
         foreach ($leaf->getLeaves() as $key => $value) {
             $this->assertEquals(0, strpos($key, 'testprefix'));
         }
@@ -70,6 +84,11 @@ class LeafTest extends TestCase
         $leaf3 = new Types\Leaf();
         
         $leaf = new Types\Leaf(null, array($leaf1, $leaf2, $leaf3), array('strict' => true));
+        
+        $this->assertInstanceOf(Types\Leaf::class, $leaf);
+        $this->assertInstanceOf(TypesResource\AbstractLeaf::class, $leaf);
+        $this->assertInstanceOf(TypesResource\LeafInterface::class, $leaf);
+        $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $leaf);
         
         $this->assertEquals(array($leaf1, $leaf2, $leaf3), array_values($leaf->getLeaves()));
         

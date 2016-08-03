@@ -144,7 +144,7 @@ namespace Phabstractic\Data\Types\Resource
             $allowed = Types\Restrictions::checkElements(
                             $leaves,
                             $leafRestrictions,
-                            array('strict' => true,));
+                            array('strict' => $this->conf->strict,));
             
             if ($allowed) {
                 foreach ($leaves as $leaf) {
