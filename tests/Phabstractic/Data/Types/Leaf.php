@@ -189,6 +189,10 @@ class LeafTest extends TestCase
         
     }
     
+    /**
+     * @depends testGetLeafIdentityPaths
+     * 
+     */
     public function testGetFromLeafIdentityPaths() {
         $leaf1 = new Types\Leaf(null, array(), array('prefix' => 'Leaf1_'));
         $leaf2 = new Types\Leaf(null, array($leaf1), array('prefix' => 'Leaf2_'));
@@ -204,6 +208,32 @@ class LeafTest extends TestCase
         $this->assertEquals(0, strpos(Types\Leaf::getFromLeafIdentityPath($leaf8, $paths[0])->getLeafIdentifier(), 'Leaf1'));
         $this->assertEquals(0, strpos(Types\Leaf::getFromLeafIdentityPath($leaf8, $paths[1])->getLeafIdentifier(), 'Leaf4'));
         $this->assertEquals(0, strpos(Types\Leaf::getFromLeafIdentityPath($leaf8, $paths[2])->getLeafIdentifier(), 'Leaf5'));
+        
+    }
+    
+    /**
+     * @depends testGetLeafIdentityPaths
+     * 
+     */
+    public function testAddToLeafIdentityPaths() {
+        $leaf1 = new Types\Leaf(null, array(), array('prefix' => 'Leaf1_'));
+        $leaf2 = new Types\Leaf(null, array($leaf1), array('prefix' => 'Leaf2_'));
+        $leaf3 = new Types\Leaf(null, array($leaf2), array('prefix' => 'Leaf3_'));
+        $leaf4 = new Types\Leaf(null, array(), array('prefix' => 'Leaf4_'));
+        $leaf5 = new Types\Leaf(null, array(), array('prefix' => 'Leaf5_'));
+        $leaf6 = new Types\Leaf(null, array($leaf4, $leaf5), array('prefix' => 'Leaf6_'));
+        $leaf7 = new Types\Leaf(null, array($leaf6), array('prefix' => 'Leaf7_'));
+        $leaf8 = new Types\Leaf(null, array($leaf3, $leaf7), array('prefix' => 'Leaf8_'));
+        
+        $paths = Types\Leaf::getLeafIdentityPaths($leaf8);
+        
+        $leaf9 = new Types\Leaf(null, array(), array('prefix' => 'Leaf9_'));
+        
+        Types\Leaf::addToLeafIdentityPath($leaf8, $paths[0], $leaf9);
+        
+        $paths = Types\Leaf::getLeafIdentityPaths($leaf8);
+        
+        $this->assertEquals(0, strpos(Types\Leaf::getFromLeafIdentityPath($leaf8, $paths[0])->getLeafIdentifier(), 'Leaf9'));;
         
     }
     
