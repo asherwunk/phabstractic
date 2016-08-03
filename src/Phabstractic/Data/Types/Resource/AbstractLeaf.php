@@ -205,8 +205,9 @@ namespace Phabstractic\Data\Types\Resource
         public function removeLeaf(LeafInterface $leaf)
         {
             $leafKey = array_search($leaf, $this->leaves, true);
-            if ($leafKey) {
+            if ($leafKey !== false) {
                 unset($this->leaves[$leafKey]);
+                $this->leaves = array_values($this->leaves);
                 return true;
             } else {
                 return false;

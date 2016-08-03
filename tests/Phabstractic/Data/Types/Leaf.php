@@ -143,6 +143,10 @@ class LeafTest extends TestCase
         $leaf->removeLeaf($leaf2);
         
         $this->assertEquals(array($leaf1, $leaf3), array_values($leaf->getLeaves()));
+        
+        $leaf->removeLeaf($leaf1);
+        
+        $this->assertEquals(array($leaf3), array_values($leaf->getLeaves()));
     }
     
     public function testIsLeaf() {
