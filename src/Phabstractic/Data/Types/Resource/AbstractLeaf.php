@@ -50,8 +50,6 @@ namespace Phabstractic\Data\Types\Resource
     $includes = array(// we are configurable
                       '/Features/ConfigurationTrait.php',
                       '/Features/Resource/ConfigurationInterface.php',
-                      // we construct a global and local identifiers
-                      '/Features/IdentityTrait.php',
                       // we type check against the leaf interface
                       '/Data/Types/Resource/LeafInterface.php',
                       // we make sure we're only made up of leaves
@@ -95,7 +93,6 @@ namespace Phabstractic\Data\Types\Resource
         FeaturesResource\ConfigurationInterface
     {
         use Features\ConfigurationTrait;
-        use Features\IdentityTrait;
         
         /**
          * The collection of leaves this leaf is connected to
@@ -111,18 +108,25 @@ namespace Phabstractic\Data\Types\Resource
         /**
          * Get this particular leaf's identifier
          * 
-         * @return string The universally unique leaf identifier
+         * @return string
          * 
          */
         abstract public function getLeafIdentifier();
+        
+        /**
+         * Set this particular leaf's identifier
+         * 
+         * @param string The leaf identifier
+         * 
+         */
+        abstract public function setLeafIdentifier($newIdentifier);
         
         /**
          * The Leaf Constructor
          * 
          * This accepts an array of leaves (LeafInterface)
          * 
-         * Options - prefix: set the identifier prefix for local
-         *           strict: throw errors
+         * Options - strict: throw errors
          * 
          * @param array $leaves A plain array of LeafInterface compatible objects
          * @param array $options An array of options, as keys (see above)
@@ -130,17 +134,7 @@ namespace Phabstractic\Data\Types\Resource
          */
         public function __construct(array $leaves = array(), $options = array())
         {
-            $options = array_change_key_case($options);
-            
-            if (!isset($options['prefix'])) {
-                $options['prefix'] = 'Leaf';
-            }
-        
             $this->configure($options);
-            
-            if ($this->conf->prefix) {
-                $this->identityPrefix = $this->conf->prefix;
-            }
             
             $leafRestrictions = new Types\Restrictions(
                 array(Type::TYPED_OBJECT,),
@@ -154,7 +148,7 @@ namespace Phabstractic\Data\Types\Resource
             
             if ($allowed) {
                 foreach ($leaves as $leaf) {
-                    $this->leaves[$this->getNewIdentity()] = $leaf;
+                    $this->leaves[] = $leaf;
                 }
             } else if ($this->conf->strict) {
                 throw new TypesException\InvalidArgumentException(
@@ -194,10 +188,9 @@ namespace Phabstractic\Data\Types\Resource
                 }
             }
             
-            $newLocalIdentity = $this->getNewIdentity();
-            $this->leaves[$newLocalIdentity] = $leaf;
+            $this->leaves[] = $leaf;
             
-            return $newLocalIdentity;
+            return count($this->leaves) - 1;
         }
         
         /**
@@ -211,9 +204,9 @@ namespace Phabstractic\Data\Types\Resource
          */
         public function removeLeaf(LeafInterface $leaf)
         {
-            $leafIdentity = array_search($leaf, $this->leaves, true);
-            if ($leafIdentity) {
-                unset($this->leaves[$leafIdentity]);
+            $leafKey = array_search($leaf, $this->leaves, true);
+            if ($leafKey) {
+                unset($this->leaves[$leafKey]);
                 return true;
             } else {
                 return false;
@@ -233,7 +226,7 @@ namespace Phabstractic\Data\Types\Resource
          */
         public function isLeaf(LeafInterface $leaf)
         {
-            return array_search($leaf, $this->leaves, true);
+            return array_search($leaf, $this->leaves, true) !== false;
         }
         
         /**

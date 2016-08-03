@@ -38,12 +38,15 @@ namespace Phabstractic\Data\Types
     $includes = array(// we implement leaf interface 
                       '/Data/Types/Resource/LeafInterface.php',
                       '/Data/Types/Resource/AbstractLeaf.php',
+                      // we carry an identity
+                      '/Features/IdentityTrait.php',
                       // stati functions return none
                       '/Data/Types/None.php',);
         
     falcraftLoad($includes, __FILE__);
     
     use Phabstractic\Data\Types\Resource as TypesResource;
+    use Phabstractic\Features;
     
     /**
      * Leaf Class
@@ -65,6 +68,8 @@ namespace Phabstractic\Data\Types
     class Leaf extends TypesResource\AbstractLeaf implements
         TypesResource\LeafInterface
     {
+        use Features\IdentityTrait;
+        
         /**
          * The leaf's identifier
          * 
@@ -146,6 +151,11 @@ namespace Phabstractic\Data\Types
             return $this->identifier;
         }
         
+        public function setLeafIdentifier($newIdentifier)
+        {
+            return false;
+        }
+        
         /**
          * The Leaf Constructor
          * 
@@ -163,10 +173,21 @@ namespace Phabstractic\Data\Types
             array $leaves = array(),
             $options = array()
         ) {
+            $options = array_change_key_case($options);
+            
+            if (!isset($options['prefix'])) {
+                $options['prefix'] = 'Leaf';
+            }
+        
+            $this->configure($options);
+            
+            if ($this->conf->prefix) {
+                $this->identityPrefix = $this->conf->prefix;
+            }
+            
             $this->data = $data;
             
             parent::__construct($leaves, $options);
-            
         }
         
         /**
