@@ -233,9 +233,10 @@ namespace Phabstractic\Data\Types
         public static function addToLeafIdentityPath(
             TypesResource\AbstractLeaf $root,
             $path,
-            TypesResource\LeafInterface $newLeaf
+            TypesResource\LeafInterface $newLeaf,
+            $delimiter = '/'
         ) {
-            $branch = Leaf::getFromFolderIdentityPath($root, $path);
+            $branch = Leaf::getFromFolderIdentityPath($root, $path, $delimiter);
             $branch->addLeaf($newLeaf);
         }
         
@@ -315,9 +316,10 @@ namespace Phabstractic\Data\Types
          */
         public static function &getFromLeafIdentityPath(
             TypesResource\AbstractLeaf $root,
-            $path
+            $path,
+            $delimiter = '/'
         ) {
-            $path = explode('/', $path);
+            $path = explode($delimiter, $path);
             
             if ($root->getLeafIdentifier() == $path[0]) {
                 if (count($path) == 1) {
@@ -330,7 +332,7 @@ namespace Phabstractic\Data\Types
                 {
                     $test = Leaf::getFromLeafIdentityPath(
                         $leaf,
-                        implode('/', $path)
+                        implode($delimiter, $path)
                     );
                     
                     if (!($test instanceof None)) {
@@ -365,7 +367,8 @@ namespace Phabstractic\Data\Types
          */
         public static function getLeafIdentityPaths(
             TypesResource\AbstractLeaf $root,
-            $path = ''
+            $path = '',
+            $delimiter = '/'
         ) {
             static $paths;
             
@@ -380,7 +383,7 @@ namespace Phabstractic\Data\Types
                 foreach ($leaves as $leaf) {
                     Leaf::getLeafIdentityPaths(
                         $leaf,
-                        $path . '/' . $leaf->getLeafIdentifier()
+                        $path . $delimiter . $leaf->getLeafIdentifier()
                     );
                 }
 
@@ -393,7 +396,7 @@ namespace Phabstractic\Data\Types
                 }
                 
                 for ($a = 0; $a < count($paths); $a++) {
-                    $paths[$a] = $root->getLeafIdentifier() . '/' . $paths[$a];
+                    $paths[$a] = $root->getLeafIdentifier() . $delimiter . $paths[$a];
                 }
                     
                 return $paths;
