@@ -151,6 +151,15 @@ namespace Phabstractic\Data\Types
             return $this->identifier;
         }
         
+        /**
+         * Set this particular leaf's identifier
+         * 
+         * Warning: You can create multiple leaves with the same
+         * identifier by changing the identifier at a later time.
+         * 
+         * @return bool
+         *
+         */
         public function setLeafIdentifier($newIdentifier)
         {
             return false;
