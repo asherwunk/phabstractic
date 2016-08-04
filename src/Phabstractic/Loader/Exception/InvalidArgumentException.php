@@ -12,13 +12,13 @@
  * @link http://wunk.me/ The author's URL
  * @link http://wunk.me/programming-projects/phabstractic/ Framework URL
  * @license http://opensource.org/licenses/MIT
- * @package Components
+ * @package Loader
  * @subpackage Errors
  * 
  */
 
 /**
- * Falcraft Libraries Components Namespace
+ * Falcraft Libraries Loader Namespace
  * 
  */
 namespace Phabstractic\Loader\Exception

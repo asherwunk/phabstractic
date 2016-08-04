@@ -67,7 +67,8 @@ namespace Phabstractic\Loader\Resource;
      *     with current and past practices - January 29th, 2014
      * 1.2 Finalized - February 21st, 2014
      * 2.0 Refactored and Integrated with Primus 2 - October 20th, 2015
-     * 3.0: reformatted for inclusion in phabstractic - August 3rd, 2016
+     * 3.0: eliminated default path
+     *      reformatted for inclusion in phabstractic - August 3rd, 2016
      * 
      * @version 3.0
      * 
@@ -97,7 +98,17 @@ namespace Phabstractic\Loader\Resource;
          * 
          */
         public function deregister();
-         
+        
+        /**
+         * Return all the paths in an array
+         * 
+         * actual paths, string of arrays
+         * 
+         * @return array
+         * 
+         */
+        public function getPaths();
+        
         /**
          * Register a path with the autoloader
          * 
@@ -105,12 +116,12 @@ namespace Phabstractic\Loader\Resource;
          * autoloader.  It is meant to be used as sort of an additional
          * include path.
          * 
-         * @param string $path The include path
+         * @param string $newPath The include path
          * 
-         * @return mixed Assigned Identifier, false on failure
+         * @return bool false on failure
          * 
          */
-        public function addPath($path);
+        public function addPath($newPath);
           
         /**
          * Is a given path present in the autoloader?
@@ -137,24 +148,6 @@ namespace Phabstractic\Loader\Resource;
         public function removePath($path);
         
         /**
-         * Set a default project path
-         * 
-         * @param string $path The path to set as default project path
-         * 
-         * @return boolean Successfully set
-         * 
-         */
-        public function setDefaultPath($path);
-        
-        /**
-         * Get a default project path
-         * 
-         * @return string
-         * 
-         */
-        public function getDefaultPath();
-        
-        /**
          * Register a prefix with the autoloader
          * 
          * This function can be used in multiple ways depending on the
@@ -176,6 +169,18 @@ namespace Phabstractic\Loader\Resource;
          * 
          */
         public function isPrefix($prefix);
+        
+        /**
+         * Retrieve all prefixes associated with a path
+         * 
+         * The path can be an existing path
+         * 
+         * @param string $path The path
+         * 
+         * @return array
+         * 
+         */
+        public function getPrefixes($path);
           
         /**
          * Remove a registered prefix from the autoloader
@@ -189,6 +194,14 @@ namespace Phabstractic\Loader\Resource;
          * 
          */
         public function removePrefix($path, $prefix);
+        
+        /**
+         * Retrieve list of namespaces
+         * 
+         * @return array
+         * 
+         */
+        public function getNamespaces();
         
         /**
          * Register namespace with the autoloader

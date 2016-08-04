@@ -5,7 +5,7 @@
    http://www.php-fig.org/psr/psr-2/ */
 
 /**
- * An Exception Interface Local to Loader
+ * A local domain error for data components
  * 
  * @copyright Copyright 2016 Asher Wolfstein
  * @author Asher Wolfstein <asherwunk@gmail.com>
@@ -23,19 +23,25 @@
  */
 namespace Phabstractic\Loader\Exception
 {
+    require_once(realpath( __DIR__ . '/../../') . '/falcraftLoad.php');
+    
+    $includes = array('/Loader/Exception/ExceptionInterface.php',);
+    
+    falcraftLoad($includes, __FILE__);
+    
     /**
-     * Local Exception Interface for Data Components
+     * A local invalid argument exception for class dependency in data components
      * 
      * CHANGELOG
      * 
-     * 1.0: created ExceptionInterface - April 7th, 2013
-     * 2.0: integrated with Primus2 - October 20th, 2015
-     * 3.0: reformatted for inclusion in phabstractic - August 1st, 2016
+     * 1.0: created ClassDependencyException - April 7th, 2013
+     * 2.0: reformatted for inclusion in phabstractic - August 1st, 2016
      * 
-     * @version 3.0
+     * @version 2.0
      * 
      */
-    interface ExceptionInterface
+    class DomainException extends \DomainException implements
+        ExceptionInterface
     {
         
     }

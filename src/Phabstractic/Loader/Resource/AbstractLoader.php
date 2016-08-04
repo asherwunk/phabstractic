@@ -41,64 +41,81 @@ namespace Phabstractic\Loader\Resource
        Restrictions.php
        RestrictedList.php - The list of paths */
         
-    $includes = array('/Loader/Resource/GenericLoaderInterface.php',
+    $includes = array(// we are configurable
+                      '/Features/ConfigurationTrait.php',
+                      '/Features/Resource/ConfigurationInterface.php',
+                      // we implement loaderinterface
+                      '/Loader/Resource/LoaderInterface.php',
+                      // we use paths
+                      '/Data/Components/Path.php',
+                      '/Data/Components/Resource/PathInterface.php',
+                      // we normalize paths
+                      '/Resource/FileUtilities.php',
+                      // we use modules
                       '/Loader/Module.php',
-                      '/Loader/Resource/ModuleInterface.php',
-                      '/Data/Components/File/Path.php',
-                      '/Features/Configuration.php',
-                      '/Data/Types/Type.php',
-                      '/Data/Types/Restrictions.php',
-                      '/Data/Types/RestrictedList.php',
-                      '/Data/Types/Null.php',);
+                      // get leaf identity path returns none
+                      '/Data/Types/None.php',
+                      // we throw these exceptions
+                      '/Loader/Exception/DomainException.php',
+                      '/Loader/Exception/InvalidArgumentException.php',);
     
     falcraftLoad($includes, __FILE__);
     
-    use Falcraft\Data\Components\File;
-    use Falcraft\Loader;
-    use Falcraft\Features;
-    use Falcraft\Data\Types\Type;
-    use Falcraft\Data\Types;
+    use Phabstractic\Features\Resource as FeaturesResource;
+    use Phabstractic\Features;
+    use Phabstractic\Data\Components\Resource as ComponentsResource;
+    use Phabstractic\Data\Components;
+    use Phabstractic\Loader\Exception as LoaderException;
+    use Phabstractic\Loader\Resource as LoaderResource;
+    use Phabstractic\Loader;
+    use Phabstractic\Resource as PhabstracticResource;
+    use Phabstractic\Data\Types;
     
     /**
      * The Abstract Autoloader
      * 
      * This piece of machinery keeps track of paths, prefixes, libraries and Modules
      * 
-     * @see Falcraft\Loader\Resource\GenericInterface
+     * @see Phabstractic\Loader\Resource\LoaderInterface
      * 
      * First paths are stored in an array of Path objects
-     * (each having an identifier).  Libraries are stored as
-     * a root to a tree of Modules.  (See Leaf and Tree data types).
      * 
-     * Every Module/library has a path identifier associated with it.
+     * Libraries/Modules are stored as a root to a tree of Modules.
      * 
-     * Prefixes are stored in an array with path identifiers as the keys
+     * Every Module/Library has a path associated with it.
+     * 
+     * Prefixes are stored in an array with path as the keys
      * and the prefixes associated with those identifiers as array values.
-     * 
-     * For more detailed information @see Falcraft\Loader\Resource\GenericInterface.php
      * 
      * CHANGELOG
      * 
      * 1.0 Created AbstractLoader - January 31st, 2014
      * 2.0 Refactored for integration with Primus 2 - October 20th, 2015
+     * 3.0: eliminated restrictedlist for paths
+     *      eliminated path identifiers
+     *      eliminated default path
+     *      reformatted for inclusion in phabstractic - August 3rd, 2016
      * 
      * @abstract
      * 
-     * @version 2.0
+     * @version 3.0
      * 
      */
-    abstract class AbstractLoader implements GenericLoaderInterface
+    abstract class AbstractLoader implements
+        LoaderResource\LoaderInterface,
+        FeaturesResource\ConfigurationInterface
     {
-        use Features\Configuration;
+        use Features\ConfigurationTrait;
         
         /**
          * The list of path objects
          * 
          * Keys are identifiers, values are path objects
          * 
-         * @var Falcrat\Data\Types\RestrictedList (Falcraft\Data\Components\File\Path)
+         * @var array
+         * 
          */
-        protected $paths;
+        protected $paths = array();
         
         /**
          * A multi-dimensional array of prefixes tied to paths
@@ -108,15 +125,8 @@ namespace Phabstractic\Loader\Resource
          * @var array
          * 
          */
-        protected $prefixes;
+        protected $prefixes = array();
         
-        /**
-         * The Default Path (By Identifier)
-         * 
-         * @var string
-         * 
-         */
-        protected $default = '';
         
         /**
          * The root Module for the libraries
@@ -134,7 +144,7 @@ namespace Phabstractic\Loader\Resource
          * @var string
          * 
          */
-        abstract public function autoload( $class );
+        abstract public function autoload($class);
         
         /**
          * Abstract Loader Constructor
@@ -143,11 +153,9 @@ namespace Phabstractic\Loader\Resource
          * an array of options.  It sets up the paths into appropriate objects
          * and sets up the library root Module.
          * 
-         * OPTIONS - AutoRegister: Register the load in the SPL (false default)
-         *           FileExtension: What file extension to use as a base for paths
-         *           DefaultPath: The default path
-         *                           The first path in the path array, or string becomes
-         *                               the default path unless otherwise specified here.
+         * OPTIONS - strict: do we throw errors?
+         *           auto_register: Register the load in the SPL (false default)
+         *           file_extension: What file extension to use as a base for paths
          * 
          * @param array $paths The actual PATHS to put in the autoloader
          * @param array $options See description
@@ -155,83 +163,55 @@ namespace Phabstractic\Loader\Resource
          */
         public function __construct($paths = array(), $options = array())
         {
-            if (is_array($options)) {
-                $options = array_change_key_case($options);
+            $options = array_change_key_case($options);
+            
+            if (!isset($options['auto_register'])) {
+                $options['auto_register'] = false;
             }
             
-            $options = array_merge(array('autoregister' => false,
-                                         'fileextension' => 'php',
-                                         'defaultpath' => '',), $options);
+            if (!isset($options['file_extension'])) {
+                $options['file_extension'] = 'php';
+            }
             
             $this->configure($options);
             
-            $pathRestrictions = new Types\Restrictions(
-                array(Type::TYPED_OBJECT),
-                array('Falcraft\\Data\\Components\\File\\Path'),
-                array('strict' => $this->conf->strict)
-            );
-            
-            $this->paths = new Types\RestrictedList(
-                array(),
-                $pathRestrictions,
-                array('strict' => $this->conf->strict)
-            );
-            
-            if ($this->conf->defaultpath) {
-                $this->setDefaultPath($this->addPath($this->conf->defaultpath));
-            }
-            
-            if (is_array($paths)) {
-                foreach ($paths as $path) {
-                    if (is_array($path)) {
-                        if (isset($path['path']) &&
-                                isset($path['identifier'])) {
-                            $identifier = $this->addPath(
-                                $path['path'],
-                                $path['identifier']
-                            );
-                        }
-                        
-                    } else {
-                        $identifier = $this->addPath($path);
-                    }
-                    
-                    if (!$this->default) {
-                        $this->setDefaultPath($this->$identifier);
-                    }
-                    
-                }
-                
-            } else {
-                $identifier = $this->addPath($paths);
-                $this->setDefaultPath($identifier);
-            }
-            
-            if ($this->conf->fileextension != 'php') {
-                foreach ($this->paths->getList() as $identifier => $path) {
-                    $this->paths[$identifier]->removeExtension('php');
-                    $this->paths[$identifier]->addExtension(
-                        $this->conf->fileextension
+            foreach ($paths as $key => $path) {
+                if (is_string($path)) {
+                    $paths[$key] = new Components\Path(
+                        $path,
+                        array(),
+                        array('strict' => $this->conf->strict)
                     );
+                } elseif (!($path instanceof ComponentsResource\PathInterface)) {
+                    if ($this->conf->strict) {
+                        throw new LoaderException\InvalidArgumentException(
+                            'Phabstractic\\Loader\\Resource\\AbstractLoader->__construct: ' .
+                            'Path is illegal value');
+                    }
+                    
                 }
             }
             
-            $this->prefixes = array();
+            foreach ($paths as $path) {
+                if ($path instanceof Components\Path) {
+                    $path->addExtension($this->conf->file_extension);
+                    $this->addPath($path);
+                }
+            }
             
             $this->libraries = new Loader\Module(
                 '/',
-                'libraries',
+                'namespaces',
                 array(),
                 array('strict' => $this->conf->strict)
             );
             
-            $this->addLibrary('Falcraft', 'Falcraft');
-            
-            if ($this->conf->autoregister ) {
+            if ($this->conf->auto_register ) {
                 $this->register();
             }
             
         }
+        
         
         /**
          * Register the autoloader with the SPL
@@ -252,87 +232,9 @@ namespace Phabstractic\Loader\Resource
         }
         
         /**
-         * Set the default path
-         * 
-         * NOTE: Detects paths, but only ones that already have been identified
-         *          Does not add a path to the list
-         * 
-         * @param string|int $identifier The path identifier (preferably)
-         * 
-         */
-        public function setDefaultPath($identifier)
-        {
-            if ($this->isIdentifier($identifier)) {
-                $this->default = $identifier;
-            } else if ($this->isPath($dentifier)) {
-                $this->default = $this->getIdentifier($identifier);
-            }
-        }
-        
-        /**
-         * Get the default path
-         * 
-         * This returns an IDENTIFIER, you still have to retrieve the path
-         * using the identifier.
-         * 
-         * @return string|int
-         * 
-         */
-        public function getDefaultPath()
-        {
-            return $this->default;
-        }
-        
-        /**
-         * Add a path to the path pool
-         * 
-         * Use Identifier to override the built in identity engine
-         * Otherwise to get the identifier you'll have to pass the path
-         * back into the class.
-         * 
-         * @param string $path The actual path to add
-         * @param string|int The desired path identifier
-         * 
-         */
-        public function addPath($path, $identifier = '')
-        {
-            if ($path instanceof File\Path) {
-                if (!$identifier) {
-                    $identifier = $path->getIdentifier();
-                }
-                
-                if (!array_key_exists($identifier, $this->paths->getList())) {
-                    $this->paths[$identifier] = $path;
-                }
-                
-                if ($this->conf->fileextension != 'php') {
-                    $this->paths[$identifier]->removeExtension('php');
-                    $this->paths[$identifier]->addExtension(
-                        $this->conf->fileextension
-                    );
-                }
-                
-                return $identifier;
-            } else {
-                if (!in_array($path, $this->getPaths())) {
-                    $addition = new File\Path($path, $identifier);
-                    $identifier = $addition->getIdentifier();
-                    $this->paths[$identifier] = $addition;
-                    
-                    return $identifier;
-                } else {
-                    return $this->getIdentifier( $path );
-                }
-                
-            }
-            
-            return false;
-        }
-        
-        /**
          * Return all the paths in an array
          * 
-         * NOT identifiers, actual paths
+         * actual paths, string of arrays
          * 
          * @return array
          * 
@@ -340,7 +242,7 @@ namespace Phabstractic\Loader\Resource
         public function getPaths()
         {
             $ret = array();
-            foreach ($this->paths->getList() as $path) {
+            foreach ($this->paths as $path) {
                 $ret[] = $path->getPath();
             }
             
@@ -348,91 +250,51 @@ namespace Phabstractic\Loader\Resource
         }
         
         /**
-         * Retrieve a path by identifier
+         * Add a path to the path pool
          * 
-         * Uses IDENTIFIERS not paths
-         * 
-         * @return string
-         * 
-         */
-        public function getPath($identifier)
-        {
-            foreach($this->paths->getList() as $path) {
-                if ($path->getIdentifier() == $identifier) {
-                    return $path->getPath();
-                }
-            
-            }
-            
-        }
-        
-        /**
-         * Gets a path's identifier
-         * 
-         * IF it's in the path list
-         * 
-         * @param string $pathToIdentify The given path
-         * 
-         * @return string|int Identifier
+         * @param string|Phabstractic\Data\Components\Resource\PathInterface
+         *              $path The actual path to add
+         * @param bool false on failure
          * 
          */
-        public function getIdentifier($pathToIdentify)
+        public function addPath($newPath)
         {
-            foreach ($this->paths->getList() as $path) {
-                if ($path->getPath() == $pathToIdentify) {
-                    return $path->getIdentifier();
-                }
-                
-            }
-            
-        }
-        
-        /**
-         * Get the path object itself from an identifier
-         * 
-         * @param string|int $identifier The given identifier, must be identifier not path
-         * 
-         * @return Falcraft\Data\Components\File\Path
-         * 
-         */
-        public function getPathObject($identifier)
-        {
-            if ($this->isIdentifier($identifier)) {
-                foreach ($this->paths->getList() as $path) {
-                    if ($path->getIdentifier() == $identifier) {
-                        return $path;
+            if ($newPath instanceof ComponentsResource\PathInterface) {
+                foreach ($this->paths as $path) {
+                    if ($path->getPath() == $newPath->getPath()) {
+                        if ($this->conf->strict) {
+                            throw new LoaderException\DomainException(
+                                'Phabstractic\\Loader\\Resource\\AbstractLoader->addPath: ' .
+                                'Path already exists');
+                        }
+                        
+                        return false;
                     }
-                    
                 }
                 
+                $newPath->addExtension($this->conf->file_extension);
+                $this->paths[] = $newPath;
             } else {
-                return null;
-            }
-        }
-        
-        /**
-         * Get a reference to the path object itself from an identifier
-         * 
-         * @param string|int $identifier The given identifier, must be identifier not path
-         * 
-         * @return Falcraft\Data\Components\File\Path
-         * 
-         */
-        public function &getPathObjectReference($identifier)
-        {
-            if ($this->isIdentifier($identifier)) {
-                foreach ($this->paths->getList() as $path) {
-                    if ($path->getIdentifier() == $identifier) {
-                        return $path;
+                foreach ($this->paths as $path) {
+                    if ($path->getPath() == $newPath) {
+                        if ($this->conf->strict) {
+                            throw new LoaderException\DomainException(
+                                'Phabstractic\\Loader\\Resource\\AbstractLoader->addPath: ' .
+                                'Path already exists');
+                        }
+                        
+                        return false;
                     }
-                    
                 }
                 
-            } else {
-                $null = new Types\Null();
-                return $null;
+                $this->paths[] = new Components\Path(
+                    $newPath,
+                    array($this->conf->file_extension),
+                    array('strict' => $this->conf->strict)
+                );
             }
             
+            return true;
         }
         
         /**
@@ -440,462 +302,109 @@ namespace Phabstractic\Loader\Resource
          * 
          * @param string $path
          * 
-         * @return boolean
+         * @return bool
          * 
          */
         public function isPath($path)
         {
-            return (in_array($path, $this->getPaths())) ?
-                $this->getIdentifier($path) : false;
-        }
-        
-        /**
-         * Does this path identifier exist in the object's list?
-         * 
-         * @param string|int $identifier The given identifier
-         * 
-         * @return boolean
-         * 
-         */
-        public function isIdentifier($identifier)
-        {
-            foreach ($this->paths->getList() as $path) {
-                if ($path->getIdentifier() == $identifier) {
-                    return true;
-                }
-                
+            if ($path instanceof ComponentsResource\PathInterface) {
+                return in_array($path, $this->paths);
+            } else {
+                return in_array(
+                    PhabstracticResource\FileUtilities::getAbsolutePath($path),
+                    $this->getPaths()
+                );
             }
-            
-            return false;
-        }
-        
-        /**
-         * Given a particular existing path or identifier, determines if its tied to a Module
-         * 
-         * This returns true if a given existing path is not tied to any Module.
-         * 
-         * @param string|int $pathOrIdentifier
-         * 
-         * @return boolean
-         * 
-         */
-        public function isIndependent($pathOrIdentifier)
-        {
-            if ($this->isPath($pathOrIdentifier)) {
-                $pathOrIdentifier = $this->getIdentifier($pathOrIdentifier);
-            }
-            
-            if (!$this->isIdentifier($pathOrIdentifier)) {
-                return false;
-            }
-            
-            if (Loader\Module::pathBelongsTo($pathOrIdentifier, $this->libraries) ==
-                    'libraries/') {
-                return true;
-            }
-            
-            return false;
-        }
-        
-        /**
-         * This returns all the paths (in path form, not identifiers)
-         * that are not in a Module
-         * 
-         * @return array
-         * 
-         */
-        public function getIndependentPaths()
-        {
-            $ret = array();
-            
-            foreach ($this->paths->getList() as $path) {
-                if ($this->isIndependent($path->getIdentifier())) {
-                    $ret[] = $path->getPath();
-                }
-                
-            }
-
-            return $ret;
-        }
-        
-        /**
-         * Gets all the independent paths, except returns the path objects
-         * 
-         * @return array (Falcraft\Data\Components\File\Path)
-         * 
-         */
-        public function getIndependentPathObjects()
-        {
-            $ret = array();
-            
-            foreach ($this->paths->getList() as $path) {
-                if ($this->isIndependent($path->getIdentifier())) {
-                    $ret[] = $path;
-                }
-                
-            }
-
-            return $ret;
         }
         
         /**
          * Removes a path from the path pool, but only if it's not tied
          * to a Module
          * 
-         * Takes care of prefixes as well.
+         * @param string $path
          * 
-         * @param string $path (or identifier)
-         * 
-         * @return boolean On success or failure
+         * @return bool On success or failure
          * 
          */
         public function removePath($path)
         {
-            $independentPaths = $this->getIndependentPaths();
-            
-            if ($path instanceof File\Path) {
-                $path = $path->getPath();
-            } else if ($this->isIdentifier($path)) {
-                $path = $this->getPath($path);
-            }
-            
-            if (!in_array($path, $independentPaths)) {
-                return false;
-            }
-            
-            $identifier = $this->getIdentifier($path);
-            // unset($this->paths[$identifier]); -- ??? (10/20/2015)
-            
-            if (array_key_exists($identifier, $this->prefixes)) {
-                unset($this->prefixes[$identifier]);
-            }
-            
-            return true;
-        }
-        
-        /**
-         * Add a 'base' library Module to the root library Module
-         * 
-         * The library member variable keeps track of base leaf Modules known
-         * as libraries
-         * 
-         * @param Falcraft\Data\Components\File\Resource\DirectoryInterface $module
-         * 
-         */
-        public function addLibraryByModule(
-            ModuleInterface $module
-        ) {
-            $this->libraries->addModule($module);
-        }
-        
-        /**
-         * Add a library (Module) with a given path, given identifier
-         * 
-         * Optionally you can specify the Module path, where it will attach
-         * itself to the Module pointed to by the path.
-         * 
-         * Makes a new Module
-         * 
-         * @param string $path The given path (not Module path)
-         * @param string $libraryName The Module identifier (required)
-         * @param string $modulePath The path to the Module this library attaches to
-         * 
-         */
-        public function addLibrary($path, $libraryName, $modulePath = '')
-        {
-            if ($this->isPath($path)) {
-                $path = $this->getIdentifier($path);
-            } else if (!$this->isIdentifier($path)) {
-                $path = $this->addPath($path);
-            }
-            
-            $newModule = new Loader\Module(
-                $path,
-                $libraryName,
-                array(),
-                array('strict' => $this->conf->strict)
-            );
-            
-            if ($modulePath) {
-                $module = Module::getFromModuleIdentityPath($this->libraries, $modulePath);
-                $module->addModule($newModule);
-            } else {
-                $this->addLibraryByModule($newModule);
-            }
-            
-        }
-        
-        /**
-         * Is this library identifier registered with the autoloader?
-         * 
-         * Tricky here.  We can check keys because the leaf structure
-         * uses the restricted list as an associative array.  When it
-         * returns the list, the array comes with the keys.
-         * 
-         * @param string|int $library The library identifier to test
-         * 
-         * @return boolean
-         * 
-         */
-        public function isLibrary( $library )
-        {
-            return array_key_exists($library, $this->libraries->getModules());
-        }
-        
-        /**
-         * Remove library by identifier
-         * 
-         * Removes the given identifying Module from the root library object
-         * 
-         * @param string|int $libraryName
-         * 
-         * @return boolean
-         * 
-         */
-        public function removeLibrary( $libraryName )
-        {
-            $this->libraries->removeModule( $libraryName );
-            return true;
-        }
-        
-        /**
-         * Retrieve a Module object from the library Module by identifier
-         * 
-         * @param string|int $libraryName The given library identifier
-         * 
-         * @return Falcraft\Data\Components\File\Resource\DirectoryInterface
-         * 
-         */
-        public function getLibrary( $libraryName )
-        {
-            return $this->libraries->getModule($libraryName);
-        }
-        
-        /**
-         * This retrieves the Module objects from the library as an array
-         * 
-         * @return array (Falcraft\Data\Components\File\Resource\DirectoryInterface)
-         * 
-         */
-        public function getLibrariesAsArray()
-        {
-            return $this->library->getModules();
-        }
-        
-        /**
-         * This retrieves the Modules as a giant array from the library
-         * 
-         * This recursively traces through the Modules, returning arrays
-         * in arrays, path => the path, and Modules => the Modules which themselves
-         * are returned as arrays.
-         * 
-         * @return array
-         * 
-         */
-        public function getLibraryModulesAsArray()
-        {
-            return Loader\Module::getAsArray($this->libraries);
-        }
-        
-        /**
-         * Add a Module to the library tree
-         * 
-         * Constructs a Module from the identifier and path, and then
-         * adds that Module to the library variable
-         * 
-         * @param string|int $identifier Identifier to use
-         * @param string $path The actual path to associate, not a Module path
-         * @param Falcraft\Data\Components\File\Resource\DirectoryInterface $library
-         * 
-         */
-        public function addLibraryModule($identifier, $path, $library)
-        {
-            $module = new Loader\Module($path, $identifier);
-            
-            if ($library instanceof ModuleInterface) {
-                $library->addModule($module);
-            } else {
-                $this->addLibraryByModule($module);
-            }
-            
-        }
-        
-        /**
-         * Takes a Module path that's allegedly in the library, and adds
-         * the given Module there
-         * 
-         * @param string $modulePath The path to the Module (not the associated path)
-         * @param Falcraft\Data\Components\File\Resource\DirectoryInterface $module The Module to add
-         * 
-         */
-        public function addModule(
-            $modulePath,
-            ModuleInterface $module
-        ) {
-            $branch = Loader\Module::addToModuleIdentityPath(
-                $this->libraries,
-                $modulePath,
-                $module
-            );
-        }
-
-        /**
-         * Check the library paths to see if a Module name exist
-         * 
-         * This does not guarantee if the actual Module object as its
-         * identified exists, but if it's in a path returned by the 
-         * static Module function.
-         * 
-         * @param string $module The Module name/identifier
-         * @param string|Falcraft\Data\Components\File\Resource\DirectoryInterface The library to start at
-         * 
-         * @return boolean
-         * 
-         */
-        public function isLibraryModule($module, $library = '')
-        {
-            if ($library instanceof ModuleInterface) {
-                $haystack = Loader\Module::getModuleIdentityPaths($library);
-            } else if (is_string($library)) {
-                $haystack = Loader\Module::getFromModuleIdentityPath($library);
-                if (!($haystack instanceof Types\Null)) {
-                    $haystack = Loader\Module::getModuleIdentityPaths($haystack);
-                } else {
-                    return false;
-                }
-                
-            } else {
-                $haystack = Loader\Module::getModuleIdentityPaths($this->libraries);
-            }
-            
-            if ($haystack instanceof Types\Null) {
-                return false;
-            }
-            
-            foreach ($haystack as $needle) {
-                if (strpos($needle, $module) !== false) {
+            if ($path instanceof ComponentsResource\PathInterface) {
+                if ($index = array_search($path, $this->paths)) {
+                    array_splice($this->paths, $index, 1);
                     return true;
                 }
-                
-            }
-                
-            return false;
-        }
-        
-        /**
-         * Tests if the given Module name/identifier is in the library paths
-         * 
-         * @param string $moduleMatch The name/identifier to match in the paths
-         * 
-         * @return boolean
-         * 
-         */
-        public function isModule($moduleMatch)
-        {
-            $haystack = Loader\Module::getModuleIdentityPaths($this->libraries);
-            
-            foreach ($haystack as $needle) {
-                if (strpos( $needle, $moduleMatch) !== false) {
-                    return true;
-                }
-                
-            }
-                
-            return false;
-        }
-        
-        /**
-         * Removes Module identifier ONLY if it's a terminating leaf
-         * 
-         * This removes a Module identifier (not path) only if the Module
-         * is the last Module in a given path from the root leaf
-         * 
-         * @param string $module The Module identifier
-         * @param string|Falcraft\Data\Components\File\Resource\DirectoryInterface
-         *              $library The library to start at, defaults to internal library
-         * 
-         * @return boolean True on succcess
-         * 
-         */
-        public function removeLibraryModule($module, $library = '')
-        {
-            if ($library instanceof ModuleInterface) {
-                $haystack = Loader\Module::getModuleIdentityPaths($library);
-            } else if (is_string( $library)) {
-                $library = $haystack = Loader\Module::getFromModuleIdentityPath($library);
-                if (!($haystack instanceof Types\Null)) {
-                    $haystack = Loader\Module::getModuleIdentityPaths($haystack);
-                } else {
-                    return false;
-                }
-                
             } else {
-                $haystack = Loader\Module::getModuleIdentityPaths($this->libraries);
-                $library = $this->libraries;
-            }
-            
-            if ($haystack instanceof Types\Null) {
-                return false;
-            }
-            
-            $path = '';
-            foreach ($haystack as $needle) {
-                $needleParts = explode('/', $needle);
-                if ($needleParts[count($needleParts)-1] == $module) {
-                    $path = $needle;
+                $path = PhabstracticResource\FileUtilities::getAbsolutePath($path);
+                
+                if (in_array($path, array_keys($this->prefixes))) {
+                    unset($this->prefixes[$path]);
+                }
+                
+                $found = null;
+                foreach ($this->paths as $key => $value) {
+                    if ($value->getPath() == $path) {
+                        array_splice($this->paths, $key, 1);
+                        break;
+                    }
                 }
             }
-            
-            if ($path) {
-                $module = Loader\Module::getFromModuleIdentityPath($library, $path);
-                
-                $path = explode('/', $path);
-                $path = array_pop($path);
-                
-                $module->removeModule($path);            
-                return true;
-            }
-            
-            return false;
         }
         
         /**
-         * Removes a Module from the internal libraries using a Module path
+         * Retrieve a path object by path
          * 
-         * @param string $modulePath The Module path starting at the base library
+         * @param string $searchPath The path we're looking for
+         * 
+         * @return Phabstractic\Data\Components\Path
          * 
          */
-        public function removeModule($modulePath)
+        public function getPathObject($searchPath)
         {
-            $path = explode('/', $modulePath);
-            $moduleName = array_pop($path);
-            $path = implode('/', $path);
+            foreach ($this->paths as $path) {
+                if ($path->getPath() == $searchPath) {
+                    return $path;
+                }
+            }
             
-            $module = Loader\Module::getFromModuleIdentityPath($this->libraries, $path);
-            $module->removeModule($moduleName);
+            return null;
+        }
+        
+        /**
+         * Retrieve a reference to path object by path
+         * 
+         * @param string $searchPath The path we're looking for
+         * 
+         * @return Phabstractic\Data\Components\Path
+         * 
+         */
+        public function &getPathObjectReference($searchPath)
+        {
+            foreach ($this->paths as $key => $path) {
+                if ($path->getPath() == $searchPath) {
+                    return $this->paths[$key];
+                }
+            }
+            
+            return null;
         }
         
         /**
          * Add a prefix to a particular path
          * 
-         * The path can be an identifier or a path, preferably an identifier
-         * 
          * The autoloader keeps track of its own prefixes as attached to paths
          * 
-         * This adds path is path doesn't exist.
-         * 
+         * @param string $path The path
          * @param string $prefix (include any characters like an underscore: WP_)
-         * @param string|int The path or its identifier
          * 
          * @return boolean Pretty much true
          * 
          */
-        public function addPrefix($prefix, $path)
+        public function addPrefix($path, $prefix)
         {
-            if ($this->isPath($path)) {
-                $path = $this->getIdentifier($path);
-            } else if (!$this->isIdentifier($path)) {
-                $path = $this->addPath($path);
+            if ($path instanceof ComponentsResource\PathInterface) {
+                $path = $path->getPath();
+            } else {
+                $path = PhabstracticResource\FileUtilities::getAbsolutePath($path);
             }
             
             if (!array_key_exists($path, $this->prefixes)) {
@@ -916,16 +425,16 @@ namespace Phabstractic\Loader\Resource
          * 
          * Does not add path to list
          * 
-         * @param string|int The given path, or identifier
+         * @param string The given path
          * 
          * @return boolean true on success, false on failure
          */
         public function hasPrefix($path)
         {
-            if ($this->isPath($path)) {
-                $path = $this->getIdentifier($path);
-            } else if (!$this->isIdentifier($path)) {
-                return false;
+            if ($path instanceof ComponentsResource\PathInterface) {
+                $path = $path->getPath();
+            } else {
+                $path = PhabstracticResource\FileUtilities::getAbsolutePath($path);
             }
             
             if (array_key_exists($path, $this->prefixes)) {
@@ -947,28 +456,17 @@ namespace Phabstractic\Loader\Resource
          * @return boolean true on success, false on failure
          * 
          */
-        public function isPrefix($prefix, $path = '')
-        {    
-            if ($path) {
-                if ($this->isPath($path)) {
-                    $path = $this->getIdentifier($path);
-                } else if (!$this->isIdentifier($path)) {
-                    return false;
+        public function isPrefix($prefix)
+        {
+            $paths = array();
+            
+            foreach ($this->prefixes as $key => $value) {
+                if (in_array($prefix, $value)) {
+                    $paths[] = $key;
                 }
-                
-                return (array_key_exists($path, $this->prefixes) &&
-                            in_array($prefix, $this->prefixes[$path])) ?
-                        true : false;
             }
             
-            for ($a = 0; $a < count($this->prefixes); $a++) {
-                if (in_array($prefix, $this->prefixes[$a])) {
-                    return true;
-                }
-                
-            }
-
-            return false;
+            return $paths;
         }
         
         /**
@@ -985,13 +483,13 @@ namespace Phabstractic\Loader\Resource
          */
         public function getPrefixes($path)
         {
-            if ($this->isPath($path)) {
-                $path = $this->getIdentifier($path);
-            } else if (!$this->isIdentifier($path)) {
-                return array();
+            if ($path instanceof ComponentsResource\PathInterface) {
+                $path = $path->getPath();
+            } else {
+                $path = PhabstracticResource\FileUtilities::getAbsolutePath($path);
             }
             
-            if (array_key_exists($path, $this->prefixes)) {
+            if (isset($this->prefixes[$path])) {
                 return $this->prefixes[$path];
             }
             
@@ -1009,27 +507,219 @@ namespace Phabstractic\Loader\Resource
          */
         public function removePrefix($path, $prefix)
         {
-            if ( $this->isPath($path)) {
-                $path = $this->getIdentifier($path);
+            if ($path instanceof ComponentsResource\PathInterface) {
+                $path = $path->getPath();
+            } else {
+                $path = PhabstracticResource\FileUtilities::getAbsolutePath($path);
             }
             
-            $key = null;
             if (array_key_exists($path, $this->prefixes)) {
                 foreach ($this->prefixes[$path] as $k => $v) {
                     if ($v == $prefix) {
-                        $key = $k;
+                        array_splice($this->prefixes[$path], $k, 1);
+                        break;
                     }
                     
                 }
                 
             }
             
-            if (!is_null($key)) {
-                unset($this->prefixes[$path][$key]);
+            return false;
+        }
+        
+        /**
+         * Retrieve the endpoints of all namespaces
+         * 
+         * @return array
+         * 
+         */
+        public function getNamespaces()
+        {
+            $namespaces = $this->libraries->getModuleIdentityPaths();
+            $ret = array();
+            foreach ($namespaces as $namespace) {
+                $parts = explode('\\', $namespace);
+                array_shift($parts);
+                $ret[] = implode('\\', $parts);
+            }
+            
+            return $ret;
+        }
+        
+        /**
+         * Register namespace with the autoloader
+         * 
+         * This function can be used in multiple ways depending on the
+         * autoloader.  It is meant to be use as a sort of an additional
+         * include path linked to a given library/vendor name
+         * 
+         * @param string $namespace The base namespace
+         * @param string $path The include path
+         * 
+         * @return bool True on success
+         * 
+         */
+        public function addNamespace($namespace, $path)
+        {
+            if ($path instanceof ComponentsResource\PathInterface) {
+                $path->addExtension($this->conf->file_extension);
+            } else {
+                $path = new Components\Path(
+                    $path,
+                    array($this->conf->file_extension),
+                    array('strict' => $this->conf->strict)
+                );
+            }
+            
+            $namespace = 'namespaces\\' . $namespace;
+            $parts = explode('\\', $namespace);
+            
+            $currentModule = 
+                    &$this->libraries->getFromModuleIdentityPath($namespace);
+            
+            if (!($currentModule instanceof Types\None)) {
+                $currentModule->setPath($path);
+                return;
+            }
+            
+            $currentModule = &$this->libraries;
+            
+            array_shift($parts);
+            
+            foreach ($parts as $part) {
+                if ($currentModule->isSubModuleByIdentifier($part)) {
+                    $currentModule = 
+                        &$currentModule->getModuleByIdentifierReference($part);
+                } else {
+                    $module = new Loader\Module(
+                        '',
+                        $part,
+                        array(),
+                        array('strict' => $this->conf->strict)
+                    );
+                    
+                    $currentModule->addModule($module);
+                    $currentModule = 
+                        &$currentModule->getModuleByIdentifierReference($part);
+                }
+            }
+            
+            $currentModule->setPath($path);
+            
+            return true;
+        }
+        
+        /**
+         * Is this namespace registered with this autoloader?
+         * 
+         * @param string $namespace The namespace of the library
+         * 
+         * @return boolean True if present
+         * 
+         */
+        public function isNamespace($namespace)
+        {
+            $namespace = 'namespaces\\' . $namespace;
+            
+            $currentModule = 
+                    &$this->libraries->getFromModuleIdentityPath($namespace);
+            
+            if (!($currentModule instanceof Types\None)) {
                 return true;
             }
             
             return false;
         }
+        
+        /**
+         * Unregister a namespace with the autoloader
+         * 
+         * Performs the opposite functionality of the addLibrary method
+         * 
+         * Returns false if Module is not present in autoloader
+         * 
+         * @param string $namespace The library path/identifier
+         * 
+         * @return boolean True on successful removal
+         * 
+         */
+        public function removeNamespace($namespace)
+        {
+            if (!$namespace) {
+                return false;
+            }
+            
+            $namespace = 'namespaces\\' . $namespace;
+            $parts = explode('\\', $namespace);
+            $moduleIdentifier = array_pop($parts);
+            $parentNamespace = implode('\\', $parts);
+            
+            $parentModule =
+                    &$this->libraries->getFromModuleIdentityPath($parentNamespace);
+            
+            if (!($parentModule instanceof Types\None)) {
+                return $parentModule->removeModuleByIdentifier($moduleIdentifier);
+            }
+            
+            return false;
+        }
+        
+        /**
+         * Retrieve path associated with namespace
+         * 
+         * @param string $namespace The library namespace
+         * 
+         * @return string
+         * 
+         */
+        public function getNamespacePath($namespace)
+        {
+            $namespace = 'namespaces\\' . $namespace;
+            
+            $currentModule = 
+                    &$this->libraries->getFromModuleIdentityPath($namespace);
+            
+            if (!($currentModule instanceof Types\None)) {
+                return $currentModule->getPath()->getPath();
+            }
+            
+            return null;
+        }
+        
+        /**
+         * Retrieve the module reference associated with namespace
+         * 
+         * Pre-pend the namespace with a '\\'!
+         * 
+         * @param string $namespcae The library namespace
+         * 
+         * @return &Phabstractic\Loader\Resource\ModuleInterface
+         * 
+         */
+        public function &getNamespaceModule($namespace)
+        {
+            $namespace = 'namespaces' . $namespace;
+            
+            $currentModule = 
+                    &$this->libraries->getFromModuleIdentityPath($namespace);
+            
+            if (!($currentModule instanceof Types\None)) {
+                return $currentModule;
+            }
+            
+            return null;
+        }
+        
+        /**
+         * Retrieve the modules as an array
+         * 
+         * @return array
+         *
+         */
+        public function getNamespaceModulesAsArray()
+        {
+            return $this->libraries->getModulesAsArray();
+        }
     }
+    
 }
