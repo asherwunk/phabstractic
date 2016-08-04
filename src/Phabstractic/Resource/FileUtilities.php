@@ -54,6 +54,16 @@ namespace Phabstractic\Resource
          * 
          */
         public static function getAbsolutePath($path) {
+            $before = false;
+            $after = false;
+            if ($path[0] == DIRECTORY_SEPARATOR) {
+                $before = true;
+            }
+            
+            if ($path[strlen($path)-1] == DIRECTORY_SEPARATOR) {
+                $after = true;
+            }
+            
             $path = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
             $parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), 'strlen');
             $absolutes = array();
@@ -66,7 +76,16 @@ namespace Phabstractic\Resource
                 }
             }
             
-            return implode(DIRECTORY_SEPARATOR, $absolutes);
+            $path = implode(DIRECTORY_SEPARATOR, $absolutes);
+            if ($before) {
+                $path = DIRECTORY_SEPARATOR . $path;
+            }
+            
+            if ($after) {
+                $path = $path . DIRECTORY_SEPARATOR;
+            }
+            
+            return $path;
         }
     }
     

@@ -41,7 +41,7 @@ namespace Phabstractic\Data\Components
                       // we implement pathinterface
                       '/Data/Components/Resource/PathInterface.php',
                       // we fix ..'s in paths
-                      '/Phabstractic/Resource/FileUtilities.php',
+                      '/Resource/FileUtilities.php',
                       // we type check against string for extensions
                       '/Data/Types/Type.php',
                       '/Data/Types/Restrictions.php',
@@ -186,7 +186,9 @@ namespace Phabstractic\Data\Components
                 $this->identityPrefix = 'Path';
             }
             
-            $this->setPath($path);
+            if ($path) {
+                $this->setPath($path);
+            }
             
             if (Types\Restrictions::checkRestrictedValues(
                 $extensions,
