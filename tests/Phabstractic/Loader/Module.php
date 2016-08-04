@@ -293,4 +293,19 @@ class ModuleTest extends TestCase
         
     }
     
+    public function testDebugInfo() {
+        $module = new Loader\Module();
+        
+        ob_start();
+        
+        var_dump($module);
+        
+        $output = ob_get_clean();
+        
+        $this->assertRegExp("/\\[?\"?strict\"?\]?.*=\\>/", $output);
+        $this->assertRegExp("/\\[?\"?prefix\"?\]?.*=\\>\n.*string/", $output);
+        $this->assertRegExp("/\\[?\"?identifier\"?\]?.*=\\>/", $output);
+        $this->assertRegExp("/\\[?\"?modules\"?\]?.*=\\>\n.*array\\(0\\)/", $output);
+        
+    }
 }

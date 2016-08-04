@@ -441,7 +441,7 @@ namespace Phabstractic\Loader
             return [
                 'options' => $ret['options'],
                 'identifier' => $this->getLeafIdentifier(),
-                'leaves' => $ret['leaves'],
+                'modules' => $ret['leaves'],
             ];
         }
         
