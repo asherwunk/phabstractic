@@ -38,6 +38,8 @@ namespace Phabstractic\Data\Components
                       '/Features/Resource/ConfigurationInterface.php',
                       // we have identities
                       '/Features/IdentityTrait.php',
+                      // we implement pathinterface
+                      '/Data/Components/Resource/PathInterface.php',
                       // we type check against string for extensions
                       '/Data/Types/Type.php',
                       '/Data/Types/Restrictions.php',
@@ -50,6 +52,7 @@ namespace Phabstractic\Data\Components
     use Phabstractic\Features\Resource as FeaturesResource;
     use Phabstractic\Features;
     use Phabstractic\Data\Components\Exception as ComponentsException;
+    use Phabstractic\Data\Components\Resource as ComponentsResource;
     use Phabstractic\Data\Types;
     use Phabstractic\Data\Types\Type;
     
@@ -73,7 +76,9 @@ namespace Phabstractic\Data\Components
      * @version 3.0
      * 
      */
-    class Path implements FeaturesResource\ConfigurationInterface
+    class Path implements
+        FeaturesResource\ConfigurationInterface,
+        ComponentsResource\PathInterface
     {
         use Features\ConfigurationTrait;
         use Features\IdentityTrait;
