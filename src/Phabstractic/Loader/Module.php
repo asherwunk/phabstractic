@@ -127,7 +127,7 @@ namespace Phabstractic\Loader
             $allowed = Types\Restrictions::checkElements(
                             $modules,
                             $moduleRestrictions,
-                            array('strict' => true,));
+                            true);
             
             if ($allowed) {
                 parent::__construct($path, $modules, $options);
