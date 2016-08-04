@@ -13,7 +13,7 @@
  * compatible with the rest of the Phabstractic library as needed.  If a PHP based
  * array function will work in your instance, use that instead.
  * 
- * @copyright Copyright 2015 Asher Wolfstein
+ * @copyright Copyright 2016 Asher Wolfstein
  * @author Asher Wolfstein <asherwunk@gmail.com>
  * @link http://wunk.me/ The author's URL
  * @link http://wunk.me/programming-projects/phabstractic/ Framework URL
