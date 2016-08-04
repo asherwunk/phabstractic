@@ -454,8 +454,6 @@ class AutoLoaderTest extends TestCase
         $class = new \UnknownNamespace\UnknownSubNamespace\WP_UnknownClass();
         $class = new \UnknownNamespace\UnknownSubNamespace\AnotherUnknownNamespace\UnprefixedUnknownClass();
         
-        
-        
     }
     
 }
