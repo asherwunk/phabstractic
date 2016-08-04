@@ -186,9 +186,7 @@ namespace Phabstractic\Data\Components
                 $this->identityPrefix = 'Path';
             }
             
-            if ($path) {
-                $this->setPath($path);
-            }
+            $this->setPath($path);
             
             if (Types\Restrictions::checkRestrictedValues(
                 $extensions,
@@ -257,6 +255,7 @@ namespace Phabstractic\Data\Components
             if (!$path) {
                 $this->path = '';
                 $this->relative = true;
+                return $this;
             } else {
                 $this->relative = ($path[0] != DIRECTORY_SEPARATOR) ?
                     true : false;
@@ -393,7 +392,7 @@ namespace Phabstractic\Data\Components
                 $filename = ltrim($filename, DIRECTORY_SEPARATOR);
             }
             
-            if ( $this->relative && !$basePath ) {
+            if ($this->relative && !$basePath) {
                 throw new ComponentsException\DomainException(
                     'Phabstractic\\Data\\Components\\Path->isFilename(): ' .
                     'Relative Path MUST have basePath in filecheck');
