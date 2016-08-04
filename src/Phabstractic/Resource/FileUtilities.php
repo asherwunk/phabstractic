@@ -70,7 +70,12 @@ namespace Phabstractic\Resource
             foreach ($parts as $part) {
                 if ('.' == $part) continue;
                 if ('..' == $part) {
-                    array_pop($absolutes);
+                    if (($pop = array_pop($absolutes)) == '..' || $pop == null) {
+                        array_push($absolutes, '..');
+                        if ($pop != null) {
+                            array_push($absolutes, '..');
+                        }
+                    };
                 } else {
                     $absolutes[] = $part;
                 }
