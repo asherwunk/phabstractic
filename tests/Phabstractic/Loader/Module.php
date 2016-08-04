@@ -177,6 +177,45 @@ class ModuleTest extends TestCase
         
     }
     
+    public function testGetModuleByIdentifier()
+    {
+        $module1 = new Loader\Module(null, 'Module1');
+        $module2 = new Loader\Module(null, 'Module2');
+        $module3 = new Loader\Module(null, 'Module3');
+        
+        $module = new Loader\Module(null, 'MasterModule');
+        $module->addModule($module1);
+        $module->addModule($module2);
+        $module->addModule($module3);
+        
+        $this->assertEquals($module1, $module->getModuleByIdentifier('Module1'));
+        $this->assertEquals($module2, $module->getModuleByIdentifier('Module2'));
+        $this->assertEquals($module3, $module->getModuleByIdentifier('Module3'));
+        $this->assertEquals(null, $module->getModuleByIdentifier('Module4'));
+        
+    }
+    
+    public function testGetModuleByIdentifierReference()
+    {
+        $module1 = new Loader\Module(null, 'Module1');
+        $module2 = new Loader\Module(null, 'Module2');
+        $module3 = new Loader\Module(null, 'Module3');
+        
+        $module = new Loader\Module(null, 'MasterModule');
+        $module->addModule($module1);
+        $module->addModule($module2);
+        $module->addModule($module3);
+        
+        $testmodule = &$module->getModuleByIdentifierReference('Module3');
+        
+        $path = new Components\Path('test/path');
+        $testmodule->setPath($path);
+        
+        $this->assertEquals($path, $module->getModuleByIdentifier('Module3')->getPath());
+        $this->assertEquals(null, $module->getModuleByIdentifierReference('Module4'));
+        
+    }
+    
     public function testGetModuleIdentityPaths()
     {
         $module1 = new Loader\Module(null, 'Module1');
@@ -253,23 +292,26 @@ class ModuleTest extends TestCase
     
     public function testGetModulesAsArray()
     {
+        $path1 = new Components\Path('testpath/anotherpath');
+        $path2 = new Components\Path('anothertestpath');
+        
         $module1 = new Loader\Module(null, 'Module1');
-        $module2 = new Loader\Module(null, 'Module2', array($module1));
+        $module2 = new Loader\Module($path1, 'Module2', array($module1));
         $module3 = new Loader\Module(null, 'Module3', array($module2));
         $module4 = new Loader\Module(null, 'Module4');
-        $module5 = new Loader\Module(null, 'Module5');
+        $module5 = new Loader\Module($path2, 'Module5');
         $module6 = new Loader\Module(null, 'Module6', array($module4, $module5));
         $module7 = new Loader\Module(null, 'Module7', array($module3, $module6));
         
         $array = $module7->getModulesAsArray();
         
         $desiredResult = array('path' => null, 'modules' => array(
-                                'Module3' => array('path' => null, 'modules' => array(
-                                        'Module2' => array('path' => null, 'modules' => array(
+                               'Module3' => array('path' => null, 'modules' => array(
+                                        'Module2' => array('path' => $path1, 'modules' => array(
                                             'Module1' => array('path' => null, 'modules' => array()))))),
-                                'Module6' => array('path' => null, 'modules' => array(
+                               'Module6' => array('path' => null, 'modules' => array(
                                     'Module4' => array('path' => null, 'modules' => array()),
-                                    'Module5' => array('path' => null, 'modules' => array())))));
+                                    'Module5' => array('path' => $path2, 'modules' => array())))));
         
         $this->assertEquals($desiredResult, $array);
         

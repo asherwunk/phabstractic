@@ -227,6 +227,41 @@ namespace Phabstractic\Loader
         }
         
         /**
+         * Get Module by Identifier
+         * 
+         * @return Phabstractic\Loader\Resource\ModuleInterface
+         * 
+         */
+        public function getModuleByIdentifier($identifier)
+        {
+            foreach ($this->getLeaves() as $module) {
+                if ($module->getModuleIdentifier() == $identifier) {
+                    return $module;
+                }
+            }
+            
+            return null;
+        }
+        
+        /**
+         * Get Module by Identifier
+         * 
+         * @return &Phabstractic\Loader\Resource\ModuleInterface
+         * 
+         */
+        public function &getModuleByIdentifierReference($identifier)
+        {
+            foreach ($this->getLeaves() as $key => $module) {
+                if ($module->getModuleIdentifier() == $identifier) {
+                    return $this->leaves[$key];
+                }
+            }
+            
+            $ret = null;
+            return $ret;
+        }
+        
+        /**
          * Add Module - Wrapper
          * 
          * A wrapper function for underlying abstract leaf functionality
@@ -381,8 +416,9 @@ namespace Phabstractic\Loader
             
             $ret = array();
             
+            $ret['path'] = $this->getData();
+            
             foreach ($leaves as $leaf) {
-                $ret['path'] = $leaf->getData();
                 $ret['modules'][$leaf->getLeafIdentifier()] =
                     $leaf->getModulesAsArray();
             }
@@ -441,6 +477,7 @@ namespace Phabstractic\Loader
             return [
                 'options' => $ret['options'],
                 'identifier' => $this->getLeafIdentifier(),
+                'path' => $this->getData(),
                 'modules' => $ret['leaves'],
             ];
         }
