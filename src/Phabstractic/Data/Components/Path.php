@@ -40,6 +40,8 @@ namespace Phabstractic\Data\Components
                       '/Features/IdentityTrait.php',
                       // we implement pathinterface
                       '/Data/Components/Resource/PathInterface.php',
+                      // we fix ..'s in paths
+                      '/Phabstractic/Resource/FileUtilities.php',
                       // we type check against string for extensions
                       '/Data/Types/Type.php',
                       '/Data/Types/Restrictions.php',
@@ -55,6 +57,7 @@ namespace Phabstractic\Data\Components
     use Phabstractic\Data\Components\Resource as ComponentsResource;
     use Phabstractic\Data\Types;
     use Phabstractic\Data\Types\Type;
+    use Phabstractic\Resource as PhabstracticResource;
     
     /**
      * Path Class - Defines A Path Structure
@@ -260,6 +263,8 @@ namespace Phabstractic\Data\Components
             if (substr($path, -1) != DIRECTORY_SEPARATOR) {
                 $path = rtrim($path, DIRECTORY_SEPARATOR);
             }
+            
+            $path = PhabstracticResource\FileUtilities::getAbsolutePath($path);
             
             if ($this->conf->check && !$this->relative) {
                 if (!is_dir($path)) {
