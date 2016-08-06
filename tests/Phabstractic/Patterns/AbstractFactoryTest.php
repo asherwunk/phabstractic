@@ -29,7 +29,7 @@ class TestAbstractFactory extends AbstractUnitTestFactory {
 class AbstractFactoryTest extends TestCase
 {
     public function testEmptyInstantiation() {
-        $f = new Patterns\AbstractFactory('test');
+        $f = new Patterns\AbstractFactory('test', array(), array(), array('strict' => true));
         
         $this->assertInstanceOf(Patterns\AbstractFactory::class, $f);
         $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $f);
@@ -39,8 +39,8 @@ class AbstractFactoryTest extends TestCase
     
     public function testPopulatedInstantiation() {
         $f = new Patterns\AbstractFactory('test',
-                                                  array('red', 'blue', 'yellow'),
-                                                  array('color' => 2));
+                                          array('red', 'blue', 'yellow'),
+                                          array('color' => 2));
         
         $this->assertInstanceOf(Patterns\AbstractFactory::class, $f);
         $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $f);
@@ -48,9 +48,9 @@ class AbstractFactoryTest extends TestCase
     
     public function testWithNamespaceInstantiation() {
         $f = new Patterns\AbstractFactory('test',
-                                                  array('red', 'blue', 'yellow'),
-                                                  array('color' => 2),
-                                                  array('namespace' => 'unittest'));
+                                          array('red', 'blue', 'yellow'),
+                                          array('color' => 2),
+                                          array('namespace' => 'unittest'));
         
         $this->assertInstanceOf(Patterns\AbstractFactory::class, $f);
         $this->assertInstanceOf(FeaturesResource\ConfigurationInterface::class, $f);
@@ -75,14 +75,13 @@ class AbstractFactoryTest extends TestCase
     public function testImproperFactoryName($factory) {
         $factory->setFactoryName('unitTest');
         
-        
     }
     
     public function testBaked() {
         $f = new Patterns\AbstractFactory('unitTestTwo',
-                                                  array('red', 'blue', 'yellow'),
-                                                  array('color' => 2),
-                                                  array('namespace' => 'unittest'));
+                                          array('red', 'blue', 'yellow'),
+                                          array('color' => 2),
+                                          array('namespace' => 'unittest'));
         
         $this->assertFalse($f->isBaked());
         
@@ -238,9 +237,9 @@ class AbstractFactoryTest extends TestCase
      */
     public function testSetImproperNamespace() {
         $f = new Patterns\AbstractFactory('unitTestTwo',
-                                                  array('red', 'blue', 'yellow'),
-                                                  array('color' => 2),
-                                                  array('namespace' => ''));
+                                          array('red', 'blue', 'yellow'),
+                                          array('color' => 2),
+                                          array('namespace' => '', 'strict' => true));
         
         $f->setNamespace('unittest');
         

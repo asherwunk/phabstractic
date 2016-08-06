@@ -127,8 +127,6 @@ namespace Phabstractic\Patterns
          * 
          * Options:
          * 
-         * namespace => namespace to define this enumerator in
-         * 
          * @param string $factoryName The name of the generate class
          *                            (is turned into AbstractFactoryNameFactory)
          * @param array $methods The methods to put in the factory (are turned into makeMethodName)
@@ -209,7 +207,7 @@ namespace Phabstractic\Patterns
             if (self::$factories === null) {
                 self::$factories = new Types\Set(
                     array(),
-                    array('strict' => true,
+                    array('strict' => $this->conf->strict,
                           'uniqe' => true,));
             }
         }
@@ -220,10 +218,9 @@ namespace Phabstractic\Patterns
          * This sets up the parameters for the abstractfactory to be generated
          * It only generas the class when the option 'bake' is set to true
          * 
-         * Options:
-         * 
-         * Same as the options available to createAbstractFactory with one additional -
-         * bake => define the class immediately with the given parameters
+         * Options: strict => throw errors
+         *          namespace => namespace to define this enumerator in
+         *          bake => define the class immediately with the given parameters
          * 
          * @param string $factorName The name of the factory class, turned into
          *                           Abstract{FactoryName}Factory
@@ -251,7 +248,8 @@ namespace Phabstractic\Patterns
             
             // method names must be unique
             $this->methods = new Types\Set($methods,
-                                           array('strict'=>true,'unique'=>true));
+                                           array('strict' => $this->conf->strict,
+                                                 'unique' => true));
             
             // constants must be unique
             $this->constants = $constants;
@@ -466,7 +464,7 @@ namespace Phabstractic\Patterns
             if (!$this->baked) {
                 $this->methods = new Types\Set(
                     $methods,
-                    array('strict' => true,
+                    array('strict' => $this->conf->strict,
                           'unique' => true,)
                 );
             } else {
