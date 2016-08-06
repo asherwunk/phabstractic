@@ -13,7 +13,7 @@ class TestIdentityClass {
     }
 }
 
-class IdentityFeatureTest extends TestCase
+class IdentityTraitTest extends TestCase
 {
     public function testIdentityStaticProperty() {
         $obj1 = new TestIdentityClass();
