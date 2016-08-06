@@ -61,7 +61,7 @@ namespace Phabstractic\Patterns
      * accessed, once baked, as an AbstractFactory class of itself.
      * 
      * A static 'registry' makes sure that the programmer doesn't try to instantiate
-     * a fully qualified enumerator twice, and throws an error.
+     * a fully qualified AbstractFactory twice, and throws an error.
      * 
      * CHANGELOG
      * 
