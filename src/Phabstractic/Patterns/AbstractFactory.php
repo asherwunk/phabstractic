@@ -125,13 +125,15 @@ namespace Phabstractic\Patterns
          * 
          * The function that pieces the generated code together and evaluates it
          * 
-         * Options:
-         * 
-         * @param string $factoryName The name of the generate class
-         *                            (is turned into AbstractFactoryNameFactory)
-         * @param array $methods The methods to put in the factory (are turned into makeMethodName)
-         * @param array $constants The constants to put in the factory (are turned uppercase)
-         * @param array $options See above options
+         * Evaluations: $this->factoryName
+         *                  The name of the generate class
+         *                  (is turned into AbstractFactoryNameFactory)
+         *              $this->methods
+         *                  The methods to put in the factory
+         *                  (are turned into makeMethodName)
+         *              $this->constants
+         *                  The constants to put in the factory
+         *                  (are turned uppercase)
          * 
          * @return bool if abstract factory class is generated without errors
          * 
