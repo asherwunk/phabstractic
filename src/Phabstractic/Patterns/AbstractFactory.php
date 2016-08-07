@@ -472,7 +472,7 @@ namespace Phabstractic\Patterns
             } else {
                 throw new PatternsException\RuntimeException(
                     'Phabstractic\\Patterns\\AbstractFactory->setMethods: ' .
-                    $this->namespace  . '\\Abstract' . $factoryName .
+                    $this->namespace  . '\\Abstract' . $this->factoryName .
                     'Factory already baked');
             }
         }
