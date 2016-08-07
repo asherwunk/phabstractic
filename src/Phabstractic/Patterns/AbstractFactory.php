@@ -254,7 +254,7 @@ namespace Phabstractic\Patterns
                                                  'unique' => true));
             
             // constants must be unique
-            $this->constants = $constants;
+            $this->constants = array_unique($constants);
             
             if (isset($this->conf->bake) && $this->conf->bake) {
                 $this->bake();
