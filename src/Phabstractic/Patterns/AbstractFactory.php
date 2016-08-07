@@ -363,7 +363,7 @@ namespace Phabstractic\Patterns
             } else {
                 throw new PatternsException\RuntimeException(
                     'Phabstractic\\Patterns\\AbstractFactory->setConstants: ' .
-                    $this->namespace  . '\\Abstract' . $factoryName .
+                    $this->namespace  . '\\Abstract' . $this->factoryName .
                     'Factory already baked');
             }
         }
@@ -398,7 +398,7 @@ namespace Phabstractic\Patterns
             } else {
                 throw new PatternsException\RuntimeException(
                     'Phabstractic\\Patterns\\AbstractFactory->addConstant: ' .
-                    $this->namespace  . '\\Abstract' . $factoryName .
+                    $this->namespace  . '\\Abstract' . $this->factoryName .
                     'Factory already baked');
             }
         }
@@ -421,7 +421,7 @@ namespace Phabstractic\Patterns
             } else {
                 throw new PhabstracticException\RuntimeException(
                     'Phabstractic\\Patterns\\AbstractFactory->addConstants: ' .
-                    $this->namespace  . '\\Abstract' . $factoryName .
+                    $this->namespace  . '\\Abstract' . $this->factoryName .
                     'Factory already baked');
             }
         }
@@ -445,7 +445,7 @@ namespace Phabstractic\Patterns
             } else {
                  throw new PatternsException\RuntimeException(
                      'Phabstractic\\Patterns\\AbstractFactory->removeConstant: ' .
-                     $this->namespace  . '\\Abstract' . $factoryName .
+                     $this->namespace  . '\\Abstract' . $this->factoryName .
                      'Factory already baked');
             }
         }
@@ -508,7 +508,7 @@ namespace Phabstractic\Patterns
             } else {
                 throw new PatternsException\RuntimeException(
                     'Phabstractic\\Patterns\\AbstractFactory->addMethod: ' .
-                    $this->namespace  . '\\Abstract' . $factoryName .
+                    $this->namespace  . '\\Abstract' . $this->factoryName .
                     'Factory already baked');
             }
         }
@@ -534,7 +534,7 @@ namespace Phabstractic\Patterns
             } else {
                 throw new PatternsException\RuntimeException(
                     'Phabstractic\\Patterns\\AbstractFactory->addMethods: ' .
-                    $this->namespace  . '\\Abstract' . $factoryName .
+                    $this->namespace  . '\\Abstract' . $this->factoryName .
                     'Factory already baked');
             }
         }
@@ -560,7 +560,7 @@ namespace Phabstractic\Patterns
             } else {
                  throw new PatternsException\RuntimeException(
                      'Phabstractic\\Patterns\\AbstractFactory->removeMethod: ' .
-                     $this->namespace  . '\\Abstract' . $factoryName .
+                     $this->namespace  . '\\Abstract' . $this->factoryName .
                      'Factory already baked');
             }
         }
@@ -596,7 +596,7 @@ namespace Phabstractic\Patterns
             } else {
                 throw new PatternsException\RuntimeException(
                     'Phabstractic\\Patterns\\AbstractFactory->setNamespace: ' .
-                    $this->namespace . '\\' . $this->className .
+                    $this->namespace . '\\' . $this->factoryName .
                     ' Factory already baked');
             }
         }
