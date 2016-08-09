@@ -85,14 +85,6 @@ namespace Phabstractic\Data\Types\Resource
          */
         public function __construct($data = null) 
         {
-            /* Version 3.0 eliminates default configurability
-            
-            if (is_array($options)) {
-                $options = array_change_key_case($options);
-            }
-            
-            $this->configure($options); */
-             
             if (is_array($data)) { 
                 $this->list = $data; 
             } elseif ($data instanceof AbstractList) { 
