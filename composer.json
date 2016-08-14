@@ -5,6 +5,7 @@
     "keywords": ["abstract","abstract data types","algorithms"],
     "homepage": "http://github.com/asherwunk/phabstractic",
     "license": "MIT",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Asher Wolfstein",
