@@ -1,0 +1,3 @@
+3/9/2017 -
+    Changed self::array_change_value_case in ArrayUtilities.php to self::arrayChangeValueCase
+
