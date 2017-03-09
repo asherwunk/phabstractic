@@ -148,6 +148,11 @@ class ArrayUtilitiesTest extends TestCase
         
         $this->assertEquals(array('key1'=>'VALUE','key2'=>'VALUE2','anotherkey'=>'ANOTHERVALUE'),
             PhabstracticResource\ArrayUtilities::arrayChangeValueCase($arr, CASE_UPPER));
+        
+        $arr2 = array( 'key1' => array( 'innerkey' => 'ValUe', 'innerkey2' => 'valUE2' ), 'anotherkey' => 'AnoThErValuE');
+        
+        $this->assertEquals(array('key1'=>array('innerkey' => 'value', 'innerkey2' => 'value2'),'anotherkey'=>'anothervalue'),
+            PhabstracticResource\ArrayUtilities::arrayChangeValueCase($arr2));
     }
 
 }

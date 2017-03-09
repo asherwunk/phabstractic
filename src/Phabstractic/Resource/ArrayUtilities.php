@@ -303,7 +303,7 @@ namespace Phabstractic\Resource
                  
             foreach ($input as $key => $value) {
                 if (is_array($value)) {
-                    $aRet[$key] = self::array_change_value_case($value, $case);
+                    $aRet[$key] = self::arrayChangeValueCase($value, $case);
                     continue;
                 }
                          
