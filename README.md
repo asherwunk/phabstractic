@@ -2,6 +2,14 @@
 
 Pure PHP Abstract Data Types, Features, and Algorithms
 
+If you appreciate my programming consider supporting me at the following links:
+* [KO-FI](http://ko-fi.com/asherwolfstein)
+* [Patreon](https://www.patreon.com/asherwolfstein)
+
+For further information on the author please visit:
+* [My Beautiful Life - And All It's Friends](http://wunk.me/ "Personal Blog")
+* [Phabstractic Homepage](http://wunk.me/programming-projects/phabstractic/)
+
 # License
 
 The MIT License (MIT)
