@@ -1,0 +1,2422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; Compilation errors
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phabstractic.html">\Phabstractic</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">228</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">Navigation</li>
+                                                                                                                                    <li><a href="#Patterns/Registry.php"><i class="icon-file"></i> Patterns/Registry.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                            <li><a href="#Patterns/Builder.php"><i class="icon-file"></i> Patterns/Builder.php</a></li>
+                                                                                                    <li><a href="#Patterns/ObserverTrait.php"><i class="icon-file"></i> Patterns/ObserverTrait.php</a></li>
+                                                                                                    <li><a href="#Patterns/AbstractFactory.php"><i class="icon-file"></i> Patterns/AbstractFactory.php</a></li>
+                                                                                                    <li><a href="#Patterns/Prototype.php"><i class="icon-file"></i> Patterns/Prototype.php</a></li>
+                                                                                                                                                                                                                    <li><a href="#Patterns/Resource/ObserverInterface.php"><i class="icon-file"></i> Patterns/Resource/ObserverInterface.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    <li><a href="#Loader/Module.php"><i class="icon-file"></i> Loader/Module.php</a></li>
+                                                                                                                                                            <li><a href="#Loader/Resource/AbstractLoader.php"><i class="icon-file"></i> Loader/Resource/AbstractLoader.php</a></li>
+                                                                                                    <li><a href="#Loader/Resource/ModuleInterface.php"><i class="icon-file"></i> Loader/Resource/ModuleInterface.php</a></li>
+                                                                                                                                                                                                                                                                                                                                    <li><a href="#Data/Components/Path.php"><i class="icon-file"></i> Data/Components/Path.php</a></li>
+                                                                                                    <li><a href="#Data/Components/Resource/PathInterface.php"><i class="icon-file"></i> Data/Components/Resource/PathInterface.php</a></li>
+                                                                                                    <li><a href="#Data/Types/LexicographicList.php"><i class="icon-file"></i> Data/Types/LexicographicList.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <li><a href="#Data/Types/PriorityQueue.php"><i class="icon-file"></i> Data/Types/PriorityQueue.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Range.php"><i class="icon-file"></i> Data/Types/Range.php</a></li>
+                                                                                                                                                            <li><a href="#Data/Types/Priority.php"><i class="icon-file"></i> Data/Types/Priority.php</a></li>
+                                                                                                                                                            <li><a href="#Data/Types/Queue.php"><i class="icon-file"></i> Data/Types/Queue.php</a></li>
+                                                                                                                                                            <li><a href="#Data/Types/TaggedUnion.php"><i class="icon-file"></i> Data/Types/TaggedUnion.php</a></li>
+                                                                                                                                                            <li><a href="#Data/Types/LinkedList.php"><i class="icon-file"></i> Data/Types/LinkedList.php</a></li>
+                                                                                                    <li><a href="#Data/Types/RestrictedList.php"><i class="icon-file"></i> Data/Types/RestrictedList.php</a></li>
+                                                                                                    <li><a href="#Data/Types/RestrictedQueue.php"><i class="icon-file"></i> Data/Types/RestrictedQueue.php</a></li>
+                                                                                                                                                                                                                    <li><a href="#Data/Types/Leaf.php"><i class="icon-file"></i> Data/Types/Leaf.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Restrictions.php"><i class="icon-file"></i> Data/Types/Restrictions.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Stack.php"><i class="icon-file"></i> Data/Types/Stack.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Map.php"><i class="icon-file"></i> Data/Types/Map.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Resource/AbstractLinkedList.php"><i class="icon-file"></i> Data/Types/Resource/AbstractLinkedList.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Resource/AbstractLinkedListElement.php"><i class="icon-file"></i> Data/Types/Resource/AbstractLinkedListElement.php</a></li>
+                                                                                                                                                            <li><a href="#Data/Types/Resource/PriorityInterface.php"><i class="icon-file"></i> Data/Types/Resource/PriorityInterface.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Resource/SetInterface.php"><i class="icon-file"></i> Data/Types/Resource/SetInterface.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Resource/AbstractFilter.php"><i class="icon-file"></i> Data/Types/Resource/AbstractFilter.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Resource/AbstractSortedList.php"><i class="icon-file"></i> Data/Types/Resource/AbstractSortedList.php</a></li>
+                                                                                                                                                                                                                    <li><a href="#Data/Types/Resource/FilterInterface.php"><i class="icon-file"></i> Data/Types/Resource/FilterInterface.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Resource/LinkedListInterface.php"><i class="icon-file"></i> Data/Types/Resource/LinkedListInterface.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Resource/AbstractRestrictedList.php"><i class="icon-file"></i> Data/Types/Resource/AbstractRestrictedList.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Resource/ListInterface.php"><i class="icon-file"></i> Data/Types/Resource/ListInterface.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Resource/AbstractList.php"><i class="icon-file"></i> Data/Types/Resource/AbstractList.php</a></li>
+                                                                                                    <li><a href="#Data/Types/Set.php"><i class="icon-file"></i> Data/Types/Set.php</a></li>
+                                                                                                                                                                                                                                                                                                                                    <li><a href="#Features/ConfigurationTrait.php"><i class="icon-file"></i> Features/ConfigurationTrait.php</a></li>
+                                                                                                                                                                                                                    <li><a href="#Resource/ArrayUtilities.php"><i class="icon-file"></i> Resource/ArrayUtilities.php</a></li>
+                                                                                                                                                                                                                    <li><a href="#Event/Actor.php"><i class="icon-file"></i> Event/Actor.php</a></li>
+                                                                                                    <li><a href="#Event/GenericEvent.php"><i class="icon-file"></i> Event/GenericEvent.php</a></li>
+                                                                                                    <li><a href="#Event/Filter.php"><i class="icon-file"></i> Event/Filter.php</a></li>
+                                                                                                                                                            <li><a href="#Event/Handler.php"><i class="icon-file"></i> Event/Handler.php</a></li>
+                                                                                                    <li><a href="#Event/Conduit.php"><i class="icon-file"></i> Event/Conduit.php</a></li>
+                                                                                                    <li><a href="#Event/HandlerPriorityQueue.php"><i class="icon-file"></i> Event/HandlerPriorityQueue.php</a></li>
+                                                                                                    <li><a href="#Event/Resource/AbstractEvent.php"><i class="icon-file"></i> Event/Resource/AbstractEvent.php</a></li>
+                                                                                                    <li><a href="#Event/Resource/FilterInterface.php"><i class="icon-file"></i> Event/Resource/FilterInterface.php</a></li>
+                                                                                                    <li><a href="#Event/Resource/EventInterface.php"><i class="icon-file"></i> Event/Resource/EventInterface.php</a></li>
+                                                                    </ul>
+        </div>
+
+        <div class="span10 offset2">
+            <ul class="breadcrumb">
+                <li><a href="../"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
+                <li>Compilation Errors</li>
+            </ul>
+
+            
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Patterns/Registry.php" id="Patterns/Registry.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Patterns/Registry.php
+                            <small style="float: right;padding-right: 10px;">26</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>208</td>
+                                        <td>Argument $index is missing from the Docblock of offsetExists</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>208</td>
+                                        <td>No summary for method offsetExists()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>213</td>
+                                        <td>Argument $index is missing from the Docblock of offsetGet</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>213</td>
+                                        <td>No summary for method offsetGet()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>224</td>
+                                        <td>Argument $index is missing from the Docblock of offsetSet</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>224</td>
+                                        <td>Argument $value is missing from the Docblock of offsetSet</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>224</td>
+                                        <td>No summary for method offsetSet()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>229</td>
+                                        <td>Argument $index is missing from the Docblock of offsetUnset</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>229</td>
+                                        <td>No summary for method offsetUnset()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>237</td>
+                                        <td>No summary for method asort()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>242</td>
+                                        <td>Argument $value is missing from the Docblock of append</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>242</td>
+                                        <td>No summary for method append()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>247</td>
+                                        <td>No summary for method count()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>252</td>
+                                        <td>Argument $array is missing from the Docblock of exchangeArray</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>252</td>
+                                        <td>No summary for method exchangeArray()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>257</td>
+                                        <td>No summary for method getArrayCopy()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>262</td>
+                                        <td>No summary for method getFlags()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>267</td>
+                                        <td>No summary for method getIterator()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>272</td>
+                                        <td>No summary for method getIteratorClass()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>277</td>
+                                        <td>No summary for method ksort()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>282</td>
+                                        <td>No summary for method natcasesort()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>287</td>
+                                        <td>No summary for method natsort()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>292</td>
+                                        <td>Argument $cmp_function is missing from the Docblock of uasort</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>292</td>
+                                        <td>No summary for method uasort()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>297</td>
+                                        <td>Argument $cmp_function is missing from the Docblock of uksort</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>297</td>
+                                        <td>No summary for method uksort()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Patterns/Builder.php" id="Patterns/Builder.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Patterns/Builder.php
+                            <small style="float: right;padding-right: 10px;">8</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>220</td>
+                                        <td>Argument $namespace is missing from the Docblock of getFQN</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>220</td>
+                                        <td>Name of argument $namespace does not match with the DocBlock&#039;s name $builderName in getFQN()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>329</td>
+                                        <td>Name of argument $builderName does not match with the DocBlock&#039;s name $factoryName in setBuilderName()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>329</td>
+                                        <td>Parameter $factoryName could not be found in setBuilderName()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>560</td>
+                                        <td>Name of argument $builderName does not match with the DocBlock&#039;s name $factoryName in buildBuilder()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>560</td>
+                                        <td>Name of argument $options does not match with the DocBlock&#039;s name $constants in buildBuilder()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>560</td>
+                                        <td>Parameter $factoryName could not be found in buildBuilder()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>560</td>
+                                        <td>Parameter $constants could not be found in buildBuilder()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Patterns/ObserverTrait.php" id="Patterns/ObserverTrait.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Patterns/ObserverTrait.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>103</td>
+                                        <td>Argument $publisher is missing from the Docblock of detachPublisher</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>122</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $publisher in attachPublisher()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>177</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $publisher in notifyObserver()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>177</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $state in notifyObserver()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Patterns/AbstractFactory.php" id="Patterns/AbstractFactory.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Patterns/AbstractFactory.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>197</td>
+                                        <td>Argument $namespace is missing from the Docblock of getFQN</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>197</td>
+                                        <td>Name of argument $namespace does not match with the DocBlock&#039;s name $factoryName in getFQN()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>234</td>
+                                        <td>Name of argument $factoryName does not match with the DocBlock&#039;s name $factorName in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>234</td>
+                                        <td>Parameter $factorName could not be found in __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Patterns/Prototype.php" id="Patterns/Prototype.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Patterns/Prototype.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>174</td>
+                                        <td>Argument $options is missing from the Docblock of fromRegistry</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>174</td>
+                                        <td>Name of argument $options does not match with the DocBlock&#039;s name $key in fromRegistry()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>189</td>
+                                        <td>Name of argument $parentPrototype does not match with the DocBlock&#039;s name $prototype in fromPrototype()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>189</td>
+                                        <td>Argument $options is missing from the Docblock of fromPrototype</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>189</td>
+                                        <td>Name of argument $options does not match with the DocBlock&#039;s name $prototype in fromPrototype()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>189</td>
+                                        <td>Parameter $prototype could not be found in fromPrototype()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Patterns/Resource/ObserverInterface.php" id="Patterns/Resource/ObserverInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Patterns/Resource/ObserverInterface.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>81</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $publisher in notifyObserver()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>81</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $state in notifyObserver()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Loader/Module.php" id="Loader/Module.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Loader/Module.php
+                            <small style="float: right;padding-right: 10px;">5</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>173</td>
+                                        <td>Argument $newIdentifier is missing from the Docblock of setLeafIdentifier</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>189</td>
+                                        <td>Argument $newIdentifier is missing from the Docblock of setModuleIdentifier</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>235</td>
+                                        <td>Argument $identifier is missing from the Docblock of getModuleByIdentifier</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>252</td>
+                                        <td>Argument $identifier is missing from the Docblock of getModuleByIdentifierReference</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>276</td>
+                                        <td>Parameter $moduleName could not be found in addModule()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Loader/Resource/AbstractLoader.php" id="Loader/Resource/AbstractLoader.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Loader/Resource/AbstractLoader.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>147</td>
+                                        <td>Argument $class is missing from the Docblock of autoload</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>260</td>
+                                        <td>Name of argument $newPath does not match with the DocBlock&#039;s name $path in addPath()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>260</td>
+                                        <td>Parameter $path could not be found in addPath()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>459</td>
+                                        <td>Parameter $path could not be found in isPrefix()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>699</td>
+                                        <td>Name of argument $namespace does not match with the DocBlock&#039;s name $namespcae in getNamespaceModule()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>699</td>
+                                        <td>Parameter $namespcae could not be found in getNamespaceModule()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Loader/Resource/ModuleInterface.php" id="Loader/Resource/ModuleInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Loader/Resource/ModuleInterface.php
+                            <small style="float: right;padding-right: 10px;">9</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>77</td>
+                                        <td>Argument $newIdentifier is missing from the Docblock of setModuleIdentifier</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>120</td>
+                                        <td>Parameter $ModuleName could not be found in addModule()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>131</td>
+                                        <td>Name of argument $module does not match with the DocBlock&#039;s name $ModuleName in removeModule()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>131</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $module in removeModule()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>131</td>
+                                        <td>Parameter $ModuleName could not be found in removeModule()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>141</td>
+                                        <td>Name of argument $moduleName does not match with the DocBlock&#039;s name $ModuleName in removeModuleByIdentifier()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>141</td>
+                                        <td>Parameter $ModuleName could not be found in removeModuleByIdentifier()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>152</td>
+                                        <td>Name of argument $module does not match with the DocBlock&#039;s name $Module in isSubModule()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>152</td>
+                                        <td>Parameter $Module could not be found in isSubModule()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Components/Path.php" id="Data/Components/Path.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Components/Path.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>168</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $extensions in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>348</td>
+                                        <td>Argument $extension is missing from the Docblock of removeExtension</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>361</td>
+                                        <td>Argument $extension is missing from the Docblock of isExtension</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Components/Resource/PathInterface.php" id="Data/Components/Resource/PathInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Components/Resource/PathInterface.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>122</td>
+                                        <td>Argument $extension is missing from the Docblock of removeExtension</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>130</td>
+                                        <td>Argument $extension is missing from the Docblock of isExtension</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/LexicographicList.php" id="Data/Types/LexicographicList.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/LexicographicList.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>463</td>
+                                        <td>Argument $a is missing from the Docblock of pushReference</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>612</td>
+                                        <td>Argument $i is missing from the Docblock of roll</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/PriorityQueue.php" id="Data/Types/PriorityQueue.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/PriorityQueue.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>660</td>
+                                        <td>Argument $i is missing from the Docblock of roll</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>710</td>
+                                        <td>Argument $a is missing from the Docblock of pushReference</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Range.php" id="Data/Types/Range.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Range.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>99</td>
+                                        <td>Name of argument $min does not match with the DocBlock&#039;s name $max in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>99</td>
+                                        <td>Name of argument $max does not match with the DocBlock&#039;s name $min in __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Priority.php" id="Data/Types/Priority.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Priority.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>139</td>
+                                        <td>Argument $priority is missing from the Docblock of setPriority</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Queue.php" id="Data/Types/Queue.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Queue.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>359</td>
+                                        <td>Argument $a is missing from the Docblock of pushReference</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>520</td>
+                                        <td>Name of argument $c does not match with the DocBlock&#039;s name $i in roll()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>520</td>
+                                        <td>Parameter $i could not be found in roll()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/TaggedUnion.php" id="Data/Types/TaggedUnion.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/TaggedUnion.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>123</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $restrictions in setRestrictions()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/LinkedList.php" id="Data/Types/LinkedList.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/LinkedList.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>201</td>
+                                        <td>Argument $strict is missing from the Docblock of getElementAtIndex</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>201</td>
+                                        <td>Name of argument $strict does not match with the DocBlock&#039;s name $index in getElementAtIndex()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>360</td>
+                                        <td>Name of argument $sentinel does not match with the DocBlock&#039;s name $element in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>360</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $sentinel in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>360</td>
+                                        <td>Parameter $element could not be found in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>426</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $newelement in add()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/RestrictedList.php" id="Data/Types/RestrictedList.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/RestrictedList.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>377</td>
+                                        <td>Argument $a is missing from the Docblock of pushReference</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>530</td>
+                                        <td>Name of argument $c does not match with the DocBlock&#039;s name $i in roll()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>530</td>
+                                        <td>Parameter $i could not be found in roll()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/RestrictedQueue.php" id="Data/Types/RestrictedQueue.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/RestrictedQueue.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>376</td>
+                                        <td>Name of argument $c does not match with the DocBlock&#039;s name $i in roll()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>376</td>
+                                        <td>Parameter $i could not be found in roll()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Leaf.php" id="Data/Types/Leaf.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Leaf.php
+                            <small style="float: right;padding-right: 10px;">14</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>163</td>
+                                        <td>Argument $newIdentifier is missing from the Docblock of setLeafIdentifier</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>180</td>
+                                        <td>Name of argument $data does not match with the DocBlock&#039;s name $leaves in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>180</td>
+                                        <td>Name of argument $leaves does not match with the DocBlock&#039;s name $options in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>180</td>
+                                        <td>Argument $options is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>233</td>
+                                        <td>Argument $delimiter is missing from the Docblock of addToLeafIdentityPath</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>233</td>
+                                        <td>Name of argument $delimiter does not match with the DocBlock&#039;s name $newLeaf in addToLeafIdentityPath()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>317</td>
+                                        <td>Argument $delimiter is missing from the Docblock of getFromLeafIdentityPath</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>317</td>
+                                        <td>Name of argument $delimiter does not match with the DocBlock&#039;s name $path in getFromLeafIdentityPath()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>369</td>
+                                        <td>Argument $delimiter is missing from the Docblock of getLeafIdentityPaths</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>369</td>
+                                        <td>Name of argument $delimiter does not match with the DocBlock&#039;s name $path in getLeafIdentityPaths()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>428</td>
+                                        <td>Name of argument $recurseLeaf does not match with the DocBlock&#039;s name $recurseKey in dataBelongsTo()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>428</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $recurseLeaf in dataBelongsTo()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>428</td>
+                                        <td>Name of argument $delimiter does not match with the DocBlock&#039;s name $recurseLeaf in dataBelongsTo()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>428</td>
+                                        <td>Parameter $recurseKey could not be found in dataBelongsTo()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Restrictions.php" id="Data/Types/Restrictions.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Restrictions.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>180</td>
+                                        <td>Argument $class is missing from the Docblock of classExists</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>727</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $filter in checkElements()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>787</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $R1 in compare()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>787</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $R2 in compare()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Stack.php" id="Data/Types/Stack.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Stack.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>379</td>
+                                        <td>Argument $a is missing from the Docblock of pushReference</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>538</td>
+                                        <td>Name of argument $c does not match with the DocBlock&#039;s name $i in roll()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>538</td>
+                                        <td>Parameter $i could not be found in roll()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Map.php" id="Data/Types/Map.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Map.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>350</td>
+                                        <td>Argument $key is missing from the Docblock of exists</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/AbstractLinkedList.php" id="Data/Types/Resource/AbstractLinkedList.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/AbstractLinkedList.php
+                            <small style="float: right;padding-right: 10px;">5</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>135</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $newElement in insertElementBefore()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>135</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $element in insertElementBefore()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>188</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $newElement in insertElementAfter()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>188</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $element in insertElementAfter()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>238</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $element in removeElement()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/AbstractLinkedListElement.php" id="Data/Types/Resource/AbstractLinkedListElement.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/AbstractLinkedListElement.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>100</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $next in setNextElement()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>135</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $previous in setPreviousElement()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/PriorityInterface.php" id="Data/Types/Resource/PriorityInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/PriorityInterface.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>91</td>
+                                        <td>Argument $priority is missing from the Docblock of setPriority</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/SetInterface.php" id="Data/Types/Resource/SetInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/SetInterface.php
+                            <small style="float: right;padding-right: 10px;">5</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>140</td>
+                                        <td>Name of argument $identity does not match with the DocBlock&#039;s name $identifier in removeByIdentifier()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>140</td>
+                                        <td>Parameter $identifier could not be found in removeByIdentifier()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>228</td>
+                                        <td>Argument $S1 is missing from the Docblock of equal</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>228</td>
+                                        <td>Argument $S2 is missing from the Docblock of equal</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>301</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $S in walk()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/AbstractFilter.php" id="Data/Types/Resource/AbstractFilter.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/AbstractFilter.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>96</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $filter in checkElements()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/AbstractSortedList.php" id="Data/Types/Resource/AbstractSortedList.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/AbstractSortedList.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>87</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $restrictions in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>107</td>
+                                        <td>Argument $l is missing from the Docblock of cmp</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>107</td>
+                                        <td>Argument $r is missing from the Docblock of cmp</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/FilterInterface.php" id="Data/Types/Resource/FilterInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/FilterInterface.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>60</td>
+                                        <td>Name of argument $type does not match with the DocBlock&#039;s name $value in isAllowed()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>60</td>
+                                        <td>Parameter $value could not be found in isAllowed()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>80</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $filter in checkElements()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/LinkedListInterface.php" id="Data/Types/Resource/LinkedListInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/LinkedListInterface.php
+                            <small style="float: right;padding-right: 10px;">5</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>84</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $newElement in insertElementBefore()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>84</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $element in insertElementBefore()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>102</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $newElement in insertElementAfter()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>102</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $element in insertElementAfter()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>116</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $element in removeElement()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/AbstractRestrictedList.php" id="Data/Types/Resource/AbstractRestrictedList.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/AbstractRestrictedList.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/ListInterface.php" id="Data/Types/Resource/ListInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/ListInterface.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>123</td>
+                                        <td>Argument $i is missing from the Docblock of index</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>133</td>
+                                        <td>Argument $i is missing from the Docblock of indexReference</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Resource/AbstractList.php" id="Data/Types/Resource/AbstractList.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Resource/AbstractList.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>134</td>
+                                        <td>Argument $a is missing from the Docblock of pushReference</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Data/Types/Set.php" id="Data/Types/Set.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Data/Types/Set.php
+                            <small style="float: right;padding-right: 10px;">7</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>368</td>
+                                        <td>Name of argument $identity does not match with the DocBlock&#039;s name $identifier in removeByIdentifier()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>368</td>
+                                        <td>Parameter $identifier could not be found in removeByIdentifier()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>513</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $S1 in equal()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>513</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $S2 in equal()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>613</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $S in walk()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>613</td>
+                                        <td>Name of argument $D does not match with the DocBlock&#039;s name $arg... in walk()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>613</td>
+                                        <td>Parameter $arg... could not be found in walk()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Features/ConfigurationTrait.php" id="Features/ConfigurationTrait.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Features/ConfigurationTrait.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>314</td>
+                                        <td>Argument $context is missing from the Docblock of getSettings</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>314</td>
+                                        <td>Name of argument $context does not match with the DocBlock&#039;s name $format in getSettings()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Resource/ArrayUtilities.php" id="Resource/ArrayUtilities.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Resource/ArrayUtilities.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>78</td>
+                                        <td>Argument $assoc is missing from the Docblock of returnUnique</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>78</td>
+                                        <td>Name of argument $assoc does not match with the DocBlock&#039;s name $data in returnUnique()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>127</td>
+                                        <td>Argument $assoc is missing from the Docblock of returnUniqueByReference</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>127</td>
+                                        <td>Name of argument $assoc does not match with the DocBlock&#039;s name $data in returnUniqueByReference()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Event/Actor.php" id="Event/Actor.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Event/Actor.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>123</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $filter in setFilter()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>146</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $handler in setHandler()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>185</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $subject in notifyObserver()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>185</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $state in notifyObserver()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Event/GenericEvent.php" id="Event/GenericEvent.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Event/GenericEvent.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>78</td>
+                                        <td>Parameter $options could not be found in __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Event/Filter.php" id="Event/Filter.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Event/Filter.php
+                            <small style="float: right;padding-right: 10px;">13</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>108</td>
+                                        <td>Name of argument $target does not match with the DocBlock&#039;s name $identifier in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>108</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $target in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>108</td>
+                                        <td>Name of argument $options does not match with the DocBlock&#039;s name $target in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>108</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $options in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>108</td>
+                                        <td>Parameter $identifier could not be found in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>127</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $filter in setStateWithFilter()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>127</td>
+                                        <td>Argument $morph is missing from the Docblock of setStateWithFilter</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>127</td>
+                                        <td>Name of argument $morph does not match with the DocBlock&#039;s name $filter in setStateWithFilter()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>151</td>
+                                        <td>Parameter $options could not be found in build()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>242</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $event in isEventApplicable()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>273</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $event in isLooselyApplicable()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>314</td>
+                                        <td>Argument $includeIdentifier is missing from the Docblock of isStrictlyApplicable</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>314</td>
+                                        <td>Name of argument $includeIdentifier does not match with the DocBlock&#039;s name $event in isStrictlyApplicable()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Event/Handler.php" id="Event/Handler.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Event/Handler.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>340</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $target in notifyObserver()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>340</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $state in notifyObserver()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>370</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $e in handle()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Event/Conduit.php" id="Event/Conduit.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Event/Conduit.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>176</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $filter in addFilter()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>259</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $publisher in notifyObserver()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>259</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $state in notifyObserver()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Event/HandlerPriorityQueue.php" id="Event/HandlerPriorityQueue.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Event/HandlerPriorityQueue.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>85</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $target in notifyObserver()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>85</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $state in notifyObserver()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>116</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $publisher in propagate()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>116</td>
+                                        <td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $event in propagate()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Event/Resource/AbstractEvent.php" id="Event/Resource/AbstractEvent.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Event/Resource/AbstractEvent.php
+                            <small style="float: right;padding-right: 10px;">23</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>186</td>
+                                        <td>Name of argument $categories does not match with the DocBlock&#039;s name $cats in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>186</td>
+                                        <td>Parameter $cats could not be found in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>186</td>
+                                        <td>Parameter $options could not be found in __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>242</td>
+                                        <td>Argument $state is missing from the Docblock of setState</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>266</td>
+                                        <td>Name of argument $state does not match with the DocBlock&#039;s name $stateArray in setStateWithArray()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>266</td>
+                                        <td>Parameter $stateArray could not be found in setStateWithArray()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>356</td>
+                                        <td>Argument $state is missing from the Docblock of setStateWithEvent</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>356</td>
+                                        <td>Argument $morph is missing from the Docblock of setStateWithEvent</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>356</td>
+                                        <td>No summary for method setStateWithEvent()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>447</td>
+                                        <td>Name of argument $category does not match with the DocBlock&#039;s name $cat in addCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>447</td>
+                                        <td>Parameter $cat could not be found in addCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>457</td>
+                                        <td>Name of argument $categories does not match with the DocBlock&#039;s name $cats in addCategories()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>457</td>
+                                        <td>Parameter $cats could not be found in addCategories()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>470</td>
+                                        <td>Name of argument $categories does not match with the DocBlock&#039;s name $cats in setCategories()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>470</td>
+                                        <td>Parameter $cats could not be found in setCategories()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>483</td>
+                                        <td>Name of argument $category does not match with the DocBlock&#039;s name $cat in removeCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>483</td>
+                                        <td>Parameter $cat could not be found in removeCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>496</td>
+                                        <td>Name of argument $category does not match with the DocBlock&#039;s name $cat in isCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>496</td>
+                                        <td>Parameter $cat could not be found in isCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>619</td>
+                                        <td>Name of argument $target does not match with the DocBlock&#039;s name $publisher in setTarget()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>619</td>
+                                        <td>Parameter $publisher could not be found in setTarget()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>630</td>
+                                        <td>Name of argument $target does not match with the DocBlock&#039;s name $publisher in setTargetReference()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>630</td>
+                                        <td>Parameter $publisher could not be found in setTargetReference()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Event/Resource/FilterInterface.php" id="Event/Resource/FilterInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Event/Resource/FilterInterface.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>65</td>
+                                        <td>Argument $event is missing from the Docblock of isEventApplicable</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="Event/Resource/EventInterface.php" id="Event/Resource/EventInterface.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            Event/Resource/EventInterface.php
+                            <small style="float: right;padding-right: 10px;">15</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>71</td>
+                                        <td>Argument $state is missing from the Docblock of setState</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>99</td>
+                                        <td>Name of argument $state does not match with the DocBlock&#039;s name $event in setStateWithArray()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>99</td>
+                                        <td>Parameter $event could not be found in setStateWithArray()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>125</td>
+                                        <td>Name of argument $category does not match with the DocBlock&#039;s name $cat in addCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>125</td>
+                                        <td>Parameter $cat could not be found in addCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>133</td>
+                                        <td>Name of argument $categories does not match with the DocBlock&#039;s name $cats in setCategories()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>133</td>
+                                        <td>Parameter $cats could not be found in setCategories()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>141</td>
+                                        <td>Name of argument $category does not match with the DocBlock&#039;s name $cat in removeCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>141</td>
+                                        <td>Parameter $cat could not be found in removeCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>151</td>
+                                        <td>Name of argument $category does not match with the DocBlock&#039;s name $cat in isCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>151</td>
+                                        <td>Parameter $cat could not be found in isCategory()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>222</td>
+                                        <td>Name of argument $target does not match with the DocBlock&#039;s name $publisher in setTarget()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>222</td>
+                                        <td>Parameter $publisher could not be found in setTarget()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>230</td>
+                                        <td>Name of argument $target does not match with the DocBlock&#039;s name $publisher in setTargetReference()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>notice</td>
+                                        <td>230</td>
+                                        <td>Parameter $publisher could not be found in setTargetReference()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                    </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phabstractic.html">\Phabstractic</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 4th, 2017 at 20:49.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

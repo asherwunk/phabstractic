@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phabstractic.html">\Phabstractic</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">228</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-207082876"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-207082876" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2073841333"></a>
+                                <a href="../namespaces/Phabstractic.html" style="margin-left: 30px; padding-left: 0">Phabstractic</a>
+            </div>
+            <div id="namespace-2073841333" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-693848530"></a>
+                                <a href="../namespaces/Phabstractic.Data.html" style="margin-left: 30px; padding-left: 0">Data</a>
+            </div>
+            <div id="namespace-693848530" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-995169717"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.html" style="margin-left: 30px; padding-left: 0">Components</a>
+            </div>
+            <div id="namespace-995169717" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-15871841"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-15871841" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Components.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Exception.DomainException.html">DomainException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1578039641"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1578039641" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Components.Resource.PathInterface.html">PathInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Path.html">Path</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1830760473"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.html" style="margin-left: 30px; padding-left: 0">Types</a>
+            </div>
+            <div id="namespace-1830760473" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-577534483"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-577534483" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.CodeGenerationException.html">CodeGenerationException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.OutOfRangeException.html">OutOfRangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.RangeException.html">RangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.RuntimeException.html">RuntimeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.UnexpectedValueException.html">UnexpectedValueException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-720725707"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-720725707" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.FilterInterface.html">FilterInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LeafInterface.html">LeafInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LinkedListElementInterface.html">LinkedListElementInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LinkedListInterface.html">LinkedListInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.ListInterface.html">ListInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.PriorityInterface.html">PriorityInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html">SetInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractFilter.html">AbstractFilter</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLeaf.html">AbstractLeaf</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLinkedList.html">AbstractLinkedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLinkedListElement.html">AbstractLinkedListElement</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractList.html">AbstractList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractSortedList.html">AbstractSortedList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                <a href="../namespaces/Phabstractic.Data.Types.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-405161691" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Enumeration.html">Enumeration</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Leaf.html">Leaf</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LexicographicList.html">LexicographicList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LinkedList.html">LinkedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LinkedListElement.html">LinkedListElement</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Map.html">Map</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.None.html">None</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Priority.html">Priority</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.PriorityQueue.html">PriorityQueue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Queue.html">Queue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Range.html">Range</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedList.html">RestrictedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedQueue.html">RestrictedQueue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedSet.html">RestrictedSet</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedStack.html">RestrictedStack</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Restrictions.html">Restrictions</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Set.html">Set</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Stack.html">Stack</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Structure.html">Structure</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.TaggedUnion.html">TaggedUnion</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-112731817"></a>
+                                <a href="../namespaces/Phabstractic.Event.html" style="margin-left: 30px; padding-left: 0">Event</a>
+            </div>
+            <div id="namespace-112731817" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-430369593"></a>
+                                <a href="../namespaces/Phabstractic.Event.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-430369593" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1958482380"></a>
+                                <a href="../namespaces/Phabstractic.Event.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1958482380" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Resource.EventInterface.html">EventInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Resource.FilterInterface.html">FilterInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Resource.AbstractEvent.html">AbstractEvent</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Actor.html">Actor</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Aggregator.html">Aggregator</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Conduit.html">Conduit</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Filter.html">Filter</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.GenericEvent.html">GenericEvent</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Handler.html">Handler</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.HandlerPriorityQueue.html">HandlerPriorityQueue</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1908400728"></a>
+                                <a href="../namespaces/Phabstractic.Features.html" style="margin-left: 30px; padding-left: 0">Features</a>
+            </div>
+            <div id="namespace-1908400728" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-637397500"></a>
+                                <a href="../namespaces/Phabstractic.Features.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-637397500" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Features.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Features.Exception.ClassDependencyException.html">ClassDependencyException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Features.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1996918055"></a>
+                                <a href="../namespaces/Phabstractic.Features.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1996918055" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Features.Resource.ConfigurationInterface.html">ConfigurationInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Phabstractic.Features.ConfigurationTrait.html">ConfigurationTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Features.IdentityTrait.html">IdentityTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-62109246"></a>
+                                <a href="../namespaces/Phabstractic.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
+            </div>
+            <div id="namespace-62109246" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-792330139"></a>
+                                <a href="../namespaces/Phabstractic.Loader.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-792330139" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Exception.DomainException.html">DomainException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-893536925"></a>
+                                <a href="../namespaces/Phabstractic.Loader.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-893536925" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Resource.LoaderInterface.html">LoaderInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Resource.ModuleInterface.html">ModuleInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Resource.AbstractLoader.html">AbstractLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.AutoLoader.html">AutoLoader</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Module.html">Module</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1523274479"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.html" style="margin-left: 30px; padding-left: 0">Patterns</a>
+            </div>
+            <div id="namespace-1523274479" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-3480714"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-3480714" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.CodeGenerationException.html">CodeGenerationException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.RangeException.html">RangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.RuntimeException.html">RuntimeException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1311290844"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1311290844" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.BuilderInterface.html">BuilderInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.ObserverInterface.html">ObserverInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.PublisherInterface.html">PublisherInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.SingletonInterface.html">SingletonInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.StateInterface.html">StateInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Phabstractic.Patterns.ObserverTrait.html">ObserverTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Patterns.PublisherTrait.html">PublisherTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Patterns.SingletonTrait.html">SingletonTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Phabstractic.Patterns.AbstractFactory.html">AbstractFactory</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Prototype.html">Prototype</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Registry.html">Registry</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-459015571"></a>
+                                <a href="../namespaces/Phabstractic.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-459015571" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Resource.ArrayUtilities.html">ArrayUtilities</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Resource.FileUtilities.html">FileUtilities</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Phabstractic.Data.Types.html">\Phabstractic\Data\Types</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Phabstractic\Data\Types</small>Enumeration</h1>
+                    <p><em>Enumeration Class - Creates and Defines OO-defined Enumeration
+Classes/Objects</em></p>
+                    <p>The Enum class which when instantiated can define an enumeration that
+can then be 'baked' into the appropriate namespace (or global namespace)
+and accessed, once baked, as an enumeration class/object of itself.</p>
+<p>NOTE: This class no longer uses the SPL Enum documented as of version 3.0</p>
+<p>A static 'registry' makes sure that the programmer doesn't try to
+instantiate a fully qualified enumerator twice, and throws an error.</p>
+<p>NOTE: If using the custom built class, to compare the value to defined
+enumerator constants, perform a string typecast first:
+(string) $myEnum == MyEnum::constant1
+If you have to compare integer values try
+intval( (string) $myEnum ) as well
+If you use these methods, it should not matter if the object is
+SplEnum or not. (SplEnum no longer supported)</p>
+<p>CHANGELOG</p>
+<p>1.1:  added createInstance static function - April 11th, 2013
+1.2:  added \ identifier before ReflectionClass - April 11th, 2013
+1.3:  added namespace braces
+1.4:  fixed throw statements to include new operator
+1.5:  added case checking for options arrays
+1.6:  made class constants count()-able. - April 21st, 2013
+1.7:  fully qualified classes in eval code - April 21st, 2013
+1.8:  added support for Set Falcraft\Data\Types, used in enums, and
+constants - April 22nd, 2013
+1.9:  added exception handling to gracefully exit enum generation and
+return false added code niceties and a bit more
+documentation - May 3rd, 2013
+1.10:  used standard object for options - May 27th, 2013
+1.11:  Fixed up some loopholes and cracks - May 27th, 2013
+1.12:  Changed default to default to 0 when missing - August 6th, 2013
+1.13:  Removed standard object and set dependency
+(loops, duh) - February 2nd, 2014
+2.0:   Refactored to use the Configuration Feature
+(Features/Configuration.php) - April 7th, 2015
+2.0.1: Added enum list check in code generator - April 7th, 2015
+2.0.2: Added more flexible options in constructor - April 10th, 2015
+2.0.3: Ensured Default Values using static property - September 4th, 2015
+3.0:   reformatted for inclusion in phabstractic
+reverted constants to a non-associative array
+added value checking in generated class - July 8th, 2016
+3.0.1: refined value checking in generated class - July 17th, 2016
+3.0.2: added getConst method in generated class - JJuly 18th, 2016
+3.0.3: implement configurationinterface - July 31st, 2016</p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Phabstractic.Features.ConfigurationTrait.html#method_configure" class="">configure()</a><br />
+                                                                    <a href="../classes/Phabstractic.Features.ConfigurationTrait.html#method_saveSettings" class="">saveSettings()</a><br />
+                                                                    <a href="../classes/Phabstractic.Features.ConfigurationTrait.html#method_getSettings" class="">getSettings()</a><br />
+                                                                    <a href="../classes/Phabstractic.Features.ConfigurationTrait.html#method_processSettings" class="">processSettings()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_bake" class="">bake()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_setClassname" class="">setClassname()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_getClassName" class="">getClassName()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_isBaked" class="">isBaked()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_setConstants" class="">setConstants()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_getConstants" class="">getConstants()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_addConstant" class="">addConstant()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_addConstants" class="">addConstants()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_removeConstant" class="">removeConstant()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_setDefault" class="">setDefault()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_getDefault" class="">getDefault()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_getDefaultValue" class="">getDefaultValue()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_setNamespace" class="">setNamespace()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_getNamespace" class="">getNamespace()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_getInstance" class="">getInstance()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_createEnumeration" class="">createEnumeration()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_createEnumerator" class="">createEnumerator()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method___debugInfo" class="">__debugInfo()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Phabstractic.Features.ConfigurationTrait.html#property_conf" class="">$conf</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#method_createEnum" class="">createEnum()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#property_enums" class="">$enums</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#property_className" class="">$className</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#property_baked" class="">$baked</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#property_constants" class="">$constants</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#property_default" class="">$default</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Enumeration.html#property_namespace" class="">$namespace</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Data.Types.Enumeration.html"><div class="path-wrapper">Data/Types/Enumeration.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Data</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Phabstractic\Data\Types\Enumeration</div>
+                            </dd>
+
+                                                                            <dt>Implements</dt>
+                                                        <dd><a href="../classes/Phabstractic.Features.Resource.ConfigurationInterface.html"><div class="namespace-wrapper">\Phabstractic\Features\Resource\ConfigurationInterface</div></a></dd>
+                        
+                                                                                    <dt>Uses traits</dt>
+                                                        <dd>
+                                <a href="../classes/Phabstractic.Features.ConfigurationTrait.html">                                    <div class="namespace-wrapper">\Phabstractic\Features\ConfigurationTrait</div>
+                                </a>                            </dd>
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                version
+                            </th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_conf" name="property_conf" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$conf</h3>
+                <pre class="signature">$conf : \Phabstractic\Features\Zend\Config\Config</pre>
+                <p><em>The objects configuration object</em></p>
+                <p>Should be an instance of Zend/Config</p>
+
+                                <h4>Type</h4>
+                \Phabstractic\Features\Zend\Config\Config
+                &mdash; The object configuration info                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Features.ConfigurationTrait.html"><div class="path-wrapper">\Phabstractic\Features\ConfigurationTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_enums" name="property_enums" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$enums</h3>
+                <pre class="signature">$enums : \Phabstractic\Data\Types\Falcraft\Data\Types\Set</pre>
+                <p><em>Keeps track of already defined enumerations internally</em></p>
+                
+
+                                <h4>Type</h4>
+                \Phabstractic\Data\Types\Falcraft\Data\Types\Set
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_className" name="property_className" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$className</h3>
+                <pre class="signature">$className : string</pre>
+                <p><em>The name of the class to be generated</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_baked" name="property_baked" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$baked</h3>
+                <pre class="signature">$baked : boolean</pre>
+                <p><em>Whether the class has defined itself</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_constants" name="property_constants" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$constants</h3>
+                <pre class="signature">$constants : array</pre>
+                <p><em>The elements, name =&gt; value, of the enumeration</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_default" name="property_default" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$default</h3>
+                <pre class="signature">$default : string</pre>
+                <p><em>The default enumerator element, when no element is specified on instantiation</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_namespace" name="property_namespace" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$namespace</h3>
+                <pre class="signature">$namespace : string</pre>
+                <p><em>The namespace under which the enumerator class is to be defined.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configure" name="method_configure" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configure()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">configure(array|string|\Phabstractic\Features\Zend\Config\Config  <span class="argument">$configuration</span>, string  <span class="argument">$format = null</span>, mixed  <span class="argument">$context = null</span>) : boolean</pre>
+                <p><em>Configure An Object</em></p>
+                <p>Expects an array for configuration however, you can also pass it
+a filepath where it will read the information from a file automatically
+detecting the format using the file extension.  You can also pass a
+Zend/Config object already made.</p>
+<p>You can also pass a format specifier (forced format) for use in a
+if $configuration is a string formatted with such information.  E.G.
+to load from a string in the format ini:</p>
+<p>$this-&gt;configure($configString, 'ini');</p>
+<p>The $context argument is used for any additional reader constructor
+information, such as the constructor for the 'yaml' format.</p>
+<p>NOTE:  You can override/extend the classes used for reading formats
+by identifying an additional array in the property
+$this-&gt;configReaders.  This will merge with the standard
+formats array.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array|string|\Phabstractic\Features\Zend\Config\Config</td>
+                                <td>$configuration </td>
+                                <td><p>The objects
+configuration information.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$format </td>
+                                <td><p>The forced format, or format for configuration
+string</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$context </td>
+                                <td><p>Any additional information for a reader
+constructor, such as needed for the YAML format.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if instantiated</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Features.ConfigurationTrait.html"><div class="path-wrapper">\Phabstractic\Features\ConfigurationTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_saveSettings" name="method_saveSettings" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">saveSettings()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">saveSettings(string  <span class="argument">$file</span>, \Phabstractic\Features\Zend\Config\Writer\WriterInterface  <span class="argument">$writer = null</span>, boolean  <span class="argument">$exclusive = true</span>, mixed  <span class="argument">$context = null</span>) </pre>
+                <p><em>Save an Object&#039;s Configuration to a File</em></p>
+                <p>Takes an objects $conf property and writes the information contained
+therein to a file with a format automatically specified by the
+filename.</p>
+<p>It is possible to retrieve a string of a particular format from this
+method by specifying the filename '#string' with an extension
+indicating the desired format, such as '#string.json'.</p>
+<p>The $context argument is used for any additional reader constructor
+information, such as the constructor for the 'yaml' format.</p>
+<p>NOTE:  You can override/extend the classes used for writing formats
+by identifying an additional array in the property
+$this-&gt;configWriters.  This will merge with the standard
+formats array.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$file </td>
+                                <td><p>The file path to write to, or '#string.ext'</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Phabstractic\Features\Zend\Config\Writer\WriterInterface</td>
+                                <td>$writer </td>
+                                <td><p>The optional writer
+object supplied to use (such as a MySQL writer)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$exclusive </td>
+                                <td><p>Argument provided to toFile(), file
+exclusive lock when writing</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$context </td>
+                                <td><p>Any additionla writer constructor
+information (YAML)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Features.ConfigurationTrait.html"><div class="path-wrapper">\Phabstractic\Features\ConfigurationTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSettings" name="method_getSettings" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getSettings()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSettings(string  <span class="argument">$format</span>,   <span class="argument">$context = null</span>) : string|boolean</pre>
+                <p><em>Retrieve an Object&#039;s Configuration Information As String</em></p>
+                <p>This is a shortcut to ::saveSettings() which specifies a format
+and forces the return of a string, using the #string.ext filename
+-see documentation for ::saveSettings()-</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$format </td>
+                                <td><p>The format to return, must be supported by
+::saveSettings(), use $this-&gt;configWriters to support
+additional formats.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$context </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|boolean
+                                            &mdash; <p>The formatted string, or false otherwise</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Features.ConfigurationTrait.html"><div class="path-wrapper">\Phabstractic\Features\ConfigurationTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_processSettings" name="method_processSettings" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">processSettings()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">processSettings(\Phabstractic\Features\Zend\Config\Processor\ProcessorInterface  <span class="argument">$processor</span>) </pre>
+                <p><em>Process an Object&#039;s Configuration</em></p>
+                <p>This uses a Zend\Config\Processor implementation to process the
+configuration information, such as constants.  The processor
+must be supplied and implement ProcessorInterface</p>
+<p>NOTE: Edits the $conf object in place.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Phabstractic\Features\Zend\Config\Processor\ProcessorInterface</td>
+                                <td>$processor </td>
+                                <td><p>The given
+processor object</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Features.ConfigurationTrait.html"><div class="path-wrapper">\Phabstractic\Features\ConfigurationTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$className</span>, array  <span class="argument">$values</span>, array|\Phabstractic\Data\Types\Zend\Config\Config|string  <span class="argument">$options = array()</span>) </pre>
+                <p><em>Enum Construction, Set Up Enum Parameters</em></p>
+                <p>This sets up the parameters for the enum to be generated.
+It only generates the enum class when the option 'bake' is set to
+true</p>
+<p>Options:</p>
+<p>default =&gt; default constant identifier when instantiating class
+namespace =&gt; namespace to define this enumerator class in
+bake =&gt; define the class immediately with the given parameters</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$className </td>
+                                <td><p>The name of the generated class</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$values </td>
+                                <td><p>The constant values in the form,
+identifier =&gt; value</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array|\Phabstractic\Data\Types\Zend\Config\Config|string</td>
+                                <td>$options </td>
+                                <td><p>See above options</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_bake" name="method_bake" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">bake()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">bake() </pre>
+                <p><em>Generates the enumerator class in the desired namespace.</em></p>
+                <p>Generates the enumerator class in the desired namespace using the
+given parameters, in essence solidifying them in place. Once an
+enum class is 'baked' it cannot be changed.</p>
+<p>This class also pushes the qualified name onto a static stack so
+that future enum classes defined through this method don't clash in
+name, allowing the class to raise a RangeException</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setClassname" name="method_setClassname" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setClassname()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setClassname(string  <span class="argument">$className</span>) </pre>
+                <p><em>Sets the name of the class to be generated</em></p>
+                <p>Checks to make sure the proposed fully qualified name doesn't clash
+with an already created enumerator object, raising a RangeException
+error</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$className </td>
+                                <td><p>The name of the class to be generated</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phabstractic\Data\Types\Exception\RuntimeException</dt>
+                            <dd><p>when the qualified name
+clashes with an already created enumerator class</p></dd>
+                                                    <dt>\Phabstractic\Data\Types\Exception\RuntimeException</dt>
+                            <dd><p>when the class has already
+been baked</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getClassName" name="method_getClassName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getClassName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getClassName() : string</pre>
+                <p><em>Retrieve class name</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The class name of the typed object</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isBaked" name="method_isBaked" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isBaked()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isBaked() : boolean</pre>
+                <p><em>Check to see if class has been defined or &#039;baked&#039;</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Whether the enumerator has been baked.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setConstants" name="method_setConstants" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setConstants()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setConstants(array  <span class="argument">$constants</span>) </pre>
+                <p><em>Sets the enumerator elements (constants)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$constants </td>
+                                <td><p>An array containing the constant
+names =&gt; values</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phabstractic\Data\Types\Exception\RuntimeException</dt>
+                            <dd><p>when the class has already
+been generated (baked)</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getConstants" name="method_getConstants" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getConstants()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getConstants() : array</pre>
+                <p><em>Gets the enumerator elements (constants)</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>Array of enumerator elements (constants)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addConstant" name="method_addConstant" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addConstant()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addConstant(string  <span class="argument">$name</span>) </pre>
+                <p><em>Add a single constant to the constant list</em></p>
+                <p>This method overrides any constant names already defined with the
+new proposed values</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>The name of the constant</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phabstractic\Data\Types\Exception\RuntimeException</dt>
+                            <dd><p>if the class has already
+been baked</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addConstants" name="method_addConstants" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addConstants()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addConstants(array  <span class="argument">$constants</span>) </pre>
+                <p><em>Add multiple constants to the constant list</em></p>
+                <p>This method employs the array structure identifier =&gt; value.
+Overrides any constant names already defined with the new proposed
+values</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$constants </td>
+                                <td><p>The array of constants to add to the list</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phabstractic\Data\Types\Exception\RuntimeException</dt>
+                            <dd><p>if the class has already
+been baked</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeConstant" name="method_removeConstant" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeConstant()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeConstant(string  <span class="argument">$name</span>) </pre>
+                <p><em>Remove a constant from the constant list</em></p>
+                <p>This method removes a constant from the constant list only if the
+class has not been generated, otherwise it throws an error</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>Name of the constant</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phabstractic\Data\Types\Exception\RuntimeException</dt>
+                            <dd><p>if the class has already
+been baked</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDefault" name="method_setDefault" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDefault()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDefault(  <span class="argument">$name</span>) : boolean</pre>
+                <p><em>Set the default of the generated enumerator class</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$name </td>
+                                <td><p>The IDENTIFIER of the default
+[constant keys] (i.e. Red, Apple, ...)</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phabstractic\Data\Types\Exception\RuntimeException</dt>
+                            <dd><p>when the class has already
+been baked</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Successful?</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDefault" name="method_getDefault" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDefault()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDefault() : string</pre>
+                <p><em>Retrieve the default of the generated enumerator class</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The IDENTIFIER of the default [constant keys] (i.e. Red, Apple, ...)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDefaultValue" name="method_getDefaultValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDefaultValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDefaultValue() : mixed|null</pre>
+                <p><em>Retrieve value of default of the enumerator class (identifier=&gt;VALUE)</em></p>
+                <p>Note that no constant in an enumerated class can be null</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|null
+                                            &mdash; <p>Any value that meets the constants requirements,
+or NULL if there is no default OR the default is
+not in the constants list</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setNamespace" name="method_setNamespace" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setNamespace()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setNamespace(string  <span class="argument">$namespace</span>) </pre>
+                <p><em>Sets up the namespace to be used when generating the enumeration class</em></p>
+                <p>This sets the namespace that will be used when the enumerator class
+is generated. How?  Eval statements operate in the global namespace,
+or basically a clean slate enabling us to put a namespace statement
+at the beginning of our generated code. Any namespace will do, if
+there is no namespace, you must access your enumerator using the
+global namespace.  ex: \Months::January, \Colors::Red, ...</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$namespace </td>
+                                <td><p>The namespace specified</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phabstractic\Data\Types\Exception\RuntimeException</dt>
+                            <dd><p>when the class/namespace
+has already been generated via Enum</p></dd>
+                                                    <dt>\Phabstractic\Data\Types\Exception\RuntimeException</dt>
+                            <dd><p>if the class has already
+been generated/baked.</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getNamespace" name="method_getNamespace" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getNamespace()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getNamespace() : string</pre>
+                <p><em>Retrieves the namespace for the generated enumerator</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The namespace for the generated enumerator</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInstance" name="method_getInstance" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInstance()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInstance(mixed  <span class="argument">$value</span>) : object</pre>
+                <p><em>Instantiate an instance of the generated class</em></p>
+                <p>The generated instance will be given the value parameter
+It's impossible to instantiate a generated class with a null value, thus
+no constant in the enumeration can be null</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>Any constant friendly value found in the enumerator</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phabstractic\Data\Types\Exception\CodeGenerationException</dt>
+                            <dd><p>if instantiated witho a
+null value</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                            &mdash; <p>An instance of the generated enumerator class</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createEnumeration" name="method_createEnumeration" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">createEnumeration()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createEnumeration(string  <span class="argument">$identifier</span>, null  <span class="argument">$value = null</span>) : object</pre>
+                <p><em>Encapsulate an apprioriate value inside an enumeration object</em></p>
+                <p>Ex: 404 could turn into HTTP\ResponseCode(404);</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$identifier </td>
+                                <td><p>The enum to use, as existing in the static variable</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>null</td>
+                                <td>$value </td>
+                                <td><p>The value to use in the newly created object</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createEnumerator" name="method_createEnumerator" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">createEnumerator()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createEnumerator(string  <span class="argument">$className</span>, array  <span class="argument">$values</span>, array  <span class="argument">$options = array()</span>) </pre>
+                <p><em>Straight out define an enumerator class without instantiating</em></p>
+                <p>Takes care of the instantiation and defines the enumerator according to parameters</p>
+<p>Added in version 1.1</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$className </td>
+                                <td><p>The name of the enumerator class</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$values </td>
+                                <td><p>The constants values of the enumerator</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td><p>See Above (__construct)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___debugInfo" name="method___debugInfo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__debugInfo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__debugInfo() </pre>
+                <p><em>Debug Info (var_dump)</em></p>
+                <p>Display debug info</p>
+<p>Requires PHP 5.6+</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createEnum" name="method_createEnum" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">createEnum()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createEnum(string  <span class="argument">$className</span>, array  <span class="argument">$values</span>) : boolean</pre>
+                <p><em>Generates the required class code and evaluates it</em></p>
+                <p>The function that pieces the generated code together and evaluates it
+It defines a custom enumerator class, SplEnum is not supported from
+version 3 onwards.  Use -&gt;get() to explicitly get the value of
+both SplEnum- (NOT SUPPORTED) and custom-derived classes.</p>
+<p>NOTE: The eval'd code can throw an \UnexpectedValueException (root)</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$className </td>
+                                <td><p>The name of the generated class</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$values </td>
+                                <td><p>The constant values in the form, identifier =&gt; value</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Phabstractic\Data\Types\Exception\CodeGenerationException</dt>
+                            <dd><p>if enum couldn't be created</p></dd>
+                                                    <dt>\Phabstractic\Data\Types\Exception\RuntimeException</dt>
+                            <dd><p>if enum class already exists</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>If enumerator was generated at all (without errors)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Enumeration.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Data/Types/Enumeration.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phabstractic.html">\Phabstractic</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 4th, 2017 at 20:49.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

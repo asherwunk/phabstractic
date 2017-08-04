@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phabstractic.html">\Phabstractic</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">228</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-756811259"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-756811259" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1338106808"></a>
+                                <a href="../namespaces/Phabstractic.html" style="margin-left: 30px; padding-left: 0">Phabstractic</a>
+            </div>
+            <div id="namespace-1338106808" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-737240535"></a>
+                                <a href="../namespaces/Phabstractic.Data.html" style="margin-left: 30px; padding-left: 0">Data</a>
+            </div>
+            <div id="namespace-737240535" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1697290852"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.html" style="margin-left: 30px; padding-left: 0">Components</a>
+            </div>
+            <div id="namespace-1697290852" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-671052542"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-671052542" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Components.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Exception.DomainException.html">DomainException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1431716562"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1431716562" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Components.Resource.PathInterface.html">PathInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Path.html">Path</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1417187926"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.html" style="margin-left: 30px; padding-left: 0">Types</a>
+            </div>
+            <div id="namespace-1417187926" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-50800282"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-50800282" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.CodeGenerationException.html">CodeGenerationException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.OutOfRangeException.html">OutOfRangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.RangeException.html">RangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.RuntimeException.html">RuntimeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.UnexpectedValueException.html">UnexpectedValueException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-618652098"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-618652098" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.FilterInterface.html">FilterInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LeafInterface.html">LeafInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LinkedListElementInterface.html">LinkedListElementInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LinkedListInterface.html">LinkedListInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.ListInterface.html">ListInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.PriorityInterface.html">PriorityInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html">SetInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractFilter.html">AbstractFilter</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLeaf.html">AbstractLeaf</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLinkedList.html">AbstractLinkedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLinkedListElement.html">AbstractLinkedListElement</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractList.html">AbstractList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractSortedList.html">AbstractSortedList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                <a href="../namespaces/Phabstractic.Data.Types.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-2139476988" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Enumeration.html">Enumeration</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Leaf.html">Leaf</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LexicographicList.html">LexicographicList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LinkedList.html">LinkedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LinkedListElement.html">LinkedListElement</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Map.html">Map</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.None.html">None</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Priority.html">Priority</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.PriorityQueue.html">PriorityQueue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Queue.html">Queue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Range.html">Range</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedList.html">RestrictedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedQueue.html">RestrictedQueue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedSet.html">RestrictedSet</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedStack.html">RestrictedStack</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Restrictions.html">Restrictions</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Set.html">Set</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Stack.html">Stack</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Structure.html">Structure</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.TaggedUnion.html">TaggedUnion</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-65780297"></a>
+                                <a href="../namespaces/Phabstractic.Event.html" style="margin-left: 30px; padding-left: 0">Event</a>
+            </div>
+            <div id="namespace-65780297" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1085038446"></a>
+                                <a href="../namespaces/Phabstractic.Event.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1085038446" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1945624217"></a>
+                                <a href="../namespaces/Phabstractic.Event.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1945624217" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Resource.EventInterface.html">EventInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Resource.FilterInterface.html">FilterInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Resource.AbstractEvent.html">AbstractEvent</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Actor.html">Actor</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Aggregator.html">Aggregator</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Conduit.html">Conduit</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Filter.html">Filter</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.GenericEvent.html">GenericEvent</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Handler.html">Handler</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.HandlerPriorityQueue.html">HandlerPriorityQueue</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1398704809"></a>
+                                <a href="../namespaces/Phabstractic.Features.html" style="margin-left: 30px; padding-left: 0">Features</a>
+            </div>
+            <div id="namespace-1398704809" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1153627811"></a>
+                                <a href="../namespaces/Phabstractic.Features.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1153627811" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Features.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Features.Exception.ClassDependencyException.html">ClassDependencyException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Features.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-751146339"></a>
+                                <a href="../namespaces/Phabstractic.Features.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-751146339" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Features.Resource.ConfigurationInterface.html">ConfigurationInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Phabstractic.Features.ConfigurationTrait.html">ConfigurationTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Features.IdentityTrait.html">IdentityTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-773192574"></a>
+                                <a href="../namespaces/Phabstractic.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
+            </div>
+            <div id="namespace-773192574" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-309069692"></a>
+                                <a href="../namespaces/Phabstractic.Loader.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-309069692" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Exception.DomainException.html">DomainException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1178246811"></a>
+                                <a href="../namespaces/Phabstractic.Loader.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1178246811" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Resource.LoaderInterface.html">LoaderInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Resource.ModuleInterface.html">ModuleInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Resource.AbstractLoader.html">AbstractLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.AutoLoader.html">AutoLoader</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Module.html">Module</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1877720996"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.html" style="margin-left: 30px; padding-left: 0">Patterns</a>
+            </div>
+            <div id="namespace-1877720996" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-945706785"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-945706785" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.CodeGenerationException.html">CodeGenerationException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.RangeException.html">RangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.RuntimeException.html">RuntimeException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1479705589"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1479705589" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.BuilderInterface.html">BuilderInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.ObserverInterface.html">ObserverInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.PublisherInterface.html">PublisherInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.SingletonInterface.html">SingletonInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.StateInterface.html">StateInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Phabstractic.Patterns.ObserverTrait.html">ObserverTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Patterns.PublisherTrait.html">PublisherTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Patterns.SingletonTrait.html">SingletonTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Phabstractic.Patterns.AbstractFactory.html">AbstractFactory</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Prototype.html">Prototype</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Registry.html">Registry</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-665562180"></a>
+                                <a href="../namespaces/Phabstractic.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-665562180" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Resource.ArrayUtilities.html">ArrayUtilities</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Resource.FileUtilities.html">FileUtilities</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Phabstractic.Data.Types.Resource.html">\Phabstractic\Data\Types\Resource</a>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Phabstractic\Data\Types\Resource</small>SetInterface</h1>
+                    <p><em>Set Interface - Defines A Set Data Structure</em></p>
+                    <p>A set is a collection of values that are unique.  In mathematical terms
+it is an implementation of a finite set.  Usually you test if something
+exists or doesn't exist inside the set.  You can also set up operations on
+sets themselves, much like an array map.  You can also easily perform
+unions, intersections, and many operations traditional to set theory and the
+set data type.</p>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span6">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span6">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span6">
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_getArray">getArray()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_getArrayReference">getArrayReference()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_getPlainArray">getPlainArray()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_retrieveReference">retrieveReference()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_add">add()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_addReference">addReference()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_remove">remove()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_removeByIdentifier">removeByIdentifier()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_in">in()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_isEmpty">isEmpty()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_size">size()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_iterate">iterate()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_enumerate">enumerate()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_pop">pop()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_clear">clear()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_hash">hash()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_equal">equal()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_fold">fold()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_filter">filter()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_map">map()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_walk">walk()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_build">build()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_union">union()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_intersection">intersection()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_difference">difference()</a><br />
+                                                                    <a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html#method_subset">subset()</a><br />
+                                                            </section>
+                            <section class="span6">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span6">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span6">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span6">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span6">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        <dl>
+                        <dt>File</dt>
+                            <dd>
+                                <a href="../files/Data.Types.Resource.SetInterface.html"><div class="path-wrapper">Data/Types/Resource/SetInterface.php</div></a>
+                            </dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Data</div></dd>
+                                                
+                                                                            <dt>See also</dt>
+                                                                                    <dd><a href=""><div class="namespace-wrapper">CHANGELOG
+
+1.0: Created SetInterface - April 11th, 2015
+2.0: reformatted for inclusion in phabstractic - July 10th, 2016</div></a></dd>
+                                                                                                                                        <dd><a href="http://en.wikipedia.org/wiki/Set_(abstract_data_type)"><div class="namespace-wrapper">[English]</div></a></dd>
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>version</th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+            
+                        <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Methods</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getArray" name="method_getArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getArray() : array</pre>
+                <p><em>Get the Set as Array</em></p>
+                <p>Return the set contents as an array</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The set represented as an array</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getArrayReference" name="method_getArrayReference" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getArrayReference()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getArrayReference() : array</pre>
+                <p><em>Get the Set&#039;s Array</em></p>
+                <p>Return the set's array by reference</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The set's internal array</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPlainArray" name="method_getPlainArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPlainArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPlainArray() : array</pre>
+                <p><em>Get the Set as a PLAIN Array</em></p>
+                <p>Return the set contents as an array without string keys</p>
+<p>NOTE:  All elements are references to internal array elements</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The set represented as a plain array</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_retrieveReference" name="method_retrieveReference" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">retrieveReference()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">retrieveReference(mixed  <span class="argument">$identifier</span>) : \Phabstractic\Data\Types\Resource\mixed;</pre>
+                <p><em>If the value is in the set, this retrieves a reference to it</em></p>
+                <p>This only works if the set is considered unique</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$identifier </td>
+                                <td><p>The identifier returned by the add function</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Phabstractic\Data\Types\Resource\mixed;
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_add" name="method_add" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">add()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">add(mixed  <span class="argument">$value</span>) : string</pre>
+                <p><em>Add a value to the set, respects &#039;unique&#039; option</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value to add to the set.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The internal datum identifier</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addReference" name="method_addReference" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addReference()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addReference(mixed  <span class="argument">$value</span>) : string</pre>
+                <p><em>Add a value to the set as a reference, respects &#039;strict&#039; option</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value to add to the set.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The internal datum identifier</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_remove" name="method_remove" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">remove()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">remove(mixed  <span class="argument">$value</span>) </pre>
+                <p><em>Remove a value from the set</em></p>
+                <p>Respects 'strict' option: the set must contain the value to be
+removed.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value to be removed from the set.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeByIdentifier" name="method_removeByIdentifier" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeByIdentifier()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeByIdentifier(  <span class="argument">$identity</span>) </pre>
+                <p><em>Remove a value from the set</em></p>
+                <p>This uses a previously given identifier to remove an element
+from the set.  If the identifier doesn't exist it returns false.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$identity </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_in" name="method_in" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">in()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">in(mixed  <span class="argument">$value</span>) </pre>
+                <p><em>Basic in_array wrapper for the set</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value to check against the data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isEmpty" name="method_isEmpty" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isEmpty()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isEmpty() : boolean</pre>
+                <p><em>Is the internal data array empty?</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_size" name="method_size" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">size()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">size() : integer</pre>
+                <p><em>Basic count wrapper for the set</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>Size of data array</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_iterate" name="method_iterate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">iterate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">iterate() : \ArrayIterator</pre>
+                <p><em>This allows us to use the Set data in a basic iterator
+Being, \ArrayIterator</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \ArrayIterator
+                                            &mdash; <p>The iterator to use in a loop</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_enumerate" name="method_enumerate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">enumerate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">enumerate() : array</pre>
+                <p><em>Synonym for getArray()</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The data array of the set</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_pop" name="method_pop" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">pop()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">pop() : mixed</pre>
+                <p><em>Pop the first/next value defined the set</em></p>
+                <p>This deletes the value from the set</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The value 'popped' from the Set</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_clear" name="method_clear" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">clear()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">clear() </pre>
+                <p><em>Eliminate Set data completely</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hash" name="method_hash" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hash()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hash() : string</pre>
+                <p><em>Return a hash (unique) of the entire set</em></p>
+                <p>Derived from the Set data: &quot;returns a hash value for the static set
+S such that if equal(S1, S2) then hash(S1) = hash(S2)&quot;</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The hash of the set data</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://en.wikipedia.org/wiki/Set_(abstract_data_type)#Additional_operations"><span class="namespace-wrapper">[English]</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_equal" name="method_equal" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">equal()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">equal(\Phabstractic\Data\Types\Resource\SetInterface  <span class="argument">$S1</span>, \Phabstractic\Data\Types\Resource\SetInterface  <span class="argument">$S2</span>) : boolean</pre>
+                <p><em>Is S1 Equal to S2?</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html">\Phabstractic\Data\Types\Resource\SetInterface</a></td>
+                                <td>$S1 </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html">\Phabstractic\Data\Types\Resource\SetInterface</a></td>
+                                <td>$S2 </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fold" name="method_fold" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fold()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fold(callable  <span class="argument">$F</span>, \Phabstractic\Data\Types\Resource\Set  <span class="argument">$S</span>) : mixed</pre>
+                <p><em>Apply a function to each element of the set, reducing to a single function</em></p>
+                <p>&quot;returns the value A|S| after applying Ai+1 := F(Ai, e) for each
+element e of S.&quot;</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$F </td>
+                                <td><p>The applicable function.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Phabstractic\Data\Types\Resource\Set</td>
+                                <td>$S </td>
+                                <td><p>The Set to fold</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The value resulting from the 'fold' (array_reduce)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://en.wikipedia.org/wiki/Set_(abstract_data_type)#Additional_operations"><span class="namespace-wrapper">[English]</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filter" name="method_filter" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filter(callable  <span class="argument">$F</span>, \Phabstractic\Data\Types\Resource\Set  <span class="argument">$S</span>) : array</pre>
+                <p><em>Returns only elements that satisfy a &#039;predicate&#039;</em></p>
+                <p>The predicate here is a function that returns true or false on any
+given item &quot;returns the subset containing all elements of S that
+satisfy a given predicate P.&quot;</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$F </td>
+                                <td><p>The applicable predicate function.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Phabstractic\Data\Types\Resource\Set</td>
+                                <td>$S </td>
+                                <td><p>The Set to filter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The filtered aray</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://en.wikipedia.org/wiki/Set_(abstract_data_type)#Additional_operations"><span class="namespace-wrapper">[English]</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_map" name="method_map" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">map()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">map(callable  <span class="argument">$F</span>, \Phabstractic\Data\Types\Resource\Set  <span class="argument">$S</span>) : array</pre>
+                <p><em>Apply a function to each element of the set</em></p>
+                <p>&quot;returns the set of distinct values resulting from applying function
+F to each element of S.&quot;</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$F </td>
+                                <td><p>The applicable function.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Phabstractic\Data\Types\Resource\Set</td>
+                                <td>$S </td>
+                                <td><p>The Set to map</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The resulting distinct set</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://en.wikipedia.org/wiki/Set_(abstract_data_type)#Additional_operations"><span class="namespace-wrapper">[English]</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_walk" name="method_walk" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">walk()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">walk(\Phabstractic\Data\Types\Resource\SetInterface  <span class="argument">$S</span>, callable  <span class="argument">$F</span>, mixed  <span class="argument">$D</span>) : boolean</pre>
+                <p><em>Applies the given function, plus any additional arguments
+($args) past the given function argument to each
+element of theset.</em></p>
+                <p>Note: Unlike Map, this operates on a reference of the set</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html">\Phabstractic\Data\Types\Resource\SetInterface</a></td>
+                                <td>$S </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$F </td>
+                                <td><p>the applicablt function</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$D </td>
+                                <td><p>the user data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True on Success, False otherwise</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_build" name="method_build" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">build()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">build(array  <span class="argument">$values = array()</span>) : \Phabstractic\Data\Types\Resource\Set</pre>
+                <p><em>Create a set from an array</em></p>
+                <p>Just hands back a Set created from a given array
+&quot;creates a set structure with values x1,x2,…,xn.&quot;</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$values </td>
+                                <td><p>The values of the set (which are 'uniqued' in the construction)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Phabstractic\Data\Types\Resource\Set
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://en.wikipedia.org/wiki/Set_(abstract_data_type)#Static_sets"><span class="namespace-wrapper">[English]</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_union" name="method_union" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">union()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">union() : array</pre>
+                <p><em>Set Union</em></p>
+                <p>&quot;returns the union of sets S and T.&quot;</p>
+<p>This function can take multiple arrays, sets, or values mixed
+together</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>Unioned array</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://en.wikipedia.org/wiki/Set_(abstract_data_type)#Core_set-theoretical_operations"><span class="namespace-wrapper">[English]</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_intersection" name="method_intersection" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">intersection()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">intersection() : array</pre>
+                <p><em>Set Intersection</em></p>
+                <p>&quot;returns the intersection of sets S and T.&quot;</p>
+<p>This function can take multiple arrays, Sets, or values mixed together</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>Intersected array</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://en.wikipedia.org/wiki/Set_(abstract_data_type)#Core_set-theoretical_operations"><span class="namespace-wrapper">[English]</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_difference" name="method_difference" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">difference()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">difference() : array</pre>
+                <p><em>Set Difference</em></p>
+                <p>&quot;returns the difference of sets S and T.&quot;</p>
+<p>This function can take multiple arrays, Sets, or values
+mixed together</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>Difference array</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://en.wikipedia.org/wiki/Set_(abstract_data_type)#Core_set-theoretical_operations"><span class="namespace-wrapper">[English]</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_subset" name="method_subset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">subset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">subset(\Phabstractic\Data\Types\Resource\Set  <span class="argument">$S</span>, \Phabstractic\Data\Types\Resource\Set  <span class="argument">$T</span>) : boolean</pre>
+                <p><em>Set Filter</em></p>
+                <p>&quot;a predicate that tests whether the set S is a subset of set T.&quot;</p>
+<p>This function tests whether all elements of S are in T</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Phabstractic\Data\Types\Resource\Set</td>
+                                <td>$S </td>
+                                <td><p>The first set</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Phabstractic\Data\Types\Resource\Set</td>
+                                <td>$T </td>
+                                <td><p>The comparison/parent set</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://en.wikipedia.org/wiki/Set_(abstract_data_type)#Core_set-theoretical_operations"><span class="namespace-wrapper">[English]</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">SetInterface.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Data/Types/Resource/SetInterface.php.txt" class="language-php"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phabstractic.html">\Phabstractic</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 4th, 2017 at 20:49.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

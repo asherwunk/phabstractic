@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phabstractic.html">\Phabstractic</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">228</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1408580201"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1408580201" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1191874909"></a>
+                                <a href="../namespaces/Phabstractic.html" style="margin-left: 30px; padding-left: 0">Phabstractic</a>
+            </div>
+            <div id="namespace-1191874909" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1151275512"></a>
+                                <a href="../namespaces/Phabstractic.Data.html" style="margin-left: 30px; padding-left: 0">Data</a>
+            </div>
+            <div id="namespace-1151275512" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1362942267"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.html" style="margin-left: 30px; padding-left: 0">Components</a>
+            </div>
+            <div id="namespace-1362942267" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-344942101"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-344942101" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Components.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Exception.DomainException.html">DomainException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-317374210"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-317374210" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Components.Resource.PathInterface.html">PathInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Path.html">Path</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-904179188"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.html" style="margin-left: 30px; padding-left: 0">Types</a>
+            </div>
+            <div id="namespace-904179188" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1448640493"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1448640493" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.CodeGenerationException.html">CodeGenerationException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.OutOfRangeException.html">OutOfRangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.RangeException.html">RangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.RuntimeException.html">RuntimeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.UnexpectedValueException.html">UnexpectedValueException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1258747465"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1258747465" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.FilterInterface.html">FilterInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LeafInterface.html">LeafInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LinkedListElementInterface.html">LinkedListElementInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LinkedListInterface.html">LinkedListInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.ListInterface.html">ListInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.PriorityInterface.html">PriorityInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html">SetInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractFilter.html">AbstractFilter</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLeaf.html">AbstractLeaf</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLinkedList.html">AbstractLinkedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLinkedListElement.html">AbstractLinkedListElement</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractList.html">AbstractList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractSortedList.html">AbstractSortedList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                <a href="../namespaces/Phabstractic.Data.Types.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-1160807132" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Enumeration.html">Enumeration</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Leaf.html">Leaf</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LexicographicList.html">LexicographicList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LinkedList.html">LinkedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LinkedListElement.html">LinkedListElement</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Map.html">Map</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.None.html">None</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Priority.html">Priority</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.PriorityQueue.html">PriorityQueue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Queue.html">Queue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Range.html">Range</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedList.html">RestrictedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedQueue.html">RestrictedQueue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedSet.html">RestrictedSet</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedStack.html">RestrictedStack</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Restrictions.html">Restrictions</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Set.html">Set</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Stack.html">Stack</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Structure.html">Structure</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.TaggedUnion.html">TaggedUnion</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1426623752"></a>
+                                <a href="../namespaces/Phabstractic.Event.html" style="margin-left: 30px; padding-left: 0">Event</a>
+            </div>
+            <div id="namespace-1426623752" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1514087600"></a>
+                                <a href="../namespaces/Phabstractic.Event.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1514087600" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-316707021"></a>
+                                <a href="../namespaces/Phabstractic.Event.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-316707021" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Resource.EventInterface.html">EventInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Resource.FilterInterface.html">FilterInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Resource.AbstractEvent.html">AbstractEvent</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Actor.html">Actor</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Aggregator.html">Aggregator</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Conduit.html">Conduit</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Filter.html">Filter</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.GenericEvent.html">GenericEvent</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Handler.html">Handler</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.HandlerPriorityQueue.html">HandlerPriorityQueue</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1129982314"></a>
+                                <a href="../namespaces/Phabstractic.Features.html" style="margin-left: 30px; padding-left: 0">Features</a>
+            </div>
+            <div id="namespace-1129982314" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1625110229"></a>
+                                <a href="../namespaces/Phabstractic.Features.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1625110229" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Features.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Features.Exception.ClassDependencyException.html">ClassDependencyException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Features.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1619275379"></a>
+                                <a href="../namespaces/Phabstractic.Features.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1619275379" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Features.Resource.ConfigurationInterface.html">ConfigurationInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Phabstractic.Features.ConfigurationTrait.html">ConfigurationTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Features.IdentityTrait.html">IdentityTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1288946722"></a>
+                                <a href="../namespaces/Phabstractic.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
+            </div>
+            <div id="namespace-1288946722" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1976988402"></a>
+                                <a href="../namespaces/Phabstractic.Loader.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1976988402" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Exception.DomainException.html">DomainException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1013419598"></a>
+                                <a href="../namespaces/Phabstractic.Loader.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1013419598" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Resource.LoaderInterface.html">LoaderInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Resource.ModuleInterface.html">ModuleInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Resource.AbstractLoader.html">AbstractLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.AutoLoader.html">AutoLoader</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Module.html">Module</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-98948771"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.html" style="margin-left: 30px; padding-left: 0">Patterns</a>
+            </div>
+            <div id="namespace-98948771" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1678676569"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1678676569" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.CodeGenerationException.html">CodeGenerationException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.RangeException.html">RangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.RuntimeException.html">RuntimeException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1545053672"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1545053672" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.BuilderInterface.html">BuilderInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.ObserverInterface.html">ObserverInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.PublisherInterface.html">PublisherInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.SingletonInterface.html">SingletonInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.StateInterface.html">StateInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Phabstractic.Patterns.ObserverTrait.html">ObserverTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Patterns.PublisherTrait.html">PublisherTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Patterns.SingletonTrait.html">SingletonTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Phabstractic.Patterns.AbstractFactory.html">AbstractFactory</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Prototype.html">Prototype</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Registry.html">Registry</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1119637650"></a>
+                                <a href="../namespaces/Phabstractic.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1119637650" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Resource.ArrayUtilities.html">ArrayUtilities</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Resource.FileUtilities.html">FileUtilities</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Phabstractic.Resource.html">\Phabstractic\Resource</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Phabstractic\Resource</small>ArrayUtilities</h1>
+                    <p><em>The Static Array Utility Class</em></p>
+                    <p>This class contains all the static array-based utility functions
+that are used in particular cases throughout the library.</p>
+<p>CHANGELOG</p>
+<p>1.0:   Documented Utility - October 7th, 2013
+2.0:   Refactored into Primus/Falcraft - April 10th, 2015
+2.0.1: Added returnUniqueByReference - April 10th, 2015
+3.0:   Inherited from Zend\Stdlib\ArrayUtils - April 12th. 2015
+3.1:   Modified elementComparison for
+further compatibility - April 14th, 2015
+4.0:   returnUnique now returns appropriate data
+objectToArray now includes values
+reformatted for inclusion in phabstractic - July 8th, 2015</p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Phabstractic.Resource.ArrayUtilities.html#method_returnUnique" class="">returnUnique()</a><br />
+                                                                    <a href="../classes/Phabstractic.Resource.ArrayUtilities.html#method_returnUniqueByReference" class="">returnUniqueByReference()</a><br />
+                                                                    <a href="../classes/Phabstractic.Resource.ArrayUtilities.html#method_elementComparison" class="">elementComparison()</a><br />
+                                                                    <a href="../classes/Phabstractic.Resource.ArrayUtilities.html#method_objectToArray" class="">objectToArray()</a><br />
+                                                                    <a href="../classes/Phabstractic.Resource.ArrayUtilities.html#method_arrayToObject" class="">arrayToObject()</a><br />
+                                                                    <a href="../classes/Phabstractic.Resource.ArrayUtilities.html#method_arrayChangeValueCase" class="">arrayChangeValueCase()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Resource.ArrayUtilities.html"><div class="path-wrapper">Resource/ArrayUtilities.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Utilities</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\Zend\Stdlib\ArrayUtils</div>
+                                                                                                    <div class="namespace-wrapper">\Phabstractic\Resource\ArrayUtilities</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                version
+                            </th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_returnUnique" name="method_returnUnique" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">returnUnique()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">returnUnique(array  <span class="argument">$data</span>,   <span class="argument">$assoc = false</span>) : array</pre>
+                <p><em>Return Unique (array)</em></p>
+                <p>This can be used as an alternative to array_unique when that
+built-in function doesn't seem to work for your purposes.  This is
+not recusrive but should work on associative arrays (though,
+haphazardly)</p>
+<p>Version 4: Compatible with PHP 7
+Added associative option as second default argument</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>The given data to sort</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$assoc </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The unique array, this DOES NOT alter the argument</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_returnUniqueByReference" name="method_returnUniqueByReference" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">returnUniqueByReference()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">returnUniqueByReference(array  <span class="argument">$data</span>,   <span class="argument">$assoc = false</span>) : array</pre>
+                <p><em>Return Unique (array)</em></p>
+                <p>This can be used as an alternative to array_unique when that
+built-in function doesn't seem to work for your purposes.  This is
+not recusrive but should work on associative arrays (though,
+haphazardly)</p>
+<p>Version 4: Compatible with PHP 7
+Added associative option as second default argument</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>The given data to sort</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$assoc </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The unique array, THIS DOES ALTER the argument</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_elementComparison" name="method_elementComparison" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">elementComparison()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">elementComparison(mixed  <span class="argument">$a</span>, mixed  <span class="argument">$b</span>) : integer</pre>
+                <p><em>Compare Array Elements in an Object Compatible Sense</em></p>
+                <p>This is an attempt to compare unknown objects in an array to
+each other.  The idea is that one object will have the same hash
+even if referenced in different places, and that that hash will be
+different from other object's.  It seems to work okay.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$a </td>
+                                <td><p>The first element</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$b </td>
+                                <td><p>The second element (imagine in an equality test)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>0, 1,  or -1</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_objectToArray" name="method_objectToArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">objectToArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">objectToArray(object  <span class="argument">$o</span>) : array</pre>
+                <p><em>A utility function for converting a stdClass object to an array</em></p>
+                <p>This could also work on other objects as well, precariously,
+but it's designed for turning stdClass objects into arrays</p>
+<p>Version 4: Compatible with PHP 7
+Now includes values</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>object</td>
+                                <td>$o </td>
+                                <td><p>The given object to convert</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The converted array</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://www.if-not-true-then-false.com/2009/php-tip-convert-stdclass-object-to-multidimensional-array-and-convert-multidimensional-array-to-stdclass-object/"><span class="namespace-wrapper">http://www.if-not-true-then-false.com/2009/php-tip-convert-stdclass-object-to-multidimensional-array-and-convert-multidimensional-array-to-stdclass-object/</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_arrayToObject" name="method_arrayToObject" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">arrayToObject()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">arrayToObject(array  <span class="argument">$v</span>) : \Phabstractic\Resource\stdClass</pre>
+                <p><em>Convert an array into a stdClass object</em></p>
+                <p>Converts an array to a simple object</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$v </td>
+                                <td><p>The given array to convert</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Phabstractic\Resource\stdClass
+                                            &mdash; <p>The returned converted object</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://www.if-not-true-then-false.com/2009/php-tip-convert-stdclass-object-to-multidimensional-array-and-convert-multidimensional-array-to-stdclass-object/"><span class="namespace-wrapper">http://www.if-not-true-then-false.com/2009/php-tip-convert-stdclass-object-to-multidimensional-array-and-convert-multidimensional-array-to-stdclass-object/</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_arrayChangeValueCase" name="method_arrayChangeValueCase" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">arrayChangeValueCase()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">arrayChangeValueCase(array  <span class="argument">$input</span>, integer  <span class="argument">$case = CASE_LOWER</span>) : array</pre>
+                <p><em>Change the case of the values of an array</em></p>
+                <p>Like array_change_key_case except for values, defaults
+to CASE_LOWER, but CASE_UPPER can be used as well.</p>
+<p>NOTE: Using recursion, this processes the given array recursively.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$input </td>
+                                <td><p>The array to use as input</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$case </td>
+                                <td><p>CASE_LOWER or CASE_UPPER</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>An array with the values all cased</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://www.php.net/manual/en/function.array-change-key-case.php#78056"><span class="namespace-wrapper">http://www.php.net/manual/en/function.array-change-key-case.php#78056</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">ArrayUtilities.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Resource/ArrayUtilities.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phabstractic.html">\Phabstractic</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 4th, 2017 at 20:49.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -1,4 +1,15 @@
 <?php
+/**
+ * Loads php files from a single directory position
+ * 
+ * The following uses the Singletons namespace to instantiate a registry object
+ * and then check that registry object for the standard Falcraft AutoLoader
+ * singleton, defined by standard in the Loader/Bootstrap.php.  This file
+ * works with and without the standard Falcraft AutoLoader as well, much as
+ * the registry singleton works without it, but obviously cannot work without the
+ * registry singleton.
+ * 
+ */
 
 $includes = array('/Data/Types/None.php',
                   '/Patterns/Registry.php',);
@@ -16,13 +27,6 @@ use Phabstractic\Data\Types;
 if (!defined('UNITTEST_LOADREGISTRY')) {
     define('UNITTEST_LOADREGISTRY', true);
 }
-
-/* The following uses the Singletons namespace to instantiate a registry object
-   and then check that registry object for the standard Falcraft AutoLoader
-   singleton, defined by standard in the Loader/Bootstrap.php.  This file
-   works with and without the standard Falcraft AutoLoader as well, much as
-   the registry singleton works without it, but obviously cannot work without the
-   registry singleton. */
 
 /**
  * Load PHP Files When Autoloader Doesn't Exist

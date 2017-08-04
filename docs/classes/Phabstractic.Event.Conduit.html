@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Phabstractic.html">\Phabstractic</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">228</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-974046606"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-974046606" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1433092452"></a>
+                                <a href="../namespaces/Phabstractic.html" style="margin-left: 30px; padding-left: 0">Phabstractic</a>
+            </div>
+            <div id="namespace-1433092452" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-577578794"></a>
+                                <a href="../namespaces/Phabstractic.Data.html" style="margin-left: 30px; padding-left: 0">Data</a>
+            </div>
+            <div id="namespace-577578794" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-629390120"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.html" style="margin-left: 30px; padding-left: 0">Components</a>
+            </div>
+            <div id="namespace-629390120" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-125729836"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-125729836" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Components.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Exception.DomainException.html">DomainException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1222050326"></a>
+                                <a href="../namespaces/Phabstractic.Data.Components.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1222050326" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Components.Resource.PathInterface.html">PathInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Components.Path.html">Path</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1781660800"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.html" style="margin-left: 30px; padding-left: 0">Types</a>
+            </div>
+            <div id="namespace-1781660800" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1565053142"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1565053142" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.CodeGenerationException.html">CodeGenerationException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.OutOfRangeException.html">OutOfRangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.RangeException.html">RangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.RuntimeException.html">RuntimeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Exception.UnexpectedValueException.html">UnexpectedValueException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1009597627"></a>
+                                <a href="../namespaces/Phabstractic.Data.Types.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1009597627" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.FilterInterface.html">FilterInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LeafInterface.html">LeafInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LinkedListElementInterface.html">LinkedListElementInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.LinkedListInterface.html">LinkedListInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.ListInterface.html">ListInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.PriorityInterface.html">PriorityInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Data.Types.Resource.SetInterface.html">SetInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractFilter.html">AbstractFilter</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLeaf.html">AbstractLeaf</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLinkedList.html">AbstractLinkedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractLinkedListElement.html">AbstractLinkedListElement</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractList.html">AbstractList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Resource.AbstractSortedList.html">AbstractSortedList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                <a href="../namespaces/Phabstractic.Data.Types.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-2028812572" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Enumeration.html">Enumeration</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Leaf.html">Leaf</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LexicographicList.html">LexicographicList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LinkedList.html">LinkedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.LinkedListElement.html">LinkedListElement</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Map.html">Map</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.None.html">None</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Priority.html">Priority</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.PriorityQueue.html">PriorityQueue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Queue.html">Queue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Range.html">Range</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedList.html">RestrictedList</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedQueue.html">RestrictedQueue</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedSet.html">RestrictedSet</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.RestrictedStack.html">RestrictedStack</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Restrictions.html">Restrictions</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Set.html">Set</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Stack.html">Stack</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.Structure.html">Structure</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Data.Types.TaggedUnion.html">TaggedUnion</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1904284263"></a>
+                                <a href="../namespaces/Phabstractic.Event.html" style="margin-left: 30px; padding-left: 0">Event</a>
+            </div>
+            <div id="namespace-1904284263" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1258714475"></a>
+                                <a href="../namespaces/Phabstractic.Event.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1258714475" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-374776418"></a>
+                                <a href="../namespaces/Phabstractic.Event.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-374776418" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Resource.EventInterface.html">EventInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Event.Resource.FilterInterface.html">FilterInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Resource.AbstractEvent.html">AbstractEvent</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Event.Actor.html">Actor</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Aggregator.html">Aggregator</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Conduit.html">Conduit</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Filter.html">Filter</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.GenericEvent.html">GenericEvent</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.Handler.html">Handler</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Event.HandlerPriorityQueue.html">HandlerPriorityQueue</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-529352244"></a>
+                                <a href="../namespaces/Phabstractic.Features.html" style="margin-left: 30px; padding-left: 0">Features</a>
+            </div>
+            <div id="namespace-529352244" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-740171480"></a>
+                                <a href="../namespaces/Phabstractic.Features.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-740171480" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Features.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Features.Exception.ClassDependencyException.html">ClassDependencyException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Features.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-375217575"></a>
+                                <a href="../namespaces/Phabstractic.Features.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-375217575" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Features.Resource.ConfigurationInterface.html">ConfigurationInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Phabstractic.Features.ConfigurationTrait.html">ConfigurationTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Features.IdentityTrait.html">IdentityTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1959030633"></a>
+                                <a href="../namespaces/Phabstractic.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
+            </div>
+            <div id="namespace-1959030633" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-646573627"></a>
+                                <a href="../namespaces/Phabstractic.Loader.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-646573627" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Exception.DomainException.html">DomainException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-167218600"></a>
+                                <a href="../namespaces/Phabstractic.Loader.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-167218600" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Resource.LoaderInterface.html">LoaderInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Loader.Resource.ModuleInterface.html">ModuleInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Resource.AbstractLoader.html">AbstractLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Loader.AutoLoader.html">AutoLoader</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Loader.Module.html">Module</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-203080699"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.html" style="margin-left: 30px; padding-left: 0">Patterns</a>
+            </div>
+            <div id="namespace-203080699" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-7949243"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-7949243" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Exception.ExceptionInterface.html">ExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.CodeGenerationException.html">CodeGenerationException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.RangeException.html">RangeException</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Exception.RuntimeException.html">RuntimeException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1240360754"></a>
+                                <a href="../namespaces/Phabstractic.Patterns.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1240360754" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.BuilderInterface.html">BuilderInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.ObserverInterface.html">ObserverInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.PublisherInterface.html">PublisherInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.SingletonInterface.html">SingletonInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Phabstractic.Patterns.Resource.StateInterface.html">StateInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Phabstractic.Patterns.ObserverTrait.html">ObserverTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Patterns.PublisherTrait.html">PublisherTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Phabstractic.Patterns.SingletonTrait.html">SingletonTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Phabstractic.Patterns.AbstractFactory.html">AbstractFactory</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Prototype.html">Prototype</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Patterns.Registry.html">Registry</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1562135816"></a>
+                                <a href="../namespaces/Phabstractic.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1562135816" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Phabstractic.Resource.ArrayUtilities.html">ArrayUtilities</a></li>
+                                                    <li class="class"><a href="../classes/Phabstractic.Resource.FileUtilities.html">FileUtilities</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Phabstractic.Event.html">\Phabstractic\Event</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Phabstractic\Event</small>Conduit</h1>
+                    <p><em>The Conduit Class</em></p>
+                    <p>This class uses observer to collect a bunch of events from
+multiple sources and then employs a map (filters as keys,
+handlerpriorityqueues as values) to send those events to each filter to
+fire each handler chain.</p>
+<p>CHANGELOG</p>
+<p>1.0: Created Conduit Class - August 16th, 2013
+1.1: Enabled Aggregator Injection - October 7th, 2013
+2.0: Integrated into Primus 2
+Changed filter concrete to FilterInterface - October 14th, 2015
+3.0: implements configurationinterface
+eliminated need for aggregator, just implements observer now
+reformatted for inclusion in phabstarctic - July 31st, 2016</p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Phabstractic.Features.ConfigurationTrait.html#method_configure" class="">configure()</a><br />
+                                                                    <a href="../classes/Phabstractic.Features.ConfigurationTrait.html#method_saveSettings" class="">saveSettings()</a><br />
+                                                                    <a href="../classes/Phabstractic.Features.ConfigurationTrait.html#method_getSettings" class="">getSettings()</a><br />
+                                                                    <a href="../classes/Phabstractic.Features.ConfigurationTrait.html#method_processSettings" class="">processSettings()</a><br />
+                                                                    <a href="../classes/Phabstractic.Patterns.ObserverTrait.html#method_detachPublisher" class="">detachPublisher()</a><br />
+                                                                    <a href="../classes/Phabstractic.Patterns.ObserverTrait.html#method_attachPublisher" class="">attachPublisher()</a><br />
+                                                                    <a href="../classes/Phabstractic.Patterns.ObserverTrait.html#method_unlinkFromPublishers" class="">unlinkFromPublishers()</a><br />
+                                                                    <a href="../classes/Phabstractic.Patterns.ObserverTrait.html#method_getPublishers" class="">getPublishers()</a><br />
+                                                                    <a href="../classes/Phabstractic.Event.Conduit.html#method_notifyObserver" class="">notifyObserver()</a><br />
+                                                                    <a href="../classes/Phabstractic.Event.Conduit.html#method___debugInfo" class="">__debugInfo()</a><br />
+                                                                    <a href="../classes/Phabstractic.Event.Conduit.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Phabstractic.Event.Conduit.html#method_getFilters" class="">getFilters()</a><br />
+                                                                    <a href="../classes/Phabstractic.Event.Conduit.html#method_addFilter" class="">addFilter()</a><br />
+                                                                    <a href="../classes/Phabstractic.Event.Conduit.html#method_setFilter" class="">setFilter()</a><br />
+                                                                    <a href="../classes/Phabstractic.Event.Conduit.html#method_removeFilter" class="">removeFilter()</a><br />
+                                                                    <a href="../classes/Phabstractic.Event.Conduit.html#method_getHandlerPriorityQueue" class="">getHandlerPriorityQueue()</a><br />
+                                                                    <a href="../classes/Phabstractic.Event.Conduit.html#method_getHandlerPriorityQueueReference" class="">getHandlerPriorityQueueReference()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Phabstractic.Patterns.ObserverTrait.html#method_constructObservedSubjects" class="">constructObservedSubjects()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Phabstractic.Features.ConfigurationTrait.html#property_conf" class="">$conf</a><br />
+                                                                    <a href="../classes/Phabstractic.Patterns.ObserverTrait.html#property_observedSubjects" class="">$observedSubjects</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Phabstractic.Event.Conduit.html#property_map" class="">$map</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Event.Conduit.html"><div class="path-wrapper">Event/Conduit.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Event</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Phabstractic\Event\Conduit</div>
+                            </dd>
+
+                                                                            <dt>Implements</dt>
+                                                        <dd><a href="../classes/Phabstractic.Patterns.Resource.ObserverInterface.html"><div class="namespace-wrapper">\Phabstractic\Patterns\Resource\ObserverInterface</div></a></dd>
+                                                                                <dd><a href="../classes/Phabstractic.Features.Resource.ConfigurationInterface.html"><div class="namespace-wrapper">\Phabstractic\Features\Resource\ConfigurationInterface</div></a></dd>
+                        
+                                                                                    <dt>Uses traits</dt>
+                                                        <dd>
+                                <a href="../classes/Phabstractic.Features.ConfigurationTrait.html">                                    <div class="namespace-wrapper">\Phabstractic\Features\ConfigurationTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/Phabstractic.Patterns.ObserverTrait.html">                                    <div class="namespace-wrapper">\Phabstractic\Patterns\ObserverTrait</div>
+                                </a>                            </dd>
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                version
+                            </th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_conf" name="property_conf" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$conf</h3>
+                <pre class="signature">$conf : \Phabstractic\Features\Zend\Config\Config</pre>
+                <p><em>The objects configuration object</em></p>
+                <p>Should be an instance of Zend/Config</p>
+
+                                <h4>Type</h4>
+                \Phabstractic\Features\Zend\Config\Config
+                &mdash; The object configuration info                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Features.ConfigurationTrait.html"><div class="path-wrapper">\Phabstractic\Features\ConfigurationTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_observedSubjects" name="property_observedSubjects" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$observedSubjects</h3>
+                <pre class="signature">$observedSubjects : \Phabstractic\Patterns\Phabstractic\Patterns\Resource\PublisherInterface</pre>
+                <p><em>The subjects that this observer is listening to</em></p>
+                <p>For an observer that listens to multiple publishers with
+some added functionality see Phabstractic\Event\Aggregator</p>
+
+                                <h4>Type</h4>
+                \Phabstractic\Patterns\Phabstractic\Patterns\Resource\PublisherInterface
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Patterns.ObserverTrait.html"><div class="path-wrapper">\Phabstractic\Patterns\ObserverTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_map" name="property_map" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$map</h3>
+                <pre class="signature">$map : \Phabstractic\Event\Falcraft\Data\Types\Map</pre>
+                <p><em>The actual conduit map</em></p>
+                <p>Keys are filters, values are chains</p>
+
+                                <h4>Type</h4>
+                \Phabstractic\Event\Falcraft\Data\Types\Map
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configure" name="method_configure" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configure()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">configure(array|string|\Phabstractic\Features\Zend\Config\Config  <span class="argument">$configuration</span>, string  <span class="argument">$format = null</span>, mixed  <span class="argument">$context = null</span>) : boolean</pre>
+                <p><em>Configure An Object</em></p>
+                <p>Expects an array for configuration however, you can also pass it
+a filepath where it will read the information from a file automatically
+detecting the format using the file extension.  You can also pass a
+Zend/Config object already made.</p>
+<p>You can also pass a format specifier (forced format) for use in a
+if $configuration is a string formatted with such information.  E.G.
+to load from a string in the format ini:</p>
+<p>$this-&gt;configure($configString, 'ini');</p>
+<p>The $context argument is used for any additional reader constructor
+information, such as the constructor for the 'yaml' format.</p>
+<p>NOTE:  You can override/extend the classes used for reading formats
+by identifying an additional array in the property
+$this-&gt;configReaders.  This will merge with the standard
+formats array.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array|string|\Phabstractic\Features\Zend\Config\Config</td>
+                                <td>$configuration </td>
+                                <td><p>The objects
+configuration information.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$format </td>
+                                <td><p>The forced format, or format for configuration
+string</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$context </td>
+                                <td><p>Any additional information for a reader
+constructor, such as needed for the YAML format.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if instantiated</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Features.ConfigurationTrait.html"><div class="path-wrapper">\Phabstractic\Features\ConfigurationTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_saveSettings" name="method_saveSettings" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">saveSettings()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">saveSettings(string  <span class="argument">$file</span>, \Phabstractic\Features\Zend\Config\Writer\WriterInterface  <span class="argument">$writer = null</span>, boolean  <span class="argument">$exclusive = true</span>, mixed  <span class="argument">$context = null</span>) </pre>
+                <p><em>Save an Object&#039;s Configuration to a File</em></p>
+                <p>Takes an objects $conf property and writes the information contained
+therein to a file with a format automatically specified by the
+filename.</p>
+<p>It is possible to retrieve a string of a particular format from this
+method by specifying the filename '#string' with an extension
+indicating the desired format, such as '#string.json'.</p>
+<p>The $context argument is used for any additional reader constructor
+information, such as the constructor for the 'yaml' format.</p>
+<p>NOTE:  You can override/extend the classes used for writing formats
+by identifying an additional array in the property
+$this-&gt;configWriters.  This will merge with the standard
+formats array.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$file </td>
+                                <td><p>The file path to write to, or '#string.ext'</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Phabstractic\Features\Zend\Config\Writer\WriterInterface</td>
+                                <td>$writer </td>
+                                <td><p>The optional writer
+object supplied to use (such as a MySQL writer)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$exclusive </td>
+                                <td><p>Argument provided to toFile(), file
+exclusive lock when writing</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$context </td>
+                                <td><p>Any additionla writer constructor
+information (YAML)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Features.ConfigurationTrait.html"><div class="path-wrapper">\Phabstractic\Features\ConfigurationTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSettings" name="method_getSettings" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getSettings()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSettings(string  <span class="argument">$format</span>,   <span class="argument">$context = null</span>) : string|boolean</pre>
+                <p><em>Retrieve an Object&#039;s Configuration Information As String</em></p>
+                <p>This is a shortcut to ::saveSettings() which specifies a format
+and forces the return of a string, using the #string.ext filename
+-see documentation for ::saveSettings()-</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$format </td>
+                                <td><p>The format to return, must be supported by
+::saveSettings(), use $this-&gt;configWriters to support
+additional formats.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$context </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|boolean
+                                            &mdash; <p>The formatted string, or false otherwise</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Features.ConfigurationTrait.html"><div class="path-wrapper">\Phabstractic\Features\ConfigurationTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_processSettings" name="method_processSettings" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">processSettings()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">processSettings(\Phabstractic\Features\Zend\Config\Processor\ProcessorInterface  <span class="argument">$processor</span>) </pre>
+                <p><em>Process an Object&#039;s Configuration</em></p>
+                <p>This uses a Zend\Config\Processor implementation to process the
+configuration information, such as constants.  The processor
+must be supplied and implement ProcessorInterface</p>
+<p>NOTE: Edits the $conf object in place.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Phabstractic\Features\Zend\Config\Processor\ProcessorInterface</td>
+                                <td>$processor </td>
+                                <td><p>The given
+processor object</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Features.ConfigurationTrait.html"><div class="path-wrapper">\Phabstractic\Features\ConfigurationTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_detachPublisher" name="method_detachPublisher" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">detachPublisher()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">detachPublisher(\Phabstractic\Patterns\Resource\PublisherInterface  <span class="argument">$publisher</span>) </pre>
+                <p><em>This detaches the observer from its subject</em></p>
+                <p>Reciprocal methods exist in the publisher</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phabstractic.Patterns.Resource.PublisherInterface.html">\Phabstractic\Patterns\Resource\PublisherInterface</a></td>
+                                <td>$publisher </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Patterns.ObserverTrait.html"><div class="path-wrapper">\Phabstractic\Patterns\ObserverTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_attachPublisher" name="method_attachPublisher" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">attachPublisher()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">attachPublisher(\Phabstractic\Patterns\Resource\PublisherInterface  <span class="argument">$publisher</span>) </pre>
+                <p><em>Attach this observer to a new publisher</em></p>
+                <p>This also acts like a 'set' function, and null
+is an acceptable value to be passed</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phabstractic.Patterns.Resource.PublisherInterface.html">\Phabstractic\Patterns\Resource\PublisherInterface</a></td>
+                                <td>$publisher </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Patterns.ObserverTrait.html"><div class="path-wrapper">\Phabstractic\Patterns\ObserverTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_unlinkFromPublishers" name="method_unlinkFromPublishers" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">unlinkFromPublishers()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">unlinkFromPublishers() </pre>
+                <p><em>Remove this observer from all publishers</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Patterns.ObserverTrait.html"><div class="path-wrapper">\Phabstractic\Patterns\ObserverTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPublishers" name="method_getPublishers" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPublishers()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPublishers() : array</pre>
+                <p><em>Return array of publishers</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Patterns.ObserverTrait.html"><div class="path-wrapper">\Phabstractic\Patterns\ObserverTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_notifyObserver" name="method_notifyObserver" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">notifyObserver()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">notifyObserver(\Phabstractic\Patterns\Resource\PublisherInterface  <span class="argument">$publisher</span>, \Phabstractic\Patterns\Resource\StateInterface  <span class="argument">$state</span>) : boolean</pre>
+                <p><em>The aggregate will call this class when it fires.</em></p>
+                <p>When a state change occurs and the notify function is called, we first make sure
+it's an abstract event, otherwise we exit gracefully, and then we run it through
+the various filters and their event chains.  Events are handled as references
+so they can be affected by the handlers they encounter (or filters, or conduits, etc)</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phabstractic.Patterns.Resource.PublisherInterface.html">\Phabstractic\Patterns\Resource\PublisherInterface</a></td>
+                                <td>$publisher </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Phabstractic.Patterns.Resource.StateInterface.html">\Phabstractic\Patterns\Resource\StateInterface</a></td>
+                                <td>$state </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if handled (is AbstractEvent)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___debugInfo" name="method___debugInfo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__debugInfo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__debugInfo() </pre>
+                <p><em>Debug Info (var_dump)</em></p>
+                <p>Display debug info</p>
+<p>Requires PHP 5.6+</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$filters = array()</span>, array  <span class="argument">$options = array()</span>) </pre>
+                <p><em>The Conduit Constructor</em></p>
+                <p>This takes an array of filters to set up the map</p>
+<p>This can be a multidimensional array where 0 is the filter and 1 is
+the priority queue Or it can just be a filter object, in which case
+an empty priority queue is instantiated</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$filters </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFilters" name="method_getFilters" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFilters()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFilters() : array</pre>
+                <p><em>Retrieve all the filters registered with the conduit as an array</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addFilter" name="method_addFilter" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addFilter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addFilter(\Phabstractic\Event\Resource\FilterInterface  <span class="argument">$filter</span>) </pre>
+                <p><em>Add a filter to the list of filters</em></p>
+                <p>Instantiates with an empty priority queue</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Phabstractic.Event.Resource.FilterInterface.html">\Phabstractic\Event\Resource\FilterInterface</a></td>
+                                <td>$filter </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFilter" name="method_setFilter" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setFilter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setFilter(\Phabstractic\Event\Falcraft\Event\Resource\Filter  <span class="argument">$filter</span>, \Phabstractic\Event\Falcraft\Event\Resource\HandlerPriorityQueue  <span class="argument">$queue</span>) </pre>
+                <p><em>Associate a given filter, in the map, with a given priority queue</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Phabstractic\Event\Falcraft\Event\Resource\Filter</td>
+                                <td>$filter </td>
+                                <td><p>The filter to set</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Phabstractic\Event\Falcraft\Event\Resource\HandlerPriorityQueue</td>
+                                <td>$queue </td>
+                                <td><p>The given queue to be used</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeFilter" name="method_removeFilter" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeFilter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeFilter(\Phabstractic\Event\Falcraft\Event\Resource\Filter  <span class="argument">$filter</span>) </pre>
+                <p><em>Remove a filter from the map, this also of course removes the queue it represents</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Phabstractic\Event\Falcraft\Event\Resource\Filter</td>
+                                <td>$filter </td>
+                                <td><p>The filter to remove</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getHandlerPriorityQueue" name="method_getHandlerPriorityQueue" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getHandlerPriorityQueue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getHandlerPriorityQueue(\Phabstractic\Event\Phabstractic\Event\Filter  <span class="argument">$filter</span>) : \Phabstractic\Event\Phabstractic\Event\HandlerPriorityQueue</pre>
+                <p><em>Retrieve HandlerPriorityQueue associated to given filter</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Phabstractic\Event\Phabstractic\Event\Filter</td>
+                                <td>$filter </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Phabstractic\Event\Phabstractic\Event\HandlerPriorityQueue
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getHandlerPriorityQueueReference" name="method_getHandlerPriorityQueueReference" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getHandlerPriorityQueueReference()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getHandlerPriorityQueueReference(\Phabstractic\Event\Phabstractic\Event\Filter  <span class="argument">$filter</span>) : \Phabstractic\Event\Phabstractic\Event\HandlerPriorityQueue</pre>
+                <p><em>Retrieve HandlerPriorityQueue associated to given filter as reference</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Phabstractic\Event\Phabstractic\Event\Filter</td>
+                                <td>$filter </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Phabstractic\Event\Phabstractic\Event\HandlerPriorityQueue
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_constructObservedSubjects" name="method_constructObservedSubjects" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">constructObservedSubjects()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">constructObservedSubjects() </pre>
+                <p><em>Make sure $this-&gt;observedSubjects has been constructed</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Phabstractic.Patterns.ObserverTrait.html"><div class="path-wrapper">\Phabstractic\Patterns\ObserverTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Conduit.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Event/Conduit.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Phabstractic.html">\Phabstractic</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 4th, 2017 at 20:49.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -113,7 +113,7 @@ namespace Phabstractic\Patterns
          * 
          * This constructs the registry array with the given default values
          * 
-         * @param array $array The array values to use
+         * @param array $data The array values to use
          * @param mixed $flags The array 'flags' (such as \ArrayObject::ARRAY_AS_PROPS)
          * @param string $iteratorClass The iterator class for the array, default \ArrayObject's default iterator
          * 
