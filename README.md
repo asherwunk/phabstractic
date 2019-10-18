@@ -1,3 +1,9 @@
+# No Longer Supported
+
+This was written as a programming exercise for myself to explore abstract data types and what I could implement in pure PHP. It was originally inspired and based on the FalcraftCMF code, no longer online, which was much more expansive (such as including a complete HTTP client.) As it is now, I am no longer working on this repository nor providing any updates nor support. Use, employ, modify, and run at your own risk. Thanks for all your support,
+
+Asher
+
 # phabstractic
 
 Pure PHP Abstract Data Types, Features, and Algorithms
