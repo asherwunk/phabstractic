@@ -9,8 +9,7 @@ Asher
 Pure PHP Abstract Data Types, Features, and Algorithms
 
 For further information on the author please visit:
-* [World Of Wunk](http://wunk.me/ "Personal Website")
-* [Phabstractic Homepage](https://archive.wunk.me/programming-projects/phabstractic/)
+* [World Of Wunk](https://wunk.me/ "Personal Website")
 
 # License
 
